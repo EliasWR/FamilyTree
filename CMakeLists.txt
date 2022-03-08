@@ -1,0 +1,9 @@
+cmake_minimum_required(VERSION 3.21)
+project(FamilyTree)
+
+set(CMAKE_CXX_STANDARD 14)
+
+include_directories(.)
+
+add_executable(FamilyTree
+        Family_Tree.cpp)
