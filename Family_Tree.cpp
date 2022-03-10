@@ -5,8 +5,7 @@
 
 #include <iostream>
 int main () {
-    std::cout << "Hello Ginger Slayer Man Elias"<<std::endl;
-    std::cout<<"Hello i am hot and sexy and cool";
+    std::cout << "Hello World";
     return 0;
 }
 
