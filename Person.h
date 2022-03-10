@@ -51,6 +51,12 @@ public:
     void setSex (char sex) {
         _sex = sex;
     }
+
+    /*
+     * TODO Add date handling method for returning three integers with day, month and year of death
+     * TODO Add pointers for children and parents in private variables and constructors, getters and setters
+     */
+
     // Destructor
     ~Person(){
 
