@@ -10,43 +10,50 @@
 
 class Person {
 private:
-    std::string _firstName;
-    std::string _lastName;
-    std::string _birth;
-    std::string _death;
+    std::string _firstName, _lastName, _birth, _death;
     char _sex;
 
+
 public:
-    // Getters and setters for private variables
-    std::string getFirstName(){
+    // Constructors
+    Person (){}
+    Person (std::string firstName, std::string lastName, std::string birth, std::string death, char sex):
+            _firstName(firstName), _lastName(lastName), _birth(birth), _death(death), _sex(sex) {}
+
+    // Getters and setters for private variables of Person class
+    std::string getFirstName() const {
         return _firstName;
     }
-    void setFirstName (std::string firstName){
+    void setFirstName (std::string firstName) {
         _firstName = firstName;
     }
-    std::string getLastName(){
+    std::string getLastName() const {
         return _lastName;
     }
-    void setLastName (std::string firstName){
+    void setLastName (std::string firstName) {
         _lastName = firstName;
     }
-    std::string getBirth (){
+    std::string getBirth () const {
         return _birth;
     }
-    void setBirth (std::string birth){
+    void setBirth (std::string birth) {
         _birth = birth;
     }
-    std::string getDeath (){
+    std::string getDeath () const {
         return _death;
     }
-    void setBirth (std::string death){
+    void setDeath (std::string death) {
         _death = death;
     }
-    char getBirth (){
+    char getSex () const {
         return _sex;
     }
-    void setBirth (char sex){
+    void setSex (char sex) {
         _sex = sex;
+    }
+    // Destructor
+    ~Person(){
+
     }
 };
 
