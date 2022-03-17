@@ -20,7 +20,7 @@ int main () {
     //std::cout << myPerson.getFirstName() << std::endl;
     a.traverseDepthFirst([](Node* f) {
         std::cout << f->getPerson().getFirstName() << std::endl;
-    });;
+    });
 
     // Pointers are not valid because folder objects are located on the stack. Get destructed when out of scope.
     /*
