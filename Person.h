@@ -13,8 +13,8 @@ private:
     std::string _firstName, _lastName, _birth, _death;
     char _sex;
 
-
 public:
+
     // Constructors
     Person (){}
     Person (std::string firstName, std::string lastName, std::string birth, std::string death, char sex):
