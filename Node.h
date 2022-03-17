@@ -11,8 +11,6 @@
 #include <string>
 #include <utility>
 
-//This code showcases a generic tree type data structure
-
 class Node {
 
 public:

@@ -23,8 +23,6 @@ public:
         std::cout << "To navigate this program you type the number of your desired command followed by enter." << std::endl;
     }
 
-
-
 };
 
 #endif //FAMILYTREE_MENU_H

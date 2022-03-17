@@ -62,6 +62,8 @@ public:
      * TODO Add date handling method for returning three integers with day, month and year of death
      * TODO Add file reading class
      * TODO Add menu class
+     * TODO Exception handling
+     * TODO Tests for code
      */
 };
 

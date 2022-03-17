@@ -6,6 +6,7 @@
 #include <iostream>
 #include "Person.h"
 #include "Node.h"
+#include "Menu.h"
 
 int main () {
     Node a(Person(1, "Fili"));
@@ -20,7 +21,7 @@ int main () {
     a.add(c);
     b.add(d);
     b.add(e);
-    //std::cout << myPerson.getFirstName() << std::endl;
+
     a.traverseDepthFirst([](Node* f) {
         std::cout << f->getPerson().getFirstName() << std::endl;
     });
@@ -28,6 +29,7 @@ int main () {
     b.traverseUpwards([](Node* f) {
         std::cout << f->getPerson().getFirstName() << std::endl;
     });
+
     return 0;
 }
 
