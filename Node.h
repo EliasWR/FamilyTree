@@ -24,42 +24,41 @@ public:
     }
 
     [[nodiscard]] bool isRoot() const {
-        return parent_ == nullptr;
+        return _parent == nullptr;
     }
 
     [[nodiscard]] bool isLeaf() const {
-        return children_.empty();
+        return _children.empty();
     }
 
     bool hasParent() {
-        return parent_ != nullptr;
+        return _parent != nullptr;
     }
 
     void traverseUpwards(std::function<void(Node*)> f) {
         f(this);
         if (hasParent()) {
-            parent_ -> traverseUpwards(f);
+            _parent -> traverseUpwards(f);
         }
     }
 
     void traverseDepthFirst(std::function<void(Node*)> f) {
         f(this);
-        for (auto c : children_) {
+        for (auto c : _children) {
             c -> traverseDepthFirst(f);
         }
     }
 
-
     void add(Node& f) {
-        f.parent_ = this; // this -> folder*
-        children_.emplace_back(&f);
+        f._parent = this; // this -> folder*
+        _children.emplace_back(&f);
 
     }
 
 private:
     std::unique_ptr<Person> _person;
-    Node* parent_ = nullptr;
-    std::vector<Node*> children_;
+    Node* _parent = nullptr;
+    std::vector<Node*> _children;
 };
 
 #endif //FAMILYTREE_NODE_H
