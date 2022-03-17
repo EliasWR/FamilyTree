@@ -16,10 +16,11 @@
 class Node {
 
 public:
-    explicit Node(const std::string &name) : name_(std::move(name)) {}
-
-    [[nodiscard]] std::string getName() const {
-        return name_;
+    // Constructor taking person.
+    // Creating person objects with unique ownership in the node.
+    explicit Node(const Person& person): _person(std::make_unique<Person>(person)){}
+    [[nodiscard]] Person& getPerson() {
+        return *_person;
     }
 
     [[nodiscard]] bool isRoot() const {
@@ -35,7 +36,6 @@ public:
     }
 
     void traverseUpwards(std::function<void(Node*)> f) {
-
         f(this);
         if (hasParent()) {
             parent_ -> traverseUpwards(f);
@@ -57,11 +57,9 @@ public:
     }
 
 private:
-    std::string name_;
-
+    std::unique_ptr<Person> _person;
     Node* parent_ = nullptr;
     std::vector<Node*> children_;
-
 };
 
 #endif //FAMILYTREE_NODE_H

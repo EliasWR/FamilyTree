@@ -10,17 +10,23 @@
 
 class Person {
 private:
+    int _index;
     std::string _firstName, _lastName, _birth, _death;
     char _sex;
 
 public:
 
     // Constructors
+    //
     Person (){}
+    Person (int index, std::string firstName):_index(index), _firstName(firstName){}
     Person (std::string firstName, std::string lastName, std::string birth, std::string death, char sex):
             _firstName(firstName), _lastName(lastName), _birth(birth), _death(death), _sex(sex) {}
 
     // Getters and setters for private variables of Person class
+    int getIndex() const {
+        return _index;
+    }
     std::string getFirstName() const {
         return _firstName;
     }
@@ -56,11 +62,6 @@ public:
      * TODO Add date handling method for returning three integers with day, month and year of death
      * TODO Add pointers for children and parents in private variables and constructors, getters and setters
      */
-
-    // Destructor
-    ~Person(){
-
-    }
 };
 
 #endif //FAMILYTREE_PERSON_H
