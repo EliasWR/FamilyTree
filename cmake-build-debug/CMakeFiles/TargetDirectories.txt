@@ -1,3 +1,0 @@
-C:/Users/filip/FamilyTree/cmake-build-debug/CMakeFiles/FamilyTree.dir
-C:/Users/filip/FamilyTree/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/filip/FamilyTree/cmake-build-debug/CMakeFiles/rebuild_cache.dir
