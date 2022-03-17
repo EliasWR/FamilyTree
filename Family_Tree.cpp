@@ -8,20 +8,23 @@
 #include "Node.h"
 
 int main () {
-    Node a(Person(1, "Filip"));
+    Node a(Person(1, "Fili"));
     Node b(Person(2, "Erik"));
     Node c(Person(3, "Anita"));
     Node d(Person(4, "Hans"));
     Node e(Person(5, "Lillian"));
 
     auto &myPerson = a.getPerson();
-    myPerson.setFirstName("FilipNEW");
+    myPerson.setFirstName("Filip");
     a.add(b);
+    a.add(c);
+    b.add(d);
+    b.add(e);
     //std::cout << myPerson.getFirstName() << std::endl;
     a.traverseDepthFirst([](Node* f) {
         std::cout << f->getPerson().getFirstName() << std::endl;
     });
-
+    std::cout << d.isLeaf() << std::endl;
     b.traverseUpwards([](Node* f) {
         std::cout << f->getPerson().getFirstName() << std::endl;
     });

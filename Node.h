@@ -31,13 +31,13 @@ public:
         return _children.empty();
     }
 
-    bool hasParent() {
+    bool hasChild() {
         return _parent != nullptr;
     }
 
     void traverseUpwards(std::function<void(Node*)> f) {
         f(this);
-        if (hasParent()) {
+        if (hasChild()) {
             _parent -> traverseUpwards(f);
         }
     }
@@ -52,7 +52,6 @@ public:
     void add(Node& f) {
         f._parent = this; // this -> folder*
         _children.emplace_back(&f);
-
     }
 
 private:

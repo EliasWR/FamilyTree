@@ -31,5 +31,5 @@
 *.out
 *.app
 
-#
+# Excluding all cmake files
 cmake-build-debug
