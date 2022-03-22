@@ -1,7 +1,6 @@
 //
 // Created by Elias Woie Refsdal on 07/03/2022.
-//
-
+// Due delivery 7th of April
 
 #include <iostream>
 #include "Person.h"
@@ -17,18 +16,23 @@ int main () {
 
     auto &myPerson = a.getPerson();
     myPerson.setFirstName("Filip");
+
+    std::cout << d.isLeaf() << std::endl;
+
     a.add(b);
     a.add(c);
     b.add(d);
     b.add(e);
 
+    std::cout << "Printing tree with root: " << myPerson.getFirstName();
     a.traverseDepthFirst([](Node* f) {
         std::cout << f->getPerson().getFirstName() << std::endl;
     });
-    std::cout << d.isLeaf() << std::endl;
+
     b.traverseUpwards([](Node* f) {
         std::cout << f->getPerson().getFirstName() << std::endl;
     });
+
 
     return 0;
 }

@@ -64,6 +64,9 @@ public:
      * TODO Add menu class
      * TODO Exception handling
      * TODO Tests for code
+     * TODO Big O notation on traversal algorithms
+     * TODO Fjerne autogenererte notater øverst og legge til kandidatnr i ReadMe
+     * TODO Linked list with bubble sort
      */
 };
 
