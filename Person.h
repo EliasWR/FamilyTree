@@ -7,11 +7,13 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 class Person {
 private:
     int _index;
-    std::string _firstName, _lastName, _birth, _death;
+    std::vector<int> _birth, _death;
+    std::string _firstName, _lastName;
     char _sex;
 
 public:
@@ -20,7 +22,7 @@ public:
     //
     Person (){}
     Person (int index, std::string firstName):_index(index), _firstName(firstName){}
-    Person (std::string firstName, std::string lastName, std::string birth, std::string death, char sex):
+    Person (std::string firstName, std::string lastName, std::vector<int> birth, std::vector<int> death, char sex):
             _firstName(firstName), _lastName(lastName), _birth(birth), _death(death), _sex(sex) {}
 
     // Getters and setters for private variables of Person class
@@ -39,17 +41,21 @@ public:
     void setLastName (std::string firstName) {
         _lastName = firstName;
     }
-    std::string getBirth () const {
+    std::vector<int> getBirth () const {
         return _birth;
     }
-    void setBirth (std::string birth) {
-        _birth = birth;
+    void setBirth (int year, int month, int day) {
+        _birth[0] = year;
+        _birth[1] = month;
+        _birth[2] = day;
     }
-    std::string getDeath () const {
+    std::vector<int> getDeath () const {
         return _death;
     }
-    void setDeath (std::string death) {
-        _death = death;
+    void setDeath (int year, int month, int day) {
+        _birth[0] = year;
+        _birth[1] = month;
+        _birth[2] = day;
     }
     char getSex () const {
         return _sex;
