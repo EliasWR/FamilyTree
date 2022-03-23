@@ -12,6 +12,10 @@
 #include <utility>
 
 class Node {
+private:
+    std::unique_ptr<Person> _person;
+    Node* _parent = nullptr;
+    std::vector<Node*> _children;
 
 public:
     // Constructor taking person.
@@ -52,10 +56,6 @@ public:
         _children.emplace_back(&f);
     }
 
-private:
-    std::unique_ptr<Person> _person;
-    Node* _parent = nullptr;
-    std::vector<Node*> _children;
 };
 
 #endif //FAMILYTREE_NODE_H
