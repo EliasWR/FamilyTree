@@ -40,16 +40,17 @@ int main () {
     b.add(e);
 
     // Implementation of traversal
+
     std::cout << "Printing tree with root: " << myPerson.getFirstName() << std::endl;
-    a.traverseDepthFirst([](Node* f) {
+    a.traverseDepthFirst([](Node<Person>* f) {
         std::cout << f->getPerson().getFirstName() << std::endl;
     });
     std::cout << "------------------"<< std::endl;
-    b.traverseUpwards([](Node* f) {
+    b.traverseUpwards([](Node<Person>* f) {
         std::cout << f->getPerson().getFirstName() << std::endl;
     });
     // Implementation of singly linked list
-    auto list = FamilyTree::singly_linked_list<Node>();
+    auto list = FamilyTree::singly_linked_list<Node<Person>>();
 
     list.addLast(a);
     list.addLast(b);
@@ -58,7 +59,7 @@ int main () {
     std::cout << list << std::endl;
 
     std::cout << list.removeFirst() << std::endl;
-/*
+
     std::cout << list << std::endl;
 
     list.insert(0, d);
@@ -68,7 +69,7 @@ int main () {
     list.addFirst(a);
 
     std::cout << list << std::endl;
-*/
+
     // List to be bubble sorted
     std::vector<int> numbers = {2,1,4,3,5};
 

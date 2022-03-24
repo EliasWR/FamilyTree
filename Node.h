@@ -8,19 +8,20 @@
 #include <utility>
 #include <ostream>
 
-
+template <class T>
 class Node {
 private:
-    std::shared_ptr<Person> _person;
+    std::shared_ptr<T> _person;
     Node *_parent = nullptr;
     std::vector<Node *> _children;
+
 
 public:
     // Constructor taking person.
     // Creating person objects with unique ownership in the node.
-    explicit Node(const Person &person) : _person(std::make_unique<Person>(person)) {}
+    explicit Node(const T &t) : _person(std::make_unique<T>(t)) {}
 
-    [[nodiscard]] Person &getPerson() {
+    [[nodiscard]] Person &getPerson() const {
         return *_person;
     }
 
@@ -36,14 +37,14 @@ public:
         return _parent != nullptr;
     }
 
-    void traverseUpwards(std::function<void(Node *)> f) {
+    void traverseUpwards(std::function<void(Node<T> *)> f) {
         f(this);
         if (hasChild()) {
             _parent->traverseUpwards(f);
         }
     }
 
-    void traverseDepthFirst(std::function<void(Node *)> f) {
+    void traverseDepthFirst(std::function<void(Node<T> *)> f) {
         f(this);
         for (auto c: _children) {
             c->traverseDepthFirst(f);
@@ -55,8 +56,8 @@ public:
         _children.emplace_back(&f);
     }
 
-    template<class T>
-    friend std::ostream &operator<<(std::ostream &, const Node<T> &);
+    template<class E>
+    friend std::ostream &operator<<(std::ostream &, const Node<E> &);
 };
 
 template<typename T>
@@ -65,8 +66,6 @@ std::ostream &operator<<(std::ostream &os, const Node<T> &l) {
     os << myPerson.getFirstName();
     os << " ";
     os << myPerson.getLastName();
-    os << std::endl;
-
     return os;
 }
 
