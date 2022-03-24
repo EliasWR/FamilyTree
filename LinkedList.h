@@ -120,7 +120,6 @@ namespace FamilyTree {
 
     template<typename T>
     std::ostream &operator<<(std::ostream &os, const singly_linked_list<T> &l) {
-
         if (l.empty()) {
             os << "[]"
                << "\n";

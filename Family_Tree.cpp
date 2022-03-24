@@ -48,7 +48,6 @@ int main () {
     b.traverseUpwards([](Node* f) {
         std::cout << f->getPerson().getFirstName() << std::endl;
     });
-
     // Implementation of singly linked list
     auto list = FamilyTree::singly_linked_list<Node>();
 
@@ -57,9 +56,9 @@ int main () {
     list.addLast(c);
 
     std::cout << list << std::endl;
-/*
-    std::cout << list.removeFirst() << std::endl;
 
+    std::cout << list.removeFirst() << std::endl;
+/*
     std::cout << list << std::endl;
 
     list.insert(0, d);
