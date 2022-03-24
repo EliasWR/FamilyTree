@@ -1,7 +1,3 @@
-//
-// Created by Elias Woie Refsdal on 23/03/2022.
-//
-
 #ifndef FAMILYTREE_LINKEDLIST_H
 #define FAMILYTREE_LINKEDLIST_H
 #include <exception>
@@ -10,19 +6,19 @@
 
 namespace FamilyTree {
     template<typename T>        // Template to work with generic node
-    class node {
+    class ListNode {
 
     public:
-        explicit node(const T &data) : data_(std::move(data)) {}
+        explicit ListNode(const T &data) : data_(std::move(data)) {}
 
         T data_;
-        node *next_ = nullptr;
+        ListNode *next_ = nullptr;
     };
 
     template<typename T>
     class singly_linked_list {
     private:
-        node<T> *head_ = nullptr;
+        ListNode<T> *head_ = nullptr;
         size_t size_ = 0;
     public:
         singly_linked_list() : size_(0) {}
@@ -34,7 +30,7 @@ namespace FamilyTree {
                 throw std::runtime_error("Index out of bounds");
             }
 
-            node<T> *current = head_;
+            ListNode<T> *current = head_;
             for (int i = 0; i < index; i++) {
                 current = current->next_;
             }
@@ -45,7 +41,7 @@ namespace FamilyTree {
             return operator[](index);
         }
 
-        void addFirst(const T &data) { insert(0, data); } //
+        void addFirst(const T &data) { insert(0, data); }
 
         void addLast(const T &data) { insert(size_, data); }
 
@@ -54,15 +50,15 @@ namespace FamilyTree {
                 throw std::runtime_error("Index out of bounds");
             }
 
-            node<T> *current = head_;
-            node<T> *prev = nullptr;
+            ListNode<T> *current = head_;
+            ListNode<T> *prev = nullptr;
 
             for (int i = 0; i < index; i++) {
                 prev = current;             // Saves last node
                 current = current->next_;   // Goes to next node in linked list
             }
 
-            node<T> *insert = new node(data);
+            ListNode<T> *insert = new ListNode(data);
             insert->next_ = current;
             if (!prev) {
                 head_ = insert;
@@ -78,8 +74,8 @@ namespace FamilyTree {
                 throw std::runtime_error("Index out of bounds");
             }
 
-            node<T> *current = head_;
-            node<T> *prev = nullptr;
+            ListNode<T> *current = head_;
+            ListNode<T> *prev = nullptr;
 
             for (int i = 0; i < index; i++) {
                 prev = current;
@@ -132,10 +128,10 @@ namespace FamilyTree {
 
         os << "[";
 
-        node<T> *head = l.head_;
+        ListNode<T> *head = l.head_;
         while (true) {
             os << head->data_;
-            node<T> *next = head->next_;
+            ListNode<T> *next = head->next_;
             if (!next) {
                 os << "]";
                 break;

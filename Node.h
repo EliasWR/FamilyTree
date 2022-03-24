@@ -1,7 +1,3 @@
-//
-// Created by filip on 17.03.2022.
-//
-
 #ifndef FAMILYTREE_NODE_H
 #define FAMILYTREE_NODE_H
 
@@ -13,7 +9,7 @@
 
 class Node {
 private:
-    std::unique_ptr<Person> _person;
+    std::shared_ptr<Person> _person;
     Node* _parent = nullptr;
     std::vector<Node*> _children;
 

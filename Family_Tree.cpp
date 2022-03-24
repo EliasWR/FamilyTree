@@ -1,7 +1,3 @@
-//
-// Created by Elias Woie Refsdal on 07/03/2022.
-// Due delivery 7th of April
-
 #include <iostream>
 #include "Person.h"
 #include "Node.h"
@@ -48,32 +44,32 @@ int main () {
     a.traverseDepthFirst([](Node* f) {
         std::cout << f->getPerson().getFirstName() << std::endl;
     });
-
+    std::cout << "------------------"<< std::endl;
     b.traverseUpwards([](Node* f) {
         std::cout << f->getPerson().getFirstName() << std::endl;
     });
 
     // Implementation of singly linked list
-    auto list = FamilyTree::singly_linked_list<std::string>();
+    auto list = FamilyTree::singly_linked_list<Node>();
 
-    list.addLast("Tore");
-    list.addLast("Per");
-    list.addLast("Conny");
+    list.addLast(a);
+    list.addLast(b);
+    list.addLast(c);
 
     std::cout << list << std::endl;
-
+/*
     std::cout << list.removeFirst() << std::endl;
 
     std::cout << list << std::endl;
 
-    list.insert(0, "Olav");
+    list.insert(0, d);
 
-    list.insert(list.size() - 1, "Birgitte");
+    list.insert(list.size() - 1, e);
 
-    list.addFirst("Ole");
+    list.addFirst(a);
 
     std::cout << list << std::endl;
-
+*/
     // List to be bubble sorted
     std::vector<int> numbers = {2,1,4,3,5};
 

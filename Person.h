@@ -1,7 +1,3 @@
-//
-// Created by Elias Woie Refsdal on 08/03/2022.
-//
-
 #ifndef FAMILYTREE_PERSON_H
 #define FAMILYTREE_PERSON_H
 
@@ -73,6 +69,7 @@ public:
      * TODO Big O notation on traversal algorithms
      * TODO Fjerne autogenererte notater øverst og legge til kandidatnr i ReadMe
      * TODO Linked list with bubble sort
+     * TODO Due delivery 7th of April
      */
 };
 
