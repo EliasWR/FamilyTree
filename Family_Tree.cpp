@@ -19,6 +19,7 @@ void bubbleSort (std::vector<T> &list){
 }
 
 int main () {
+    /*
     // Making nodes with person objects inside
     Node a(Person(1, "Fili"));
     Node b(Person(2, "Erik"));
@@ -78,6 +79,10 @@ int main () {
     for (auto i : numbers){
         std::cout << i << std::endl;
     }
+    */
+    // Implementation of menu
+    Menu menu;
+    menu.editAttribute();
 
     return 0;
 }
