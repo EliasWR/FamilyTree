@@ -71,7 +71,7 @@ int main () {
 
     std::cout << list << std::endl;
 
-    // List to be bubble sorted
+    // List to be bubble-sorted
     std::vector<int> numbers = {2,1,4,3,5};
 
     // Implementation of bubble sort
@@ -79,10 +79,10 @@ int main () {
     for (auto i : numbers){
         std::cout << i << std::endl;
     }
-    */
+*/
     // Implementation of menu
     Menu menu;
-    menu.editAttribute();
+    menu.mainScreen();
 
     return 0;
 }
