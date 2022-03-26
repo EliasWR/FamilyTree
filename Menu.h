@@ -3,6 +3,10 @@
 
 #include <iostream>
 #include <limits>
+#include "LinkedList.h"
+
+extern int numOfPersons = 0; // TODO Uncertain if this is implemented correctly
+auto nodeList = FamilyTree::singly_linked_list<Node<Person>>();
 
 class Menu {
 private:
@@ -69,28 +73,48 @@ public:
     void mainCases (int currentState){
         _state = currentState;
         switch (_state){
-            case 1:
+            case 1: {
+                int index;
+                std::string firstName;
+                std::string lastName;
+                char sex;
+                std::vector<int> birth;
+                std::vector<int> death;
                 std::cout << "Now you can add a new person with 5 attributes to your family tree." << std::endl;
                 std::cout << "Enter each of the attributes followed by enter." << std::endl;
                 std::cout << "Please enter the persons first name: ";
-                std::string firstName;
                 std::cin >> firstName;
                 std::cout << "Please enter the persons last name: ";
-                std::string lastName;
                 std::cin >> lastName;
                 std::cout << "['m' for male, 'f' for female, 'o' for other]";
                 std::cout << "Please enter the persons sex: ";
-                char sex;
                 std::cin >> sex;
-                std::cout << "Please enter the birth date";
-                std::cout << ""
+                std::cout << "Please enter the date of birth below.";
+                std::cout << "Please enter year of birth[yyyy]: ";
+                std::cin >> birth[0];
+                // TODO Check if int
+                std::cout << "Please enter month of birth[mm]: ";
+                std::cin >> birth[1];
+                // TODO Check if int
+                std::cout << "Please enter day of birth[dd]: ";
+                std::cin >> birth[2];
+                // TODO Check if int
+                numOfPersons++;
+                index = numOfPersons;
+
+                Node node(Person(index, firstName, lastName, birth, death, sex));
+                nodeList.addLast(node);
                 break;
-            case 2:
+            }
+            case 2: {
+                int a = 0;
                 break;
-            default:
+            }
+            default: {
                 std::cout << "That is not one of your menu options";
-                mainScreen ();
+                mainScreen();
                 break;
+            }
         }
     }
 

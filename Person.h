@@ -8,7 +8,7 @@
 class Person {
 private:
     int _index;
-    std::vector<int> _birth, _death;                    // Resize vector or use fixed array with size 3
+    std::vector<int> _birth, _death;                    // TODO Resize vector or use fixed array with size 3
     std::string _firstName, _lastName;
     char _sex;
 
@@ -16,8 +16,8 @@ public:
     // Constructors
     Person (){}
     Person (int index, std::string firstName):_index(index), _firstName(firstName){}
-    Person (std::string firstName, std::string lastName, std::vector<int> birth, std::vector<int> death, char sex, int index):
-            _firstName(firstName), _lastName(lastName), _birth(birth), _death(death), _sex(sex), _index(index) {}
+    Person (int index, std::string firstName, std::string lastName, std::vector<int> birth, std::vector<int> death, char sex):
+            _index(index), _firstName(firstName), _lastName(lastName), _birth(birth), _death(death), _sex(sex){}
 
     // Getters and setters for private variables of Person class
     [[nodiscard]]int getIndex() const {
