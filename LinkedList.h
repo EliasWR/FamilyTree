@@ -7,10 +7,8 @@
 namespace FamilyTree {
     template<typename T>        // Template to work with generic node
     class ListNode {
-
     public:
         explicit ListNode(const T &data) : data_(std::move(data)) {}
-
         T data_;
         ListNode *next_ = nullptr;
     };
@@ -24,6 +22,10 @@ namespace FamilyTree {
         singly_linked_list() : size_(0) {}
 
         [[nodiscard]] bool empty() const { return size_ == 0; }
+
+        size_t getSize () const{
+            return size_;
+        }
 
         T &operator[](size_t index) {
             if (index > size_) {

@@ -19,6 +19,7 @@ void bubbleSort (std::vector<T> &list){
 }
 
 int main () {
+    /*
     // Making nodes with person objects inside
     Node a(Person(1, "Fili"));
     Node b(Person(2, "Erik"));
@@ -78,11 +79,15 @@ int main () {
     for (auto i : numbers){
         std::cout << i << std::endl;
     }
-
+    */
     // Implementation of menu
     Menu menu;
-    int input = menu.mainScreen();
-
+    menu.mainScreen();
+    menu.mainCases ();
+    // Lage ny nodeList
+    auto personList = FamilyTree::singly_linked_list<Node<Person>>();
+    Menu::createPerson (personList); // TODO Pointer iot edit list and add person in function
+    std::cout << personList << std::endl;
 
     return 0;
 }
