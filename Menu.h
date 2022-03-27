@@ -15,21 +15,38 @@ public:
     void setState(int state){
         _state = state;
     }
-    int getState() const {
+    [[nodiscard]] int getState() const {
         return _state;
     }
-    void greeting (){
+    static void greeting (){
         std::cout << "                  " << "Welcome to 'FamilyTree'!"<< std::endl;
         std::cout << "In this program you can make and modify a family tree of your own" << std::endl;
         std::cout << "To navigate this program you type the number of your desired command followed by enter." << std::endl;
     }
-    int checkInput (std::vector<int> list){
+
+    static int checkInput (){
+        int input;
+        std::cin >> input;
+        bool inList = false;
+        while (std::cin.fail()){
+            if (!inList){
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+                std::cout << "Not a valid value. Enter a menu option: ";
+                std::cin >> input;
+            }
+        }
+        std::cout << "You selected " << input;
+        return input;
+    }
+
+    static int checkInput (const std::vector<int>& list){
         int input;
         std::cin >> input;
         bool inList = false;
         while (std::cin.fail() or !inList){
-            for (int i = 0; i < list.size(); i++){
-                if (list[i] == input){
+            for (int i : list){
+                if (i == input){
                     inList = true;
                     break;
                 }
@@ -45,7 +62,7 @@ public:
         return input;
     }
 
-    int mainScreen (){
+    static int mainScreen (){
         std::cout << "You have the following options." << std::endl;
         std::cout << "[1] Add new person to tree." << std::endl;
         std::cout << "[2] Remove person from tree." << std::endl;
@@ -57,7 +74,7 @@ public:
         return input;
     }
 
-    int editAttribute (){
+    static int editAttribute (){
         std::cout << "You can edit the following attributes" << std::endl;
         std::cout << "[1] Add new person to tree." << std::endl;
         std::cout << "[2] Remove person from tree." << std::endl;
@@ -91,14 +108,11 @@ public:
                 std::cin >> sex;
                 std::cout << "Please enter the date of birth below.";
                 std::cout << "Please enter year of birth[yyyy]: ";
-                std::cin >> birth[0];
-                // TODO Check if int
+                birth[0] = checkInput();
                 std::cout << "Please enter month of birth[mm]: ";
-                std::cin >> birth[1];
-                // TODO Check if int
+                birth[1] = checkInput();
                 std::cout << "Please enter day of birth[dd]: ";
-                std::cin >> birth[2];
-                // TODO Check if int
+                birth[2] = checkInput();
                 numOfPersons++;
                 index = numOfPersons;
 
@@ -107,7 +121,6 @@ public:
                 break;
             }
             case 2: {
-                int a = 0;
                 break;
             }
             default: {
@@ -121,12 +134,15 @@ public:
     void attributeCases (int currentState){
         _state = currentState;
         switch (_state){
-            case 1:
+            case 1:{
                 break;
-            case 2:
+            }
+            case 2: {
                 break;
-            default:
+            }
+            default: {
                 break;
+            }
         }
     }
 };
