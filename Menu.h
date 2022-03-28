@@ -60,6 +60,15 @@ public:
         return input;
     }
 
+    bool checkCipherCount(int number, int cipher) { //Lagde en input test for year/birth osv for å sjekke om det er riktig mengde siffer.
+        int count;
+        while(number!=0) {
+            number /= 10;
+            count ++;
+        }
+        if (count != cipher) {std::cout<<"An incorrect number of ciphers has been inputted, please try again.";}
+    }
+
     int mainScreen (){
         std::cout << "You have the following options." << std::endl;
         std::cout << "[1] Add new person to tree." << std::endl;
@@ -99,10 +108,10 @@ public:
         int day;
 
         std::cout << "Now you can add a new person with 5 attributes to your family tree." << std::endl;
-        std::cout << "Enter each of the attributes followed by enter." << std::endl;
-        std::cout << "Please enter the persons first name: ";
+        std::cout << "Type of the attributes followed by enter." << std::endl;
+        std::cout << "Please type the persons first name: ";
         std::cin >> firstName;
-        std::cout << "Please enter the persons last name: ";
+        std::cout << "Please type the persons last name: ";
         std::cin >> lastName;
         std::cout << "['m' for male, 'f' for female, 'o' for other]" << std::endl;
         std::cout << "Please enter the persons sex: ";
@@ -112,9 +121,11 @@ public:
         std::cout << "Please enter year of birth[yyyy]: ";
         std::cin >> year;
         birth.push_back(year); // TODO Check if input is valid
+
         std::cout << "Please enter month of birth[mm]: ";
         std::cin >> month;
         birth.push_back(month); // TODO Check if input is valid
+
         std::cout << "Please enter day of birth[dd]: ";
         std::cin >> day;
         birth.push_back(day); // TODO Check if input is valid
