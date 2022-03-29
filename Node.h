@@ -15,7 +15,6 @@ private:
     Node *_parent = nullptr;
     std::vector<Node *> _children;
 
-
 public:
     // Constructor taking person.
     // Creating person objects with unique ownership in the node.
@@ -50,6 +49,8 @@ public:
             c->traverseDepthFirst(f);
         }
     }
+
+    // TODO Implement breadth first traversal
 
     void add(Node &f) {
         f._parent = this; // this -> parent node*

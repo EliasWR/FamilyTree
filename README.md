@@ -4,8 +4,6 @@
 Link for integer check in menu.
 https://stackoverflow.com/questions/19696442/how-to-catch-invalid-input-in-c
 
-TODO Add date handling method for returning three integers with day, month and year of death // Check
-
 TODO Add file reading class
 
 TODO Add menu class
