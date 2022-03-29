@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <array>
 
 class Person {
 private:
@@ -11,6 +12,7 @@ private:
     std::vector<int> _birth, _death;                    // TODO Resize vector or use fixed array with size 3
     std::string _firstName, _lastName;
     char _sex;
+    //std::array<int,3> a = {yyyy,mm,dd}
 
 public:
     // Constructors

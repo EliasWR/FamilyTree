@@ -96,7 +96,7 @@ public:
         return input;
     }
 
-    static Node<Person> createPerson (FamilyTree::singly_linked_list<Node<Person>> list){
+    static Node<Person> createPerson (FamilyTree::singly_linked_list<Node<Person>>& list){
         int index;
         std::string firstName;
         std::string lastName;
@@ -142,6 +142,7 @@ public:
         death.push_back(day); // TODO Check if input is valid
         index = list.getSize();
         Node node(Person(index, firstName, lastName, birth, death, sex));
+        list.addLast(node);
         return node;
     }
 

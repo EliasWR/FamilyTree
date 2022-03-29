@@ -85,10 +85,11 @@ int main () {
     menu.mainScreen();
     menu.mainCases ();
     // Lage ny nodeList
-    auto personList = FamilyTree::singly_linked_list<Node<Person>>();
-    Menu::createPerson (personList); // TODO Pointer iot edit list and add person in function
-    std::cout << personList << std::endl;
+    FamilyTree::singly_linked_list<Node<Person>> list;
+    Menu::createPerson (list);
+    std::cout << list << std::endl;
 
+    // int a[] = {1,2,3};
     return 0;
 }
 

@@ -23,3 +23,7 @@ TODO Linked list with bubble sort
 TODO Indented family tree printing
 
 TODO Due delivery 7th of April
+
+Lars:
+(Node vil gå oppover til rotnoden og legge på en for hver opp til rotnoden)
+Breadth-first traversal gir automatisk nivået på 
