@@ -9,16 +9,16 @@
 class Person {
 private:
     int _index;
-    std::vector<int> _birth, _death;                   // TODO Resize vector or use fixed array with size 3
+    std::array<int,3> _birth{};
+    std::array<int,3> _death{};
     std::string _firstName, _lastName;
     char _sex;
-    //std::array<int,3> a = {yyyy,mm,dd}
 
 public:
     // Constructors
     Person (){}
     Person (int index, std::string firstName):_index(index), _firstName(firstName){}
-    Person (int index, std::string firstName, std::string lastName, std::vector<int> birth, std::vector<int> death, char sex):
+    Person (int index, std::string firstName, std::string lastName, std::array<int,3> birth, std::array<int,3> death, char sex):
             _index(index), _firstName(firstName), _lastName(lastName), _birth(birth), _death(death), _sex(sex){}
 
     // Getters and setters for private variables of Person class
@@ -40,7 +40,7 @@ public:
     void setLastName (std::string firstName) {
         _lastName = firstName;
     }
-    [[nodiscard]]std::vector<int> getBirth () const {
+    [[nodiscard]]std::array<int,3> getBirth () const {
         return _birth;
     }
     void setBirth (int year, int month, int day) {
@@ -48,7 +48,7 @@ public:
         _birth[1] = month;
         _birth[2] = day;
     }
-    [[nodiscard]]std::vector<int> getDeath () const {
+    [[nodiscard]]std::array<int,3> getDeath () const {
         return _death;
     }
     void setDeath (int year, int month, int day) {

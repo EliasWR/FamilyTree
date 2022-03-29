@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <limits>
+#include <array>
 #include "LinkedList.h"
 
 // Indexing of persons
@@ -59,9 +60,9 @@ public:
         std::cout << "You selected " << input << std::endl;
         return input;
     }
-
-    bool checkCipherCount(int number, int cipher) { //Lagde en input test for year/birth osv for å sjekke om det er riktig mengde siffer.
-        int count;
+    //Lagde en input test for year/birth osv for å sjekke om det er riktig mengde siffer.
+    bool checkCipherCount(int number, int cipher) {
+        int count = 0;
         while(number!=0) {
             number /= 10;
             count ++;
@@ -101,8 +102,8 @@ public:
         std::string firstName;
         std::string lastName;
         char sex;
-        std::vector<int> birth;
-        std::vector<int> death;
+        std::array<int,3> birth{};
+        std::array<int,3> death{};
         int year;
         int month;
         int day;
