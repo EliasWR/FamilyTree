@@ -121,26 +121,26 @@ public:
         std::cout << "Please enter the date of birth below." << std::endl;
         std::cout << "Please enter year of birth[yyyy]: ";
         std::cin >> year;
-        birth.push_back(year); // TODO Check if input is valid
+        birth[0] = year; // TODO Check if input is valid
 
         std::cout << "Please enter month of birth[mm]: ";
         std::cin >> month;
-        birth.push_back(month); // TODO Check if input is valid
+        birth[1] =month; // TODO Check if input is valid
 
         std::cout << "Please enter day of birth[dd]: ";
         std::cin >> day;
-        birth.push_back(day); // TODO Check if input is valid
+        birth[2] = day; // TODO Check if input is valid
         // Death
         std::cout << "Please enter the date of death below." << std::endl;
         std::cout << "Please enter year of death[yyyy]: ";
         std::cin >> year;
-        death.push_back(year); // TODO Check if input is valid
+        death[0] = year; // TODO Check if input is valid
         std::cout << "Please enter month of death[mm]: ";
         std::cin >> month;
-        death.push_back(month); // TODO Check if input is valid
+        death[1] = month; // TODO Check if input is valid
         std::cout << "Please enter day of death[dd]: ";
         std::cin >> day;
-        death.push_back(day); // TODO Check if input is valid
+        death[2] = day; // TODO Check if input is valid
         index = list.getSize();
         Node node(Person(index, firstName, lastName, birth, death, sex));
         list.addLast(node);
