@@ -7,6 +7,7 @@
 #include <string>
 #include <utility>
 #include <ostream>
+#include <memory>
 
 template <class T>
 class Node {

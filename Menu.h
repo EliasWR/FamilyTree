@@ -39,6 +39,22 @@ public:
         return input;
     }
 
+    static int checkCipherAndInput (int length){
+        int input;
+        std::cin >> input;
+        bool rightSize = checkCipherCount(input,length);
+        while (std::cin.fail() or !rightSize){
+            rightSize = checkCipherCount(input,length);
+            if (!rightSize){
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+                std::cout << "Not a valid value. Try again: ";
+                std::cin >> input;
+            }
+        }
+        return input;
+    }
+
     int checkInput (const std::vector<int>& list){
         int input;
         std::cin >> input;
@@ -62,7 +78,7 @@ public:
     }
 
     //Lagde en input test for year/birth osv for å sjekke om det er riktig mengde siffer.
-    bool checkCipherCount(int number, int cipher) {
+    static bool checkCipherCount(int number, int cipher) {
         bool isCorrect = true;
         int count = 0;
         while(number!=0) {
@@ -70,7 +86,6 @@ public:
             count ++;
         }
         if (count != cipher) {
-            std::cout<<"An incorrect number of ciphers has been inputted, please try again.";
             isCorrect = false;
         }
         return isCorrect;
@@ -130,6 +145,9 @@ public:
         int month;
         int day;
 
+        int yearLen = 4;
+        int dayAndMonthLen = 2;
+
         std::cout << "Now you can add a new person with 5 attributes to your family tree." << std::endl;
         std::cout << "Type of the attributes followed by enter." << std::endl;
         std::cout << "Please type the persons first name: ";
@@ -142,25 +160,25 @@ public:
         // Birth
         std::cout << "Please enter the date of birth below." << std::endl;
         std::cout << "Please enter year of birth[yyyy]: ";
-        std::cin >> year;
-        birth[0] = year; // TODO Check if input is valid
+        year = checkCipherAndInput(yearLen);
+        birth[0] = year;
         std::cout << "Please enter month of birth[mm]: ";
-        std::cin >> month;
-        birth[1] =month; // TODO Check if input is valid
+        month = checkCipherAndInput(dayAndMonthLen);
+        birth[1] = month;
         std::cout << "Please enter day of birth[dd]: ";
-        std::cin >> day;
-        birth[2] = day; // TODO Check if input is valid
+        day = checkCipherAndInput(dayAndMonthLen);
+        birth[2] = day;
         // Death
         std::cout << "Please enter the date of death below." << std::endl;
         std::cout << "Please enter year of death[yyyy]: ";
-        std::cin >> year;
-        death[0] = year; // TODO Check if input is valid
+        year = checkCipherAndInput(yearLen);
+        death[0] = year;
         std::cout << "Please enter month of death[mm]: ";
-        std::cin >> month;
-        death[1] = month; // TODO Check if input is valid
+        month = checkCipherAndInput(dayAndMonthLen);
+        death[1] = month;
         std::cout << "Please enter day of death[dd]: ";
-        std::cin >> day;
-        death[2] = day; // TODO Check if input is valid
+        day = checkCipherAndInput(dayAndMonthLen);
+        death[2] = day;
 
         index = list.getSize();
         Node node(Person(index, firstName, lastName, birth, death, sex));
