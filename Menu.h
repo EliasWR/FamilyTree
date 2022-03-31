@@ -60,14 +60,36 @@ public:
         std::cout << "You selected " << input << std::endl;
         return input;
     }
+
     //Lagde en input test for year/birth osv for å sjekke om det er riktig mengde siffer.
     bool checkCipherCount(int number, int cipher) {
+        bool isCorrect = true;
         int count = 0;
         while(number!=0) {
             number /= 10;
             count ++;
         }
-        if (count != cipher) {std::cout<<"An incorrect number of ciphers has been inputted, please try again.";}
+        if (count != cipher) {
+            std::cout<<"An incorrect number of ciphers has been inputted, please try again.";
+            isCorrect = false;
+        }
+        return isCorrect;
+    }
+
+    void getPersonInfo (Node<Person>& node) {
+        Person person = node.getPerson();
+        int index = person.getIndex();
+        std::string firstName = person.getFirstName();
+        std::string lastName = person.getLastName();
+        std::array <int,3> birth = person.getBirth();
+        std::array <int,3> death = person.getDeath();
+        char sex = person.getSex();
+        std::cout << firstName << " " << lastName;
+        std::cout << "Is born ";
+        for (int i:birth){
+            std::cout << i << " ";
+        }
+        std::cout << "Died at ";
     }
 
     int mainScreen (){
@@ -122,11 +144,9 @@ public:
         std::cout << "Please enter year of birth[yyyy]: ";
         std::cin >> year;
         birth[0] = year; // TODO Check if input is valid
-
         std::cout << "Please enter month of birth[mm]: ";
         std::cin >> month;
         birth[1] =month; // TODO Check if input is valid
-
         std::cout << "Please enter day of birth[dd]: ";
         std::cin >> day;
         birth[2] = day; // TODO Check if input is valid
@@ -141,6 +161,7 @@ public:
         std::cout << "Please enter day of death[dd]: ";
         std::cin >> day;
         death[2] = day; // TODO Check if input is valid
+
         index = list.getSize();
         Node node(Person(index, firstName, lastName, birth, death, sex));
         list.addLast(node);

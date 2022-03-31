@@ -43,7 +43,7 @@ namespace FamilyTree {
             return operator[](index);
         }
 
-        void addFirst(const T &data) { insert(0, data); }
+        void addFirst(const T &data) {insert(0, data); }
 
         void addLast(const T &data) { insert(size_, data); }
 

@@ -70,7 +70,8 @@ int main () {
     list.addFirst(a);
 
     std::cout << list << std::endl;
-
+*/
+    /*
     // List to be bubble-sorted
     std::vector<int> numbers = {2,1,4,3,5};
 
@@ -88,7 +89,6 @@ int main () {
     FamilyTree::singly_linked_list<Node<Person>> list;
     Menu::createPerson (list);
     std::cout << list << std::endl;
-
     // int a[] = {1,2,3};
     return 0;
 }
