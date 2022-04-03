@@ -103,7 +103,7 @@ public:
         for (int i:birth){
             std::cout << i << " ";
         }
-        std::cout << "Died at ";
+        std::cout << "Died at "; // TODO This is where i left off
     }
 
     int mainScreen (){
