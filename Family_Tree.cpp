@@ -3,6 +3,7 @@
 #include "Node.h"
 #include "Menu.h"
 #include "LinkedList.h"
+#include "FileHandling.h"
 
 template <class T>
 void bubbleSort (std::vector<T> &list){
@@ -81,6 +82,41 @@ int main () {
         std::cout << i << std::endl;
     }
     */
+    /*
+    // Implementation of filewriting for XML
+    XmlWriter xml;
+
+    if (xml.open("C:\\Users\\eliaswoierefsdal\\documents\\FamilyTreeInformation.xml")) {
+        xml.writeOpenTag("testTag");
+        xml.writeStartElementTag("testEle1");
+        xml.writeString("This is my first tag string!");
+        xml.writeEndElementTag();
+
+        xml.writeOpenTag("testTag2");
+        xml.writeStartElementTag("testEle2");
+        xml.writeAttribute("testAtt=\"TestAttribute\"");
+        xml.writeString("I sometimes amaze myself.");
+        xml.writeEndElementTag();
+
+        xml.writeOpenTag("testTag3");
+        xml.writeStartElementTag("testEle3");
+        xml.writeAttribute("testAtt2=\"TestAttrib2\"");
+        xml.writeString("Though i'm sure someone can make something even better");
+        xml.writeEndElementTag();
+
+        xml.writeCloseTag();
+        xml.writeCloseTag();
+        xml.writeCloseTag();
+
+        xml.close();
+        std::cout << "Success!\n";
+    } else {
+        std::cout << "Error opening file.\n";
+    }
+
+    system("pause");
+    */
+    /*
     // Implementation of menu
     Menu menu;
     menu.mainScreen();
@@ -89,7 +125,6 @@ int main () {
     FamilyTree::singly_linked_list<Node<Person>> list;
     Menu::createPerson (list);
     std::cout << list << std::endl;
-    // int a[] = {1,2,3};
+    */
     return 0;
 }
-

@@ -4,9 +4,10 @@
 Link for integer check in menu.
 https://stackoverflow.com/questions/19696442/how-to-catch-invalid-input-in-c
 
+###TODO
 TODO Add file reading class
 
-TODO Add menu class
+TODO Finish menu class
 
 TODO Exception handling
 
@@ -25,3 +26,7 @@ TODO Due delivery 7th of April
 Lars:
 (Node vil gå oppover til rotnoden og legge på en for hver opp til rotnoden)
 Breadth-first traversal gir automatisk nivået på 
+
+###Linker
+Filhåndtering
+https://codereview.stackexchange.com/questions/67334/basic-xml-writer-in-c

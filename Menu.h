@@ -77,7 +77,6 @@ public:
         return input;
     }
 
-    //Lagde en input test for year/birth osv for å sjekke om det er riktig mengde siffer.
     static bool checkCipherCount(int number, int cipher) {
         bool isCorrect = true;
         int count = 0;
@@ -85,7 +84,7 @@ public:
             number /= 10;
             count ++;
         }
-        if (count != cipher) {
+        if (count > cipher) {
             isCorrect = false;
         }
         return isCorrect;
