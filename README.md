@@ -27,6 +27,15 @@ Lars:
 (Node vil gå oppover til rotnoden og legge på en for hver opp til rotnoden)
 Breadth-first traversal gir automatisk nivået på 
 
+###Test cases
+Modifiserte filer:
+config.yml
+test_list.cpp
+CMakeLists.txt
+
+Legge til unit test på mac
+Kjøre på mac også
+
 ###Linker
 Filhåndtering
 https://codereview.stackexchange.com/questions/67334/basic-xml-writer-in-c
