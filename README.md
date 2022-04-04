@@ -4,9 +4,7 @@
 Link for integer check in menu.
 https://stackoverflow.com/questions/19696442/how-to-catch-invalid-input-in-c
 
-###TODO
-TODO Add file reading class
-
+##TODO
 TODO Finish menu class
 
 TODO Exception handling
@@ -23,11 +21,18 @@ TODO Indented family tree printing
 
 TODO Due delivery 7th of April
 
+TODO Separate to header and source files
+
+####Filereading
+Xml reading class needs to write a person
+Json file write and read file
+Inheritance
+
 Lars:
 (Node vil gå oppover til rotnoden og legge på en for hver opp til rotnoden)
 Breadth-first traversal gir automatisk nivået på 
 
-###Test cases
+##Test cases
 Modifiserte filer:
 config.yml
 test_list.cpp

@@ -5,4 +5,14 @@ set(CMAKE_CXX_STANDARD 17)
 
 include_directories(.)
 
-add_executable(FamilyTree Family_Tree.cpp Menu.h LinkedList.h Person.h Node.h FileHandling.h FileHandling.cpp)
+enable_testing()
+add_subdirectory(tests)
+
+add_executable(FamilyTree
+        include/Family_Tree.cpp
+        include/Menu.h
+        include/LinkedList.h
+        include/Person.h
+        include/Node.h
+        include/FileHandling.h
+        )
