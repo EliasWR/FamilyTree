@@ -43,7 +43,7 @@ public:
         int input;
         std::cin >> input;
         bool rightSize = checkCipherCount(input,length);
-        while (std::cin.fail() or !rightSize){
+        while ((std::cin.fail()) || (!rightSize)){
             rightSize = checkCipherCount(input,length);
             if (!rightSize){
                 std::cin.clear();
@@ -59,7 +59,7 @@ public:
         int input;
         std::cin >> input;
         bool inList = false;
-        while (std::cin.fail() or !inList){
+        while (std::cin.fail() || !inList){
             for (int i : list){
                 if (i == input){
                     inList = true;
