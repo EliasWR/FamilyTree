@@ -150,7 +150,7 @@ public:
         std::cout << "Now you can add a new person with 5 attributes to your family tree." << std::endl;
         std::cout << "Type of the attributes followed by enter." << std::endl;
         std::cout << "Please type the persons first name: ";
-        std::cin >> firstName;
+        std::cin >> firstName;      // TODO Check for empty name
         std::cout << "Please type the persons last name: ";
         std::cin >> lastName;
         std::cout << "['m' for male, 'f' for female, 'o' for other]" << std::endl;
