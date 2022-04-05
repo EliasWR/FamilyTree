@@ -8,7 +8,6 @@
 
 class Person {
 private:
-    int _index;
     std::array<int,3> _birth{};
     std::array<int,3> _death{};
     std::string _firstName, _lastName;
@@ -17,19 +16,13 @@ private:
 public:
     // Constructors
     Person (){}
-    Person (int index, std::string firstName):_index(index), _firstName(firstName){}
-    Person (int index, std::string firstName, std::string lastName, std::array<int,3> birth, std::array<int,3> death, char sex):
-            _index(index), _firstName(firstName), _lastName(lastName), _birth(birth), _death(death), _sex(sex){}
+    Person (std::string firstName):, _firstName(firstName){}
+    Person (std::string firstName, std::string lastName, std::array<int,3> birth, std::array<int,3> death, char sex):
+            _firstName(firstName), _lastName(lastName), _birth(birth), _death(death), _sex(sex){}
 
             //TODO Add bool isAlive to private and constructor.
 
     // Getters and setters for private variables of Person class
-    [[nodiscard]]int getIndex() const {
-        return _index;
-    }
-    void setIndex (int index){
-        _index = index;
-    }
     [[nodiscard]]std::string getFirstName() const {
         return _firstName;
     }

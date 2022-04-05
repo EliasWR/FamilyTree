@@ -12,6 +12,18 @@
 class Menu {
 private:
     int _state = 0;
+    std::string _firstName;
+    std::string _lastName;
+    char _sex;
+    std::array<int,3> _birth{};
+    std::array<int,3> _death{};
+    bool _isAlive;
+    int _year;
+    int _month;
+    int _day;
+    int _yearLen = 4;
+    int _dayAndMonthLen = 2;
+
 public:
     void setState(int state){
         _state = state;
@@ -92,16 +104,15 @@ public:
 
     void getPersonInfo (Node<Person>& node) {
         Person person = node.getPerson();
-        int index = person.getIndex();
         std::string firstName = person.getFirstName();
         std::string lastName = person.getLastName();
         std::array <int,3> birth = person.getBirth();
         std::array <int,3> death = person.getDeath();
-        char sex = person.getSex();
+        char _sex = person.getSex();
         std::cout << firstName << " " << lastName;
         std::cout << "Is born ";
         for (int i:birth){
-            std::cout << i << " ";
+            std::cout << i << ".";
         }
         std::cout << "Died at "; // TODO This is where i left off
     }
@@ -133,59 +144,49 @@ public:
         return input;
     }
 
-    static Node<Person> createPerson (FamilyTree::singly_linked_list<Node<Person>>& list){
-        int index;
-        std::string firstName;
-        std::string lastName;
-        char sex;
-        std::array<int,3> birth{};
-        std::array<int,3> death{};
-        int year;
-        int month;
-        int day;
-
-        int yearLen = 4;
-        int dayAndMonthLen = 2;
-
+    Node<Person> createPerson (FamilyTree::singly_linked_list<Node<Person>>& list){
         std::cout << "Now you can add a new person with 5 attributes to your family tree." << std::endl;
         std::cout << "Type of the attributes followed by enter." << std::endl;
         std::cout << "Please type the persons first name: ";
-        std::cin >> firstName;
+        std::cin >> _firstName;
         // TODO Check for empty name
         /*
          * if (name.empty()){}
          */
         std::cout << "Please type the persons last name: ";
-        std::cin >> lastName;
+        std::cin >> _lastName;
         std::cout << "['m' for male, 'f' for female, 'o' for other]" << std::endl;
         std::cout << "Please enter the persons sex: ";
-        std::cin >> sex;
+        std::cin >> _sex;
         //TODO Check if sex is "m", "f" or "o"
         // Birth
         std::cout << "Please enter the date of birth below." << std::endl;
         std::cout << "Please enter year of birth[yyyy]: ";
-        year = checkCipherAndInput(yearLen);
-        birth[0] = year;
+        _year = checkCipherAndInput(_yearLen);
+        _birth[0] = _year;
         std::cout << "Please enter month of birth[mm]: ";
-        month = checkCipherAndInput(dayAndMonthLen);
-        birth[1] = month;
+        _month = checkCipherAndInput(_dayAndMonthLen);
+        _birth[1] = _month;
         std::cout << "Please enter day of birth[dd]: ";
-        day = checkCipherAndInput(dayAndMonthLen);
-        birth[2] = day;
+        _day = checkCipherAndInput(_dayAndMonthLen);
+        _birth[2] = _day;
+        /*
+         * TODO Take input bool of _isAlive
+         * TODO Make if statement around taking death input
+         */
         // Death
         std::cout << "Please enter the date of death below." << std::endl;
         std::cout << "Please enter year of death[yyyy]: ";
-        year = checkCipherAndInput(yearLen);
-        death[0] = year;
+        _year = checkCipherAndInput(_yearLen);
+        _death[0] = _year;
         std::cout << "Please enter month of death[mm]: ";
-        month = checkCipherAndInput(dayAndMonthLen);
-        death[1] = month;
+        _month = checkCipherAndInput(_dayAndMonthLen);
+        _death[1] = _month;
         std::cout << "Please enter day of death[dd]: ";
-        day = checkCipherAndInput(dayAndMonthLen);
-        death[2] = day;
+        _day = checkCipherAndInput(_dayAndMonthLen);
+        _death[2] = _day;
 
-        index = list.getSize();
-        Node node(Person(index, firstName, lastName, birth, death, sex));
+        Node node(Person(_firstName, _lastName, _birth, _death, _sex));
         list.addLast(node);
         return node;
     }
