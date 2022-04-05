@@ -41,6 +41,10 @@ CMakeLists.txt
 Legge til unit test på mac
 Kjøre på mac også
 
+###GUI
+QT cpp bibliotek
+Evt skrive i python
+
 ###Linker
 Filhåndtering - 
 (02.04.2022)
