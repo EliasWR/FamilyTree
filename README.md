@@ -42,7 +42,7 @@ Legge til unit test på mac
 Kjøre på mac også
 
 ###GUI
-QT cpp bibliotek
+QT cpp library
 Evt skrive i python
 
 ###Linker
