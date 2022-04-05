@@ -5,6 +5,10 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "Person.h"
+#include "Node.h"
+#include "LinkedList.h"
+
 
 class XmlWriter {
 private:

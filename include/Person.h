@@ -16,7 +16,7 @@ private:
 public:
     // Constructors
     Person (){}
-    Person (std::string firstName):, _firstName(firstName){}
+    Person (std::string firstName):_firstName(firstName){}
     Person (std::string firstName, std::string lastName, std::array<int,3> birth, std::array<int,3> death, char sex):
             _firstName(firstName), _lastName(lastName), _birth(birth), _death(death), _sex(sex){}
 
