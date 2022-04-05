@@ -33,13 +33,7 @@ Lars:
 Breadth-first traversal gir automatisk nivået på 
 
 ##Test cases
-Modifiserte filer:
-config.yml
-test_list.cpp
-CMakeLists.txt
-
 Legge til unit test på mac
-Kjøre på mac også
 
 ###GUI
 QT cpp library

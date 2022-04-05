@@ -160,6 +160,7 @@ public:
         std::cout << "['m' for male, 'f' for female, 'o' for other]" << std::endl;
         std::cout << "Please enter the persons sex: ";
         std::cin >> sex;
+        //TODO Check if sex is "m", "f" or "o"
         // Birth
         std::cout << "Please enter the date of birth below." << std::endl;
         std::cout << "Please enter year of birth[yyyy]: ";
