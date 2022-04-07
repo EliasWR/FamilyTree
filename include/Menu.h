@@ -5,6 +5,7 @@
 #include <limits>
 #include <array>
 #include "LinkedList.h"
+#include <stdio.h>
 
 // Indexing of persons
 // singly linked list holding persons
@@ -24,7 +25,7 @@ public:
         std::cout << "In this program you can make and modify a family tree of your own" << std::endl;
         std::cout << "To navigate this program you type the number of your desired command followed by enter." << std::endl;
     }
-
+    //Functions for testing user input
     static int checkInput (){
         int input;
         std::cin >> input;
@@ -90,6 +91,21 @@ public:
         return isCorrect;
     }
 
+    static bool checkEmptyString(std::string s) {
+        while (s.empty()) {
+            std::cout<<"You have not typed anything, please try again";
+        }
+            return true;
+    }
+    static bool checkSexInput(char c) {
+
+        char m, f, o;
+        while (c != m or f or o) {
+            std::cout << "You did not type in any of the given options for sex ['m', 'f' or 'o']";
+        }
+        return true;
+    }
+
     void getPersonInfo (Node<Person>& node) {
         Person person = node.getPerson();
         int index = person.getIndex();
@@ -106,13 +122,14 @@ public:
         std::cout << "Died at "; // TODO This is where i left off
     }
 
+    //Different menu screens
     int mainScreen (){
         std::cout << "You have the following options." << std::endl;
         std::cout << "[1] Add new person to tree." << std::endl;
-        std::cout << "[2] Remove person from tree." << std::endl;
-        std::cout << "[3] Edit existing persons attributes." << std::endl;
-        std::cout << "[4] Edit existing persons relations." << std::endl;
-        std::cout << "[5] Exit program" << std::endl;
+        std::cout << "[2] Remove person from tree. (not implemented yet)" << std::endl;
+        std::cout << "[3] Edit existing persons attributes (not implemented yet)." << std::endl;
+        std::cout << "[4] Edit existing persons relations (not implemented yet)." << std::endl;
+        std::cout << "[5] Exit program (not implemented yet)." << std::endl;
         std::vector<int> v {1,2,3,4,5};
         int input = checkInput (v);
         _state = input;
@@ -121,18 +138,33 @@ public:
 
     int editAttribute (){
         std::cout << "You can edit the following attributes" << std::endl;
-        std::cout << "[1] Add new person to tree." << std::endl;
-        std::cout << "[2] Remove person from tree." << std::endl;
-        std::cout << "[3] Edit existing persons attributes." << std::endl;
-        std::cout << "[4] Edit existing persons relations." << std::endl;
-        std::cout << "[5] Exit program." << std::endl;
+        std::cout << "[1] Change a persons firstname." << std::endl;
+        std::cout << "[2] Change a persons lastname." << std::endl;
+        std::cout << "[3] Change a persons date of birth." << std::endl;
+        std::cout << "[4] Change a persons date of death ." << std::endl;
+        std::cout << "[5] Change a persons sex." << std::endl;
+        std::cout << "[6] Back to main menu." << std::endl;
+        std::cout << "Enter your number followed by enter:";
+        std::vector<int> v {1,2,3,4,5,6};
+        int input = checkInput (v);
+        _state = input;
+        return input;
+    }
+
+    int editRelations() {
+        std::cout << "Here you can edit existing relations between your Persons."<<std::endl;
+        std::cout << "[1] Change relation between child." << std::endl;
+        std::cout << "[2] Change relation between parent." << std::endl;
+        std::cout << "[3] Change relation between grandchild." <<std::endl;
+        std:: cout << "[4] Change relation between grandparent." << std::endl;
+        std::cout << "[5] Back to main menu." <<std::endl;
         std::cout << "Enter your number followed by enter:";
         std::vector<int> v {1,2,3,4,5};
         int input = checkInput (v);
         _state = input;
         return input;
     }
-
+    //functions for main manu options
     static Node<Person> createPerson (FamilyTree::singly_linked_list<Node<Person>>& list){
         int index;
         std::string firstName;
@@ -151,12 +183,10 @@ public:
         std::cout << "Type of the attributes followed by enter." << std::endl;
         std::cout << "Please type the persons first name: ";
         std::cin >> firstName;
-        // TODO Check for empty name
-        /*
-         * if (name.empty()){}
-         */
+        checkEmptyString(firstName);
         std::cout << "Please type the persons last name: ";
         std::cin >> lastName;
+        checkEmptyString(lastName);
         std::cout << "['m' for male, 'f' for female, 'o' for other]" << std::endl;
         std::cout << "Please enter the persons sex: ";
         std::cin >> sex;
@@ -190,24 +220,84 @@ public:
         return node;
     }
 
-    void mainCases (){
+    void removePerson (FamilyTree::singly_linked_list<Node<Person>>& list) {
+        std::string firstname, lastname;
+        std::cout<<"Please type the firstname of the person you want to remove from the Family Tree: ";
+        std::cin>> firstname;
+        std::cout<<"Please type the lastname of the person you want to remove from the Family Tree: ";
+        std::cin>> lastname; // TODO tests for correct input
+
+        // TODO remove a node from linked list with given key, need to ask Lars on thursday
+
+    }
+
+    void editRelation () {
+
+    }
+
+    void exitProgram () {
+        std::cout<<"Thank you for using our Family Tree program! Good bye!";
+    }
+
+    // Functions for changing attributes
+
+    void changeFirstName() {
+
+    }
+
+    void changeLastName() {
+
+    }
+
+    void changeBirthDate() {
+
+    }
+
+    void changeDeathDate() {
+
+    }
+
+    void changeSex() {
+
+    }
+
+    //functions for editing relations
+
+
+
+    void mainScreenCases (FamilyTree::singly_linked_list<Node<Person>>& list){
         switch (_state){
             case 1: {
+                createPerson(list);
                 break;
             }
 
             case 2: {
+                removePerson(list);
+                break;
+            }
+            case 3: {
+                editAttribute();
+                attributeCases(editAttribute());
+                break;
+            }
+            case 4: {
+                editRelation();
+                break;
+            }
+            case 5: {
+                exitProgram();
                 break;
             }
             default: {
-                std::cout << "That is not one of your menu options";
+                std::cout << "That was not one of your menu options, please try again";
                 mainScreen();
                 break;
             }
         }
     }
 
-    void attributeCases (int currentState){
+    void attributeCases (int currentState) {
         _state = currentState;
         switch (_state){
             case 1:{
@@ -216,11 +306,26 @@ public:
             case 2: {
                 break;
             }
+            case 3: {
+                break;
+            }
+            case 4: {
+                break;
+            }
+            case 5: {
+                break;
+            }
+            case 6: {
+                break;
+            }
             default: {
+                std::cout << "That was not one of the menu options, please try again";
                 break;
             }
         }
     }
 };
+
+
 
 #endif //FAMILYTREE_MENU_H

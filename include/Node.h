@@ -8,6 +8,7 @@
 #include <utility>
 #include <ostream>
 #include <memory>
+#include <queue>
 
 template <class T>
 class Node {
@@ -37,10 +38,10 @@ public:
         return _parent != nullptr;
     }
 
-    void traverseUpwards(std::function<void(Node<T> *)> f) {
+    void traverseUpwardsFirst(std::function<void(Node<T> *)> f) {
         f(this);
         if (hasChild()) {
-            _parent->traverseUpwards(f);
+            _parent->traverseUpwardsFirst(f);
         }
     }
 
@@ -52,6 +53,10 @@ public:
     }
 
     // TODO Implement breadth first traversal
+
+    void traverseBreadthFirst(std::function<void(Node<T> *)> f) {
+
+    }
 
     void add(Node &f) {
         f._parent = this; // this -> parent node*

@@ -122,7 +122,7 @@ int main () {
     // Implementation of menu
     Menu menu;
     menu.mainScreen();
-    menu.mainCases ();
+    menu.mainScreenCases ();
     // Lage ny nodeList
     FamilyTree::singly_linked_list<Node<Person>> list;
     Menu::createPerson (list);
