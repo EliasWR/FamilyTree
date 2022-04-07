@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <array>
+#include "FileHandling.h"
 
 class Person {
 private:
@@ -20,7 +21,7 @@ public:
     Person (std::string firstName, std::string lastName, std::array<int,3> birth, std::array<int,3> death, char sex):
             _firstName(firstName), _lastName(lastName), _birth(birth), _death(death), _sex(sex){}
 
-            //TODO Add bool isAlive to private and constructor.
+    //TODO Add bool isAlive to private and constructor.
 
     // Getters and setters for private variables of Person class
     [[nodiscard]]std::string getFirstName() const {
@@ -56,6 +57,11 @@ public:
     }
     void setSex (char sex) {
         _sex = sex;
+    }
+
+    void writePerson (XmlWriter writer){
+        writer.writeString(_firstName);
+        writer.writeString(_lastName);
     }
 };
 

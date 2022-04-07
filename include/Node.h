@@ -9,6 +9,7 @@
 #include <ostream>
 #include <memory>
 #include <queue>
+#include "Person.h"
 
 template <class T>
 class Node {
@@ -22,7 +23,7 @@ public:
     // Creating person objects with unique ownership in the node.
     explicit Node(const T &t) : _person(std::make_unique<T>(t)) {}
 
-    [[nodiscard]] Person &getPerson() const {
+    T &getPerson() const {
         return *_person;
     }
 
