@@ -28,6 +28,8 @@ public:
     void writeEndElementTag();
     void writeAttribute(const std::string);
     void writeString(const std::string);
+    void writeString(char);
+    void writeString(int);
 };
 
 #endif //FAMILYTREE_FILEHANDLING_H

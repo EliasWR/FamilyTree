@@ -20,10 +20,11 @@ void bubbleSort (std::vector<T> &list){
     }while (swapped);
 }
 
+// Uncomment any implementation to testrun
 int main () {
     /*
     // Making nodes with person objects inside
-    Node a(Person(1, "Fili"));
+    Node a(Person(1, "Gunnar"));
     Node b(Person(2, "Erik"));
     Node c(Person(3, "Anita"));
     Node d(Person(4, "Hans"));
@@ -117,7 +118,20 @@ int main () {
 
     system("pause");
     */
+    Person person1("Per", "Sandberg",{1990,01,01}, {2021, 01, 01}, 'm');
+    Person person2("Ola", "Nordmann", {2000,01,01}, {2020, 01, 01}, 'm');
 
+    XmlWriter xml;
+    std::string name = "FamilyTreeInformation2.xml"; // TODO File only opens if it does not already exist
+    if (xml.open(name)) {
+        xml.writeOpenTag("PersonsTag");
+        person1.writePerson(xml);
+        person2.writePerson(xml);
+        xml.close();
+        std::cout << "Success!\n";
+    } else {
+        std::cout << "Error opening file.\n";
+    }
     /*
     // Implementation of menu
     Menu menu;

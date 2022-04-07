@@ -59,9 +59,16 @@ public:
         _sex = sex;
     }
 
-    void writePerson (XmlWriter writer){
-        writer.writeString(_firstName);
-        writer.writeString(_lastName);
+    void writePerson (XmlWriter &write){
+        write.writeString(_firstName);
+        write.writeString(_lastName);
+        write.writeString(_sex);
+        write.writeString(_birth[0]);
+        write.writeString(_birth[1]);
+        write.writeString(_birth[2]);
+        write.writeString(_death[0]);
+        write.writeString(_death[1]);
+        write.writeString(_death[2]);
     }
 };
 

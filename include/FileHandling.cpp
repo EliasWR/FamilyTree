@@ -108,3 +108,23 @@ void XmlWriter::writeString(const std::string outString) {
         std::cout << "File is closed. Unable to write to file.\n";
     }
 }
+
+void XmlWriter::writeString(char character) {
+    std::string outChar;
+    outChar.push_back(character);
+    if (outFile.is_open()) {
+        outFile << ">" << outChar;
+    } else {
+        std::cout << "File is closed. Unable to write to file.\n";
+    }
+}
+
+void XmlWriter::writeString(int integer) {
+    std::string outChar;
+    outChar = std::to_string(integer);
+    if (outFile.is_open()) {
+        outFile << ">" << outChar;
+    } else {
+        std::cout << "File is closed. Unable to write to file.\n";
+    }
+}

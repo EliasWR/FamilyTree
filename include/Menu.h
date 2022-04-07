@@ -109,13 +109,18 @@ public:
         }
             return true;
     }
-    static bool checkSexInput(char c) {
+    char checkSexInput() {
+        char c, m, f, o;
+        m = 'm';
+        f = 'f';
+        o = 'o';
+        std::cin >> c;
 
-        char m, f, o;
-        while (c != m or f or o) {
+        while ((c != m) && (c != f) && (c != o)) {
             std::cout << "You did not type in any of the given options for sex ['m', 'f' or 'o']";
+            std::cin >> c;
         }
-        return true;
+        return c;
     }
 
     void getPersonInfo (Node<Person>& node) {
