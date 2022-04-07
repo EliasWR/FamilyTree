@@ -13,6 +13,18 @@
 class Menu {
 private:
     int _state = 0;
+    std::string _firstName;
+    std::string _lastName;
+    char _sex;
+    std::array<int,3> _birth{};
+    std::array<int,3> _death{};
+    bool _isAlive;
+    int _year;
+    int _month;
+    int _day;
+    int _yearLen = 4;
+    int _dayAndMonthLen = 2;
+
 public:
     void setState(int state){
         _state = state;
@@ -117,19 +129,18 @@ public:
         std::cout << firstName << " " << lastName;
         std::cout << "Is born ";
         for (int i:birth){
-            std::cout << i << " ";
+            std::cout << i << ".";
         }
         std::cout << "Died at "; // TODO This is where i left off
     }
 
-    //Different menu screens
     int mainScreen (){
         std::cout << "You have the following options." << std::endl;
         std::cout << "[1] Add new person to tree." << std::endl;
-        std::cout << "[2] Remove person from tree. (not implemented yet)" << std::endl;
-        std::cout << "[3] Edit existing persons attributes (not implemented yet)." << std::endl;
-        std::cout << "[4] Edit existing persons relations (not implemented yet)." << std::endl;
-        std::cout << "[5] Exit program (not implemented yet)." << std::endl;
+        std::cout << "[2] Remove person from tree." << std::endl;
+        std::cout << "[3] Edit existing persons attributes." << std::endl;
+        std::cout << "[4] Edit existing persons relations." << std::endl;
+        std::cout << "[5] Exit program" << std::endl;
         std::vector<int> v {1,2,3,4,5};
         int input = checkInput (v);
         _state = input;
@@ -138,33 +149,18 @@ public:
 
     int editAttribute (){
         std::cout << "You can edit the following attributes" << std::endl;
-        std::cout << "[1] Change a persons firstname." << std::endl;
-        std::cout << "[2] Change a persons lastname." << std::endl;
-        std::cout << "[3] Change a persons date of birth." << std::endl;
-        std::cout << "[4] Change a persons date of death ." << std::endl;
-        std::cout << "[5] Change a persons sex." << std::endl;
-        std::cout << "[6] Back to main menu." << std::endl;
-        std::cout << "Enter your number followed by enter:";
-        std::vector<int> v {1,2,3,4,5,6};
-        int input = checkInput (v);
-        _state = input;
-        return input;
-    }
-
-    int editRelations() {
-        std::cout << "Here you can edit existing relations between your Persons."<<std::endl;
-        std::cout << "[1] Change relation between child." << std::endl;
-        std::cout << "[2] Change relation between parent." << std::endl;
-        std::cout << "[3] Change relation between grandchild." <<std::endl;
-        std:: cout << "[4] Change relation between grandparent." << std::endl;
-        std::cout << "[5] Back to main menu." <<std::endl;
+        std::cout << "[1] Add new person to tree." << std::endl;
+        std::cout << "[2] Remove person from tree." << std::endl;
+        std::cout << "[3] Edit existing persons attributes." << std::endl;
+        std::cout << "[4] Edit existing persons relations." << std::endl;
+        std::cout << "[5] Exit program." << std::endl;
         std::cout << "Enter your number followed by enter:";
         std::vector<int> v {1,2,3,4,5};
         int input = checkInput (v);
         _state = input;
         return input;
     }
-    //functions for main manu options
+
     static Node<Person> createPerson (FamilyTree::singly_linked_list<Node<Person>>& list){
         int index;
         std::string firstName;
@@ -189,33 +185,36 @@ public:
         checkEmptyString(lastName);
         std::cout << "['m' for male, 'f' for female, 'o' for other]" << std::endl;
         std::cout << "Please enter the persons sex: ";
-        std::cin >> sex;
+        std::cin >> _sex;
         //TODO Check if sex is "m", "f" or "o"
         // Birth
         std::cout << "Please enter the date of birth below." << std::endl;
         std::cout << "Please enter year of birth[yyyy]: ";
-        year = checkCipherAndInput(yearLen);
-        birth[0] = year;
+        _year = checkCipherAndInput(_yearLen);
+        _birth[0] = _year;
         std::cout << "Please enter month of birth[mm]: ";
-        month = checkCipherAndInput(dayAndMonthLen);
-        birth[1] = month;
+        _month = checkCipherAndInput(_dayAndMonthLen);
+        _birth[1] = _month;
         std::cout << "Please enter day of birth[dd]: ";
-        day = checkCipherAndInput(dayAndMonthLen);
-        birth[2] = day;
+        _day = checkCipherAndInput(_dayAndMonthLen);
+        _birth[2] = _day;
+        /*
+         * TODO Take input bool of _isAlive
+         * TODO Make if statement around taking death input
+         */
         // Death
         std::cout << "Please enter the date of death below." << std::endl;
         std::cout << "Please enter year of death[yyyy]: ";
-        year = checkCipherAndInput(yearLen);
-        death[0] = year;
+        _year = checkCipherAndInput(_yearLen);
+        _death[0] = _year;
         std::cout << "Please enter month of death[mm]: ";
-        month = checkCipherAndInput(dayAndMonthLen);
-        death[1] = month;
+        _month = checkCipherAndInput(_dayAndMonthLen);
+        _death[1] = _month;
         std::cout << "Please enter day of death[dd]: ";
-        day = checkCipherAndInput(dayAndMonthLen);
-        death[2] = day;
+        _day = checkCipherAndInput(_dayAndMonthLen);
+        _death[2] = _day;
 
-        index = list.getSize();
-        Node node(Person(index, firstName, lastName, birth, death, sex));
+        Node node(Person(_firstName, _lastName, _birth, _death, _sex));
         list.addLast(node);
         return node;
     }
@@ -325,7 +324,5 @@ public:
         }
     }
 };
-
-
 
 #endif //FAMILYTREE_MENU_H
