@@ -120,12 +120,11 @@ public:
 
     void getPersonInfo (Node<Person>& node) {
         Person person = node.getPerson();
-        int index = person.getIndex();
         std::string firstName = person.getFirstName();
         std::string lastName = person.getLastName();
         std::array <int,3> birth = person.getBirth();
         std::array <int,3> death = person.getDeath();
-        char sex = person.getSex();
+        char _sex = person.getSex();
         std::cout << firstName << " " << lastName;
         std::cout << "Is born ";
         for (int i:birth){
@@ -161,7 +160,7 @@ public:
         return input;
     }
 
-    static Node<Person> createPerson (FamilyTree::singly_linked_list<Node<Person>>& list){
+    Node<Person> createPerson (FamilyTree::singly_linked_list<Node<Person>>& list){
         int index;
         std::string firstName;
         std::string lastName;
@@ -206,7 +205,7 @@ public:
         std::cout << "Please enter the date of death below." << std::endl;
         std::cout << "Please enter year of death[yyyy]: ";
         year = checkCipherAndInput(yearLen);
-        _death[0] = year;
+        _death[0] = _year;
         std::cout << "Please enter month of death[mm]: ";
         _month = checkCipherAndInput(_dayAndMonthLen);
         _death[1] = _month;
