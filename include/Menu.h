@@ -185,19 +185,19 @@ public:
         checkEmptyString(lastName);
         std::cout << "['m' for male, 'f' for female, 'o' for other]" << std::endl;
         std::cout << "Please enter the persons sex: ";
-        std::cin >> _sex;
+        std::cin >> sex;
         //TODO Check if sex is "m", "f" or "o"
         // Birth
         std::cout << "Please enter the date of birth below." << std::endl;
         std::cout << "Please enter year of birth[yyyy]: ";
-        _year = checkCipherAndInput(_yearLen);
-        _birth[0] = _year;
+        year = checkCipherAndInput(yearLen);
+        birth[0] = year;
         std::cout << "Please enter month of birth[mm]: ";
-        _month = checkCipherAndInput(_dayAndMonthLen);
-        _birth[1] = _month;
+        month = checkCipherAndInput(dayAndMonthLen);
+        birth[1] = month;
         std::cout << "Please enter day of birth[dd]: ";
-        _day = checkCipherAndInput(_dayAndMonthLen);
-        _birth[2] = _day;
+        day = checkCipherAndInput(dayAndMonthLen);
+        birth[2] = day;
         /*
          * TODO Take input bool of _isAlive
          * TODO Make if statement around taking death input
@@ -205,8 +205,8 @@ public:
         // Death
         std::cout << "Please enter the date of death below." << std::endl;
         std::cout << "Please enter year of death[yyyy]: ";
-        _year = checkCipherAndInput(_yearLen);
-        _death[0] = _year;
+        year = checkCipherAndInput(yearLen);
+        _death[0] = year;
         std::cout << "Please enter month of death[mm]: ";
         _month = checkCipherAndInput(_dayAndMonthLen);
         _death[1] = _month;
