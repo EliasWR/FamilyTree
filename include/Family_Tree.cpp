@@ -87,8 +87,9 @@ int main () {
     /*
     // Implementation of filewriting for XML
     XmlWriter xml;
+    std::string name = "FamilyTreeInformation1.xml";
 
-    if (xml.open("C:\\Users\\eliaswoierefsdal\\documents\\FamilyTreeInformation.xml")) {
+    if (xml.open(name)) {
         xml.writeOpenTag("testTag");
         xml.writeStartElementTag("testEle1");
         xml.writeString("This is my first tag string!");
@@ -122,7 +123,7 @@ int main () {
     Person person2("Ola", "Nordmann", {2000,01,01}, {2020, 01, 01}, 'm');
 
     XmlWriter xml;
-    std::string name = "FamilyTreeInformation2.xml"; // TODO File only opens if it does not already exist
+    std::string name = "FamilyTreeInformation.xml"; // TODO File only opens if it does not already exist
     if (xml.open(name)) {
         xml.writeOpenTag("PersonsTag");
         person1.writePerson(xml);
