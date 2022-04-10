@@ -30,6 +30,7 @@ public:
     void writeString(const std::string);
     void writeString(char);
     void writeString(int);
+    void readFile(std::string);
 };
 
 #endif //FAMILYTREE_FILEHANDLING_H

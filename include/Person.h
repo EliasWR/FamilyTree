@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <array>
+#include <fstream>
 #include "FileHandling.h"
 
 class Person {
@@ -69,6 +70,19 @@ public:
         write.writeString(_death[0]);
         write.writeString(_death[1]);
         write.writeString(_death[2]);
+    }
+    void readPerson (std::string fileName){
+        std::string sex;
+        std::array<std::string,3> birth{};
+        std::array<std::string,3> death{};
+        std::string year;
+        std::ifstream inFile(fileName);
+        inFile >> _firstName >> _lastName >> sex >> birth[0] >> birth[1] >>birth[2] >> death[0] >> death[1] >> death[2];
+        for (int i = 0; i <= 2; i++){
+            _birth[i] = std::atoi(birth[i].c_str());
+            _death[i] = std::atoi(death[i].c_str());
+        }
+        _sex = sex[0];
     }
 };
 

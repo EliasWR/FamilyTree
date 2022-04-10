@@ -1,5 +1,6 @@
 #include "FileHandling.h"
 
+
 bool XmlWriter::exists(const std::string fileName){
     std::fstream checkFile(fileName);
     return checkFile.is_open();
@@ -127,4 +128,8 @@ void XmlWriter::writeString(int integer) {
     } else {
         std::cout << "File is closed. Unable to write to file.\n";
     }
+}
+
+void XmlWriter::readFile(std::string path){
+
 }
