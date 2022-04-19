@@ -39,17 +39,17 @@ public:
         return _parent != nullptr;
     }
 
-    void traverseUpwardsFirst(std::function<void(Node<T> *)> f) {
+    void traverseUpwards(std::function<void(Node<T> *)> f) {
         f(this);
         if (hasChild()) {
-            _parent->traverseUpwardsFirst(f);
+            _parent->traverseUpwards(f);
         }
     }
 
-    void traverseDepthFirst(std::function<void(Node<T> *)> f) {
+    void traverseDepth(std::function<void(Node<T> *)> f) {
         f(this);
         for (auto c: _children) {
-            c->traverseDepthFirst(f);
+            c->traverseDepth(f);
         }
     }
 

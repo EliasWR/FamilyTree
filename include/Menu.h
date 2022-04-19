@@ -5,7 +5,7 @@
 #include <limits>
 #include <array>
 #include "LinkedList.h"
-#include <stdio.h>
+#include <cstd>
 
 // Indexing of persons
 // singly linked list holding persons
@@ -110,10 +110,9 @@ public:
             return true;
     }
     char checkSexInput() {
-        char c, m, f, o;
-        m = 'm';
-        f = 'f';
-        o = 'o';
+        char m = 'm';
+        char f = 'f';
+        char o = 'o';
         std::cin >> c;
 
         while ((c != m) && (c != f) && (c != o)) {
