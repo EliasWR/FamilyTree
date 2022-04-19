@@ -1,10 +1,10 @@
 #include <iostream>
-#include "Person.h"
-#include "Node.h"
-#include "Menu.h"
-#include "LinkedList.h"
-#include "FileHandling.h"
-#include "FileHandling.cpp"
+#include "include/Person.h"
+#include "include/Node.h"
+#include "include/Menu.h"
+#include "include/LinkedList.h"
+#include "include/FileHandling.h"
+#include "include/FileHandling.cpp"
 
 template <class T>
 void bubbleSort (std::vector<T> &list){
@@ -120,6 +120,7 @@ int main () {
     system("pause");
     */
     // Implementation of writing to file
+    /*
     Person person1("Per", "Sandberg",{1990,01,01}, {2021, 01, 01}, 'm');
     Person person2("Ola", "Nordmann", {2000,01,01}, {2020, 01, 01}, 'm');
 
@@ -140,15 +141,15 @@ int main () {
     p.readPerson(fileName);
     std::cout << p.getFirstName() << " " << p.getLastName();
     return 0;
+*/
 
-    /*
     // Implementation of menu
     Menu menu;
     menu.mainScreen();
-    menu.mainScreenCases ();
+    menu.editAttribute();
     // Lage ny nodeList
     FamilyTree::singly_linked_list<Node<Person>> list;
-    Menu::createPerson (list);
-    std::cout << list << std::endl;
-    */
+    //Menu::createPerson (list);
+    //std::cout << list << std::endl;
+
 }

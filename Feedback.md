@@ -28,6 +28,9 @@ Prosjektet har ikke en definert formaterings stil (e.g., `.clang-format`). Hva s
 
 Prøv å rename headerene deres fra `.h` (typisk C) til `.hpp` (typisk C++). CLion har en option for å gjøre dette default en plass.
 
+Her menes .clang-format
+reformat code cmd + shift + f
+
 ### Person.h
 
 `std::array<int,3> _birth{};` -> Veldig lite OOP. Lag en egen klasse for dette.

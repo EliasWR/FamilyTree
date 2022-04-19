@@ -6,10 +6,12 @@ set(CMAKE_CXX_STANDARD 17)
 include_directories(.)
 
 enable_testing()
-add_subdirectory(tests)
+add_subdirectory(tests
+                include
+                )
 
 add_executable(FamilyTree
-        include/Family_Tree.cpp
+        application/Family_Tree.cpp
         include/Menu.h
         include/LinkedList.h
         include/Person.h
