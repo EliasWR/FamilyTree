@@ -5,7 +5,7 @@
 #include <limits>
 #include <array>
 #include "LinkedList.h"
-#include <cstd>
+#include <cstdio>
 
 // Indexing of persons
 // singly linked list holding persons
@@ -113,6 +113,7 @@ public:
         char m = 'm';
         char f = 'f';
         char o = 'o';
+        char c;
         std::cin >> c;
 
         while ((c != m) && (c != f) && (c != o)) {
@@ -150,20 +151,22 @@ public:
         return input;
     }
 
-    int editAttribute (){
-        std::cout << "You can edit the following attributes" << std::endl;
-        std::cout << "[1] Add new person to tree." << std::endl;
-        std::cout << "[2] Remove person from tree." << std::endl;
-        std::cout << "[3] Edit existing persons attributes." << std::endl;
-        std::cout << "[4] Edit existing persons relations." << std::endl;
-        std::cout << "[5] Exit program." << std::endl;
+    int editAttributes (){
+        std::cout << "You can edit the following information of your family tree" << std::endl;
+        std::cout << "[1] Edit existing persons firstname" << std::endl;
+        std::cout << "[2] Edit existing persons lastname" <<std::endl;
+        std::cout << "[3] Edit existing persons birthday" << std::endl;
+        std::cout << "[4] Edit exising persons day of death" << std::endl;
+        std::cout << "[5] Edit existing persons sex" << std::endl;
+        std::cout << "[6] Exit program." << std::endl;
         std::cout << "Enter your number followed by enter:";
-        std::vector<int> v {1,2,3,4,5};
+        std::vector<int> v {1,2,3,4,5,6};
         int input = checkInput (v);
         _state = input;
         return input;
     }
 
+    //functions for main screen options
     Node<Person> createPerson (FamilyTree::singly_linked_list<Node<Person>>& list){
         int index;
         std::string firstName;
@@ -189,7 +192,7 @@ public:
         std::cout << "['m' for male, 'f' for female, 'o' for other]" << std::endl;
         std::cout << "Please enter the persons sex: ";
         std::cin >> sex;
-        //TODO Check if sex is "m", "f" or "o"
+        checkSexInput();
         // Birth
         std::cout << "Please enter the date of birth below." << std::endl;
         std::cout << "Please enter year of birth[yyyy]: ";
@@ -279,8 +282,8 @@ public:
                 break;
             }
             case 3: {
-                editAttribute();
-                attributeCases(editAttribute());
+                editAttributes();
+                attributeCases(editAttributes());
                 break;
             }
             case 4: {
@@ -303,21 +306,27 @@ public:
         _state = currentState;
         switch (_state){
             case 1:{
+                changeFirstName();
                 break;
             }
             case 2: {
+                changeLastName();
                 break;
             }
             case 3: {
+                changeBirthDate();
                 break;
             }
             case 4: {
+                changeDeathDate();
                 break;
             }
             case 5: {
+                changeSex();
                 break;
             }
             case 6: {
+                exitProgram();
                 break;
             }
             default: {
