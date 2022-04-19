@@ -136,20 +136,36 @@ int main () {
         std::cout << "Error opening file.\n";
     }
     // implementation reading from file
+    Person person1("Per", "Sandberg",{1990,01,01}, {2021, 01, 01}, 'm');
+    Person person2("Ola", "Nordmann", {2000,01,01}, {2020, 01, 01}, 'm');
+
+    XmlWriter xml;
+    std::string fileName = "FamilyTreeInformation1.xml"; // TODO File only opens if it does not already exist
+    if (xml.open(fileName)) {
+        //xml.writeOpenTag("PersonsTag");
+        person1.writePerson(xml);
+        //person2.writePerson(xml);
+        xml.close();
+        std::cout << "Success!\n";
+    } else {
+        std::cout << "Error opening file.\n";
+    }
+    // implementation reading from file
     Person p;
     // TODO exclude header
     p.readPerson(fileName);
     std::cout << p.getFirstName() << " " << p.getLastName();
     return 0;
-*/
 
+    /*
     // Implementation of menu
     Menu menu;
     menu.mainScreen();
-    menu.editAttribute();
+    menu.mainScreenCases ();
     // Lage ny nodeList
     FamilyTree::singly_linked_list<Node<Person>> list;
-    //Menu::createPerson (list);
-    //std::cout << list << std::endl;
+    Menu::createPerson (list);
+    std::cout << list << std::endl;
+    */
 
 }
