@@ -225,7 +225,7 @@ public:
         return node;
     }
 
-    void removePerson (FamilyTree::singly_linked_list<Node<Person>>& list) {
+    void removePerson () {
         std::string firstname, lastname;
         std::cout<<"Please type the firstname of the person you want to remove from the Family Tree: ";
         std::cin>> firstname;
@@ -278,7 +278,7 @@ public:
             }
 
             case 2: {
-                removePerson(list);
+                removePerson();
                 break;
             }
             case 3: {
