@@ -47,6 +47,9 @@ Evt skrive i python
 Filhåndtering - 
 (02.04.2022)
 https://codereview.stackexchange.com/questions/67334/basic-xml-writer-in-c
+Macos - github build
+(20.04.2022)
+https://github.com/markaren/threepp/blob/master/.github/workflows/config.yml
 
 ###Cmake
 Fiks cmake filer i alle folders

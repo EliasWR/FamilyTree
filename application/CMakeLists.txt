@@ -1,1 +1,2 @@
-target_include_directories()
+include_directories("${CMAKE_SOURCE_DIR}/include")
+
