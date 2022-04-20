@@ -55,8 +55,9 @@ public:
 
     Node traverseDepth(std::function<void(Node<T> *)> f, std::string firstname, std::string lastname) {
         f(this);
+        T myPerson;
         for (auto c: _children) {
-            auto &myPerson = f.getPerson();
+            &myPerson = f.getPerson();
             if (myPerson.getFirstName() == firstname && myPerson.getLastName() == lastname) {
                break;
             }
