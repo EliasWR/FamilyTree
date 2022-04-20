@@ -7,3 +7,5 @@ enable_testing()
 
 add_subdirectory(tests)
 add_subdirectory(application)
+
+add_executable(FamilyTree application/Family_Tree.cpp)
