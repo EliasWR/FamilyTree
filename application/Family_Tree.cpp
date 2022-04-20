@@ -167,6 +167,4 @@ int main () {
     Menu::createPerson (list);
     std::cout << list << std::endl;
     */
-    std::cout << "Hello World";
-
 }
