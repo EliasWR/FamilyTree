@@ -246,7 +246,16 @@ public:
 
     // Functions for changing attributes
 
-    void changeFirstName() {
+    void changeFirstName(Node<Person>& root) {
+
+        if (root.isRoot()) {
+            std::cout<< "Please enter the firstname of the person you would like to edit [Firstname]"<<std::endl;
+            std::cin>>_firstName;
+            std::cout<< "Please enter the lastname of the person you would like to edit [Lastname]"<< std::endl;
+            std::cin>> _lastName;
+
+            root.traverseDepth()
+        }
 
     }
 

@@ -53,6 +53,20 @@ public:
         }
     }
 
+    Node traverseDepth(std::function<void(Node<T> *)> f, std::string firstname, std::string lastname) {
+        f(this);
+        for (auto c: _children) {
+            auto &myPerson = f.getPerson();
+            if (myPerson.getFirstName() == firstname && myPerson.getLastName() == lastname) {
+               break;
+            }
+            c->traverseDepth(f);
+        }
+        return myPerson;
+
+    }
+
+
     // TODO Implement breadth first traversal
 
     void traverseBreadthFirst(std::function<void(Node<T> *)> f) {
