@@ -1,10 +1,10 @@
 #include <iostream>
-#include "include/Person.h"
-#include "include/Node.h"
-#include "include/Menu.h"
-#include "include/LinkedList.h"
-#include "include/FileHandling.h"
-#include "include/FileHandling.cpp"
+#include "Person.h"
+#include "Node.h"
+#include "Menu.h"
+#include "LinkedList.h"
+#include "FileHandling.h"
+#include "FileHandling.cpp"
 
 template <class T>
 void bubbleSort (std::vector<T> &list){
