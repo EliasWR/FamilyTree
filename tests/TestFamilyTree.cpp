@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch.hpp"
-#include "include/LinkedList.h"
+#include "LinkedList.h"
 #include <iostream>
 
 TEST_CASE("Test case"){
