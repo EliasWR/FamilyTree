@@ -1,12 +1,12 @@
-#ifndef FAMILYTREE_PERSON_H
-#define FAMILYTREE_PERSON_H
+#ifndef FAMILYTREE_PERSON_HPP
+#define FAMILYTREE_PERSON_HPP
 
 #include <iostream>
 #include <string>
 #include <vector>
 #include <array>
 #include <fstream>
-#include "FileHandling.h"
+#include "FileHandling.hpp"
 
 class Person {
 private:
@@ -86,4 +86,4 @@ public:
     }
 };
 
-#endif //FAMILYTREE_PERSON_H
+#endif//FAMILYTREE_PERSON_HPP

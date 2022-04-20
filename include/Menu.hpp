@@ -1,10 +1,10 @@
-#ifndef FAMILYTREE_MENU_H
-#define FAMILYTREE_MENU_H
+#ifndef FAMILYTREE_MENU_HPP
+#define FAMILYTREE_MENU_HPP
 
 #include <iostream>
 #include <limits>
 #include <array>
-#include "LinkedList.h"
+#include "LinkedList.hpp"
 #include <cstdio>
 
 // Indexing of persons
@@ -346,4 +346,4 @@ public:
     }
 };
 
-#endif //FAMILYTREE_MENU_H
+#endif//FAMILYTREE_MENU_HPP

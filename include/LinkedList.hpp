@@ -1,5 +1,5 @@
-#ifndef FAMILYTREE_LINKEDLIST_H
-#define FAMILYTREE_LINKEDLIST_H
+#ifndef FAMILYTREE_LINKEDLIST_HPP
+#define FAMILYTREE_LINKEDLIST_HPP
 #include <exception>
 #include <ostream>
 #include <utility>
@@ -144,4 +144,4 @@ namespace FamilyTree {
         return os;
     }
 }
-#endif //FAMILYTREE_LINKEDLIST_H
+#endif//FAMILYTREE_LINKEDLIST_HPP

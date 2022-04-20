@@ -1,9 +1,9 @@
 #include <iostream>
-#include "Person.h"
-#include "Node.h"
-#include "Menu.h"
-#include "LinkedList.h"
-#include "FileHandling.h"
+#include "Person.hpp"
+#include "Node.hpp"
+#include "Menu.hpp"
+#include "LinkedList.hpp"
+#include "FileHandling.hpp"
 #include "FileHandling.cpp"
 
 template <class T>

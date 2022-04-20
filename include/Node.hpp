@@ -1,5 +1,5 @@
-#ifndef FAMILYTREE_NODE_H
-#define FAMILYTREE_NODE_H
+#ifndef FAMILYTREE_NODE_HPP
+#define FAMILYTREE_NODE_HPP
 
 #include <iostream>
 #include <functional>
@@ -9,7 +9,7 @@
 #include <ostream>
 #include <memory>
 #include <queue>
-#include "Person.h"
+#include "Person.hpp"
 
 template <class T>
 class Node {
@@ -92,4 +92,4 @@ std::ostream &operator<<(std::ostream &os, const Node<T> &l) {
 }
 
 
-#endif //FAMILYTREE_NODE_H
+#endif//FAMILYTREE_NODE_HPP

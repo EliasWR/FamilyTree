@@ -1,13 +1,13 @@
-#ifndef FAMILYTREE_FILEHANDLING_H
-#define FAMILYTREE_FILEHANDLING_H
+#ifndef FAMILYTREE_FILEHANDLING_HPP
+#define FAMILYTREE_FILEHANDLING_HPP
 
 #include <fstream>
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Person.h"
-#include "Node.h"
-#include "LinkedList.h"
+#include "Person.hpp"
+#include "Node.hpp"
+#include "LinkedList.hpp"
 
 
 class XmlWriter {
@@ -33,4 +33,4 @@ public:
     void readFile(std::string);
 };
 
-#endif //FAMILYTREE_FILEHANDLING_H
+#endif//FAMILYTREE_FILEHANDLING_HPP
