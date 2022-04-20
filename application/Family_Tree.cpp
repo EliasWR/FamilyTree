@@ -46,7 +46,7 @@ int main () {
     // Implementation of traversal
 
     std::cout << "Printing tree with root: " << myPerson.getFirstName() << std::endl;
-    a.traverseDepthFirst([](Node<Person>* f) {
+    a.traverseDepth([](Node<Person>* f) {
         std::cout << f->getPerson().getFirstName() << std::endl;
     });
     std::cout << "------------------"<< std::endl;
@@ -157,7 +157,7 @@ int main () {
     std::cout << p.getFirstName() << " " << p.getLastName();
     return 0;
 
-    /*
+
     // Implementation of menu
     Menu menu;
     menu.mainScreen();
@@ -167,4 +167,17 @@ int main () {
     Menu::createPerson (list);
     std::cout << list << std::endl;
     */
+    Node a(Person("Gunnar", "Sønsteby"));
+    Node b(Person("Nora", "Langevåg"));
+    a.add(b);
+    a.traverseDepth([](Node<Person>* f) {
+        std::cout << f->getPerson().getFirstName() << std::endl;
+    });
+    auto personSearch = a.traverseDepthSearch(a, "Gunnar", "Sønsteby");
+    auto &myPerson = personSearch.getPerson ();
+    auto personFirstName = myPerson.getFirstName();
+    auto personLastName = myPerson.getLastName();
+    std::cout << "Person found is: " << personFirstName << " " << personLastName;
+
+
 }

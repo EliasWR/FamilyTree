@@ -53,18 +53,16 @@ public:
         }
     }
 
-    Node traverseDepth(std::function<void(Node<T> *)> f, std::string firstname, std::string lastname) {
-        f(this);
-        T myPerson;
-        for (auto c: _children) {
-            &myPerson = f.getPerson();
-            if (myPerson.getFirstName() == firstname && myPerson.getLastName() == lastname) {
-               break;
+    Node traverseDepthSearch(Node<T> a, std::string &firstname, std::string &lastname) {
+        a.traverseDepth([](Node<T>* a) {
+            if (a->getPerson().getFirstName() == firstname && a->getPerson().getLastName() == lastname) {
+                std::cout << a->getPerson().getFirstName() << a->getPerson().getLastName() << " exists in tree." << std::endl;
+                return a;
             }
-            c->traverseDepth(f);
-        }
-        return myPerson;
-
+        });
+        auto &myPerson = a.getPerson();
+        return a;
+        // TODO Something wrong with logic, search tree
     }
 
 
