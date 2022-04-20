@@ -9,7 +9,7 @@
 
 // Indexing of persons
 // singly linked list holding persons
-
+template <class T>
 class Menu {
 private:
     int _state = 0;
@@ -246,7 +246,7 @@ public:
 
     // Functions for changing attributes
 
-    void changeFirstName(Node<Person>& root) {
+    void changeFirstName(std::function<void(Node<T> *)> root) {
 
         if (root.isRoot()) {
             std::cout<< "Please enter the firstname of the person you would like to edit [Firstname]"<<std::endl;
@@ -254,7 +254,13 @@ public:
             std::cout<< "Please enter the lastname of the person you would like to edit [Lastname]"<< std::endl;
             std::cin>> _lastName;
 
-            root.traverseDepth()
+            root.traverseDepth(root, _firstName, _lastName);
+
+            std::string newFirstName;
+            std::cout<< "Now please enter the new firstname" << std::endl;
+            std::cin>> newFirstName;
+
+
         }
 
     }
