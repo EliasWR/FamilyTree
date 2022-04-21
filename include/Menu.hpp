@@ -6,6 +6,7 @@
 #include <array>
 #include "LinkedList.hpp"
 #include <cstdio>
+#include <cctype>
 
 // Indexing of persons
 // singly linked list holding persons
@@ -109,6 +110,15 @@ public:
         }
             return true;
     }
+
+    static bool checkUpperCase(std::string s) {
+
+        if (!isupper(s[0])) {
+            isupper(s[0]);
+        }
+        return true;
+
+    }
     char checkSexInput() {
         char m = 'm';
         char f = 'f';
@@ -185,10 +195,12 @@ public:
         std::cout << "Type of the attributes followed by enter." << std::endl;
         std::cout << "Please type the persons first name: ";
         std::cin >> firstName;
+        checkUpperCase(firstName);
         checkEmptyString(firstName);
         std::cout << "Please type the persons last name: ";
         std::cin >> lastName;
         checkEmptyString(lastName);
+        checkUpperCase(lastName);
         std::cout << "['m' for male, 'f' for female, 'o' for other]" << std::endl;
         std::cout << "Please enter the persons sex: ";
         std::cin >> sex;
@@ -251,20 +263,22 @@ public:
         if (root.isRoot()) {
             std::cout<< "Please enter the firstname of the person you would like to edit [Firstname]"<<std::endl;
             std::cin>>_firstName;
+            checkUpperCase(_firstName);
             std::cout<< "Please enter the lastname of the person you would like to edit [Lastname]"<< std::endl;
             std::cin>> _lastName;
+            checkUpperCase(_lastName);
+
 
             root.traverseDepth(root, _firstName, _lastName);
 
             std::string newFirstName;
             std::cout<< "Now please enter the new firstname" << std::endl;
             std::cin>> newFirstName;
-
+            checkUpperCase(newFirstName);
 
         }
 
     }
-
     void changeLastName() {
 
     }
