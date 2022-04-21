@@ -111,12 +111,12 @@ public:
             return true;
     }
 
-    static bool checkUpperCase(std::string s) {
+    std::string checkUpperCase(std::string s) {
 
         if (!isupper(s[0])) {
             isupper(s[0]);
         }
-        return true;
+        return s;
 
     }
     char checkSexInput() {
