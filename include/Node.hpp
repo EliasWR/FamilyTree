@@ -53,18 +53,15 @@ public:
         }
     }
 
-    Node traverseDepthSearch(Node<T> a, std::string &firstname, std::string &lastname) {
-        a.traverseDepth([](Node<T>* a) {
+    void traverseDepthSearch(Node<T> a, std::function <void(Node <T> *)> editingFunc ,std::string &firstname, std::string &lastname) {
+        a.traverseDepth([&](Node<T>* a) {
             if (a->getPerson().getFirstName() == firstname && a->getPerson().getLastName() == lastname) {
                 std::cout << a->getPerson().getFirstName() << a->getPerson().getLastName() << " exists in tree." << std::endl;
-                return a;
+                auto &myPerson = a->getPerson();
+                myPerson.editingFunc(a);
             }
         });
-        auto &myPerson = a.getPerson();
-        return a;
-        // TODO Something wrong with logic, search tree
     }
-
 
     // TODO Implement breadth first traversal
 
