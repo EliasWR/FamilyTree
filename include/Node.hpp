@@ -52,9 +52,15 @@ public:
             c->traverseDepth(f);
         }
     }
+    void traverseDepth(std::function<void(Node<T> *, int)> f, int depth = 0) {
+        f(this, depth);
+        for (auto c: _children) {
+            c->traverseDepth(f, depth + 1);
+        }
+    }
 
-    void traverseDepthSearch(Node<T> a, std::function <void(T)> editingFunc ,std::string &firstname, std::string &lastname) {
-        a.traverseDepth([&](Node<T>* a) {
+    void traverseDepthSearch(Node<T> a, std::string firstname, std::string lastname, std::function <void(T)> editingFunc ) {
+        a.traverseDepth([firstname, lastname](Node<T>* a) {
             if (a->getPerson().getFirstName() == firstname && a->getPerson().getLastName() == lastname) {
                 std::cout << a->getPerson().getFirstName() << a->getPerson().getLastName() << " exists in tree." << std::endl;
                 auto &myPerson = a->getPerson();

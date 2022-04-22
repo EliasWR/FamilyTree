@@ -171,13 +171,18 @@ int main () {
     Node b(Person("Nora", "Langevåg"));
     a.add(b);
 
+    int indent;
+    a.traverseDepth([indent](Node<Person>* f, int depth) {
+        for (int i = 0; i < depth - 1;++i){
+            for (int j = 0; j < i; j++){
 
-    a.traverseDepth([](Node<Person>* f) {
+            }
+        }
         std::cout << f->getPerson().getFirstName() << std::endl;
     });
 
-    auto &myPerson = a.getPerson ();
-    a.traverseDepthSearch(a, [myPerson](auto myPerson.setFirstName("Elias")) myFunc{}, "Gunnar", "Sønsteby"){};
+    auto myPerson = a.getPerson ();
+    a.traverseDepthSearch(a, "Gunnar", "Sønsteby", [](&myPerson) {myPerson.setFirstName()}){};
 
     auto personFirstName = myPerson.getFirstName();
     auto personLastName = myPerson.getLastName();
