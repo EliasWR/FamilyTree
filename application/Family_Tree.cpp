@@ -6,22 +6,6 @@
 #include "FileHandling.hpp"
 #include "FileHandling.cpp"
 
-int globalVar = 3;
-
-template <class T>
-void bubbleSort (std::vector<T> &list){
-    bool swapped;
-    do {
-        swapped = false;
-        for (int i = 1; i < list.size(); i++){
-            if (list[i-1] > list[i]){
-                std::swap(list[i-1], list[i]);
-                swapped = true;
-            }
-        }
-    }while (swapped);
-}
-
 // Uncomment any implementation to testrun
 int main () {
     /*
@@ -182,7 +166,7 @@ int main () {
     b.add(d);
     b.add(e);
 
-    int indent = globalVar;
+    int indent = 3;
     a.traverseDepth([indent](Node<Person>* f, int depth) {
         for (int i = 0; i < depth;++i){
             for (int j = 0; j < indent; ++j){
