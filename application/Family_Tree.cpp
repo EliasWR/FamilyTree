@@ -176,12 +176,12 @@ int main () {
         std::cout << f->getPerson().getFirstName() << std::endl;
     });
 
-    /*
+    // TODO Fiks denne til å traversere og finne person for så å gjøre endring på personen
+
     auto myPerson = a.getPerson ();
     a.traverseDepthSearch(a, "Gunnar", "Sønsteby", [](&myPerson) {myPerson.setFirstName()}){};
 
     auto personFirstName = myPerson.getFirstName();
     auto personLastName = myPerson.getLastName();
     std::cout << personFirstName << " " << personLastName << " has successfully been changed." << std::endl;
-    */
 }
