@@ -6,6 +6,8 @@
 #include "FileHandling.hpp"
 #include "FileHandling.cpp"
 
+int globalVar = 3;
+
 template <class T>
 void bubbleSort (std::vector<T> &list){
     bool swapped;
@@ -167,24 +169,35 @@ int main () {
     Menu::createPerson (list);
     std::cout << list << std::endl;
     */
+    // Making nodes with person objects inside
     Node a(Person("Gunnar", "Sønsteby"));
-    Node b(Person("Nora", "Langevåg"));
+    Node b(Person("Erik", "Sønsteby"));
+    Node c(Person("Anita", "Sønsteby"));
+    Node d(Person("Hans", "Sønsteby"));
+    Node e(Person("Lillian", "Sønsteby"));
+
+    // Adding relations
     a.add(b);
+    a.add(c);
+    b.add(d);
+    b.add(e);
 
-    int indent;
+    int indent = globalVar;
     a.traverseDepth([indent](Node<Person>* f, int depth) {
-        for (int i = 0; i < depth - 1;++i){
-            for (int j = 0; j < i; j++){
-
+        for (int i = 0; i < depth;++i){
+            for (int j = 0; j < indent; ++j){
+                std::cout << " ";
             }
         }
         std::cout << f->getPerson().getFirstName() << std::endl;
     });
 
+    /*
     auto myPerson = a.getPerson ();
     a.traverseDepthSearch(a, "Gunnar", "Sønsteby", [](&myPerson) {myPerson.setFirstName()}){};
 
     auto personFirstName = myPerson.getFirstName();
     auto personLastName = myPerson.getLastName();
     std::cout << personFirstName << " " << personLastName << " has successfully been changed." << std::endl;
+    */
 }
