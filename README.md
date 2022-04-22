@@ -32,7 +32,7 @@ Inheritance
 
 Lars:
 (Node vil gå oppover til rotnoden og legge på en for hver opp til rotnoden)
-Breadth-first traversal gir automatisk nivået på 
+Breadth-first traversal gir automatisk nivået på noden
 
 nlohman json.h
 

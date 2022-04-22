@@ -52,19 +52,22 @@ public:
             c->traverseDepth(f);
         }
     }
-
-    Node traverseDepthSearch(Node<T> a, std::string &firstname, std::string &lastname) {
-        a.traverseDepth([](Node<T>* a) {
-            if (a->getPerson().getFirstName() == firstname && a->getPerson().getLastName() == lastname) {
-                std::cout << a->getPerson().getFirstName() << a->getPerson().getLastName() << " exists in tree." << std::endl;
-                return a;
-            }
-        });
-        auto &myPerson = a.getPerson();
-        return a;
-        // TODO Something wrong with logic, search tree
+    void traverseDepth(std::function<void(Node<T> *, int)> f, int depth = 0) {
+        f(this, depth);
+        for (auto c: _children) {
+            c->traverseDepth(f, depth + 1);
+        }
     }
 
+    void traverseDepthSearch(Node<T> a, std::string firstname, std::string lastname, std::function <void(T)> editingFunc ) {
+        a.traverseDepth([firstname, lastname](Node<T>* a) {
+            if (a->getPerson().getFirstName() == firstname && a->getPerson().getLastName() == lastname) {
+                std::cout << a->getPerson().getFirstName() << a->getPerson().getLastName() << " exists in tree." << std::endl;
+                auto &myPerson = a->getPerson();
+                myPerson.editingFunc(a);
+            }
+        });
+    }
 
     // TODO Implement breadth first traversal
 

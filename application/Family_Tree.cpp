@@ -170,14 +170,21 @@ int main () {
     Node a(Person("Gunnar", "Sønsteby"));
     Node b(Person("Nora", "Langevåg"));
     a.add(b);
-    a.traverseDepth([](Node<Person>* f) {
+
+    int indent;
+    a.traverseDepth([indent](Node<Person>* f, int depth) {
+        for (int i = 0; i < depth - 1;++i){
+            for (int j = 0; j < i; j++){
+
+            }
+        }
         std::cout << f->getPerson().getFirstName() << std::endl;
     });
-    auto personSearch = a.traverseDepthSearch(a, "Gunnar", "Sønsteby");
-    auto &myPerson = personSearch.getPerson ();
+
+    auto myPerson = a.getPerson ();
+    a.traverseDepthSearch(a, "Gunnar", "Sønsteby", [](&myPerson) {myPerson.setFirstName()}){};
+
     auto personFirstName = myPerson.getFirstName();
     auto personLastName = myPerson.getLastName();
-    std::cout << "Person found is: " << personFirstName << " " << personLastName;
-
-
+    std::cout << personFirstName << " " << personLastName << " has successfully been changed." << std::endl;
 }
