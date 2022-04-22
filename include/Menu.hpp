@@ -8,6 +8,7 @@
 #include <cstdio>
 #include <cctype>
 
+
 // Indexing of persons
 // singly linked list holding persons
 template <class T>
@@ -145,7 +146,12 @@ public:
         for (int i:birth){
             std::cout << i << ".";
         }
-        std::cout << "Died at "; // TODO This is where i left off
+        std::cout << "Died at ";
+        for (int i:death) {
+            std::cout << i << ".";
+        }
+        std::cout << "and is considered the sex ";
+        std::cout << _sex;
     }
 
     int mainScreen (){
@@ -236,17 +242,13 @@ public:
         list.addLast(node);
         return node;
     }
-
-    void removePerson () {
-        std::string firstname, lastname;
-        std::cout<<"Please type the firstname of the person you want to remove from the Family Tree: ";
-        std::cin>> firstname;
-        std::cout<<"Please type the lastname of the person you want to remove from the Family Tree: ";
-        std::cin>> lastname; // TODO tests for correct input
-
-        // TODO remove a node from linked list with given key, need to ask Lars on thursday
-
-    }
+    //void removePerson () {
+        //std::string firstname, lastname;
+        //std::cout<<"Please type the firstname of the person you want to remove from the Family Tree: ";
+        //std::cin>> firstname;
+        //std::cout<<"Please type the lastname of the person you want to remove from the Family Tree: ";
+        //std::cin>> lastname; // TODO tests for correct input
+        //}
 
     void editRelation () {
 
@@ -257,6 +259,21 @@ public:
     }
 
     // Functions for changing attributes
+
+    std::string getUserInputFirstName() {
+        std::cout<< "Please enter the firstname of the person you would like to edit [Firstname]"<<std::endl;
+        std::cin>>_firstName;
+        checkUpperCase(_firstName);
+        return _firstName;
+
+    }
+
+    std::string getUserInputLastName() {
+        std::cout<< "Please enter the lastname of the person you would like to edit [Lastname]"<< std::endl;
+        std::cin>> _lastName;
+        checkUpperCase(_lastName);
+        return _lastName;
+    }
 
     void changeFirstName(std::function<void(Node<T> *)> root) {
 
@@ -307,12 +324,12 @@ public:
             }
 
             case 2: {
-                removePerson();
+                //removePerson();
                 break;
             }
             case 3: {
                 editAttributes();
-                attributeCases(editAttributes());
+                editAttributeCases(editAttributes());
                 break;
             }
             case 4: {
@@ -331,7 +348,7 @@ public:
         }
     }
 
-    void attributeCases (int currentState) {
+    void editAttributeCases (int currentState) {
         _state = currentState;
         switch (_state){
             case 1:{
