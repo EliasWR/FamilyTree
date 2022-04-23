@@ -194,9 +194,6 @@ public:
         int month;
         int day;
 
-        int yearLen = 4;
-        int dayAndMonthLen = 2;
-
         std::cout << "Now you can add a new person with 5 attributes to your family tree." << std::endl;
         std::cout << "Type of the attributes followed by enter." << std::endl;
         std::cout << "Please type the persons first name: ";
@@ -214,13 +211,13 @@ public:
         // Birth
         std::cout << "Please enter the date of birth below." << std::endl;
         std::cout << "Please enter year of birth[yyyy]: ";
-        year = checkCipherAndInput(yearLen);
+        year = checkCipherAndInput(_yearLen);
         birth[0] = year;
         std::cout << "Please enter month of birth[mm]: ";
-        month = checkCipherAndInput(dayAndMonthLen);
+        month = checkCipherAndInput(_dayAndMonthLen);
         birth[1] = month;
         std::cout << "Please enter day of birth[dd]: ";
-        day = checkCipherAndInput(dayAndMonthLen);
+        day = checkCipherAndInput(_dayAndMonthLen);
         birth[2] = day;
         /*
          * TODO Take input bool of _isAlive
@@ -229,7 +226,7 @@ public:
         // Death
         std::cout << "Please enter the date of death below." << std::endl;
         std::cout << "Please enter year of death[yyyy]: ";
-        year = checkCipherAndInput(yearLen);
+        _year = checkCipherAndInput(_yearLen);
         _death[0] = _year;
         std::cout << "Please enter month of death[mm]: ";
         _month = checkCipherAndInput(_dayAndMonthLen);
@@ -264,6 +261,7 @@ public:
         std::cout<< "Please enter the firstname of the person you would like to edit [Firstname]"<<std::endl;
         std::cin>>_firstName;
         checkUpperCase(_firstName);
+        checkEmptyString(_firstName);
         return _firstName;
 
     }
@@ -272,44 +270,88 @@ public:
         std::cout<< "Please enter the lastname of the person you would like to edit [Lastname]"<< std::endl;
         std::cin>> _lastName;
         checkUpperCase(_lastName);
+        checkEmptyString(_firstName);
         return _lastName;
     }
 
     void changeFirstName(std::function<void(Node<T> *)> root) {
+        getUserInputFirstName();
+        getUserInputLastName();
 
-        if (root.isRoot()) {
-            std::cout<< "Please enter the firstname of the person you would like to edit [Firstname]"<<std::endl;
-            std::cin>>_firstName;
-            checkUpperCase(_firstName);
-            std::cout<< "Please enter the lastname of the person you would like to edit [Lastname]"<< std::endl;
-            std::cin>> _lastName;
-            checkUpperCase(_lastName);
-
-
-            root.traverseDepth(root, _firstName, _lastName);
-
-            std::string newFirstName;
-            std::cout<< "Now please enter the new firstname" << std::endl;
-            std::cin>> newFirstName;
-            checkUpperCase(newFirstName);
+        std::string newFirstName;
+        std::cout<< "Now please enter the new firstname of the person you chose " << std::endl;
+        std::cin>> newFirstName;
+        checkUpperCase(newFirstName);
+        checkEmptyString(newFirstName);
 
         }
 
-    }
     void changeLastName() {
+        getUserInputFirstName();
+        getUserInputLastName();
+
+        std::string newLastName;
+        std::cout << "Now please enter the new lastname of the person you chose " <<std::endl;
+        std::cin>> newLastName;
+        checkUpperCase(newLastName);
+        checkEmptyString(newLastName);
 
     }
 
     void changeBirthDate() {
+        getUserInputFirstName();
+        getUserInputLastName();
 
+        int year;
+        int month;
+        int day;
+
+        std::array<int,3> newBirthDate{};
+        std::cout << "Now please enter the new year of birth of the person you chose [yyyy]" << std::endl;
+        _birth[0] = year;
+        _year = checkCipherAndInput(_yearLen);
+        std::cout << "Now please enter the new month of birth of the person you chose [mm]" <<std::endl;
+        _birth[1] = month;
+        _month = checkCipherAndInput(_dayAndMonthLen);
+        std::cout << "Now please enter the new day of birth of the person you chose [dd]" <<std::endl;
+        _birth[2] = day;
+        _day = checkCipherAndInput(_dayAndMonthLen);
+
+        newBirthDate[_birth[2], _birth[1], _birth[0]];
     }
 
     void changeDeathDate() {
+        getUserInputFirstName();
+        getUserInputLastName();
 
+        int year;
+        int month;
+        int day;
+        int yearLen = 4;
+        int dayAndMonthLen = 2;
+
+        std::array<int,3> newDeathDate{};
+        std::cout << "Now please enter the new year of death of the person you chose [yyyy]" << std::endl;
+        _death[0] = year;
+        _year = checkCipherAndInput(yearLen);
+        std::cout << "Now please enter the new month of death of the person you chose [mm]" << std::endl;
+        _death[1] = month;
+        _month = checkCipherAndInput(dayAndMonthLen);
+        std::cout << "Now please enter the new day of the death of the person you chose [dd]" << std::endl;
+        _death[2] = day;
+        _day = checkCipherAndInput(dayAndMonthLen);
+
+        newDeathDate[_death[2], _death[1], _death[0]];
     }
 
     void changeSex() {
+        getUserInputFirstName();
+        getUserInputLastName();
 
+        char newSex;
+        std::cout << "Now please enter the new sex of the person you chose ['m' for male, 'f' for female, or '0' for other]" << std::endl;
+        std::cin >> newSex;
+        checkSexInput(newSex);
     }
 
     //functions for editing relations
