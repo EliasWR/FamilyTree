@@ -174,7 +174,7 @@ int main () {
                 std::cout << " ";
             }
         }
-        std::cout << f->getPerson().getFirstName() << f->getPerson().getLastName() << std::endl;
+        std::cout << f->getPerson().getFirstName() << " " <<  f->getPerson().getLastName() << std::endl;
     });
 
     // TODO Fiks denne til å traversere og finne person for så å gjøre endring på personen
@@ -186,8 +186,16 @@ int main () {
     auto personLastName = myPerson.getLastName();
     std::cout << personFirstName << " " << personLastName << " has successfully been changed." << std::endl;
     */
-
-    nlohmann::json j = "Frode";
-
-    std::cout << j;
+    std::string fileName = "FamilyTree.json";
+    std::ofstream f;
+    f.open(fileName,std::ios_base::trunc |std::ios_base::out);
+    std::ifstream i(fileName);
+    nlohmann::json j;
+    auto myPerson= a.getPerson();
+    myPerson.writePerson(j);
+    myPerson = b.getPerson();
+    myPerson.writePerson(j);
+    f << j;
+    f.close();
+    return 0;
 }

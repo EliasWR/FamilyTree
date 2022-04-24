@@ -6,7 +6,7 @@
 #include <vector>
 #include <array>
 #include <fstream>
-#include "FileHandling.hpp"
+#include "json.hpp"
 
 class Person {
 private:
@@ -60,17 +60,10 @@ public:
         _sex = sex;
     }
 
-    void writePerson (XmlWriter &write){
-        write.writeString(_firstName);
-        write.writeString(_lastName);
-        write.writeString(_sex);
-        write.writeString(_birth[0]);
-        write.writeString(_birth[1]);
-        write.writeString(_birth[2]);
-        write.writeString(_death[0]);
-        write.writeString(_death[1]);
-        write.writeString(_death[2]);
+    void writePerson (nlohmann::json &writer){
+        writer = {{"FirstName", _firstName}, {"LastName", _lastName}, {"birth", _birth}, {"death", _death}, {"sex", _sex}};
     }
+
     void readPerson (std::string fileName){
         std::string sex;
         std::array<std::string,3> birth{};
