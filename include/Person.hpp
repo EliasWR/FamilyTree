@@ -60,8 +60,12 @@ public:
         _sex = sex;
     }
 
-    void writePerson (nlohmann::json &writer){
-        writer = {{"FirstName", _firstName}, {"LastName", _lastName}, {"birth", _birth}, {"death", _death}, {"sex", _sex}};
+    void writePerson (nlohmann::json &writer, int index){
+        writer[index,"FirstName"] = _firstName;
+        writer[index,"LastName"] = _lastName;
+        writer[index,"birth"] = _birth;
+        writer[index,"death"] = _death;
+        writer[index,"sex"] = _sex;
     }
 
     void readPerson (std::string fileName){
