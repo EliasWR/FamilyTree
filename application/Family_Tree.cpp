@@ -192,9 +192,9 @@ int main () {
     std::ifstream i(fileName);
     nlohmann::json j;
     auto myPerson= a.getPerson();
-    myPerson.writePerson(j, 1);
+    //myPerson.writePerson(j);
     myPerson = b.getPerson();
-    myPerson.writePerson(j, 2);
+    //myPerson.writePerson(j);
     f << j;
     f.close();
     return 0;

@@ -73,3 +73,9 @@ Lage readme fil ordentlig
 
 ###Indeviduelt skriv
 Struktur på skriv står i oppgavebeskrivelse
+
+### Ting å gjøre
+Enum i sex
+Birth klasse
+Søke i traversering 
+Skrive riktig til fil

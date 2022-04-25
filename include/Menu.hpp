@@ -252,7 +252,6 @@ public:
         checkUpperCase(_firstName);
         checkEmptyString(_firstName);
         return _firstName;
-
     }
 
     std::string getUserInputLastName() {
