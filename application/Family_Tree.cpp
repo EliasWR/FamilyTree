@@ -1,15 +1,16 @@
-#include <iostream>
-#include "Person.hpp"
-#include "Node.hpp"
-#include "Menu.hpp"
-#include "LinkedList.hpp"
-#include "FileHandling.hpp"
 #include "FileHandling.cpp"
+#include "FileHandling.hpp"
+#include "LinkedList.hpp"
+#include "Menu.hpp"
+#include "Node.hpp"
+#include "Person.hpp"
 #include "json.hpp"
+#include "JsonFile.hpp"
+#include <iostream>
 
 // Uncomment any implementation to testrun
-int main () {
-    /*
+int main() {
+  /*
     // Making nodes with person objects inside
     Node a(Person(1, "Gunnar"));
     Node b(Person(2, "Erik"));
@@ -61,7 +62,7 @@ int main () {
 
     std::cout << list << std::endl;
 */
-    /*
+  /*
     // List to be bubble-sorted
     std::vector<int> numbers = {2,1,4,3,5};
 
@@ -71,7 +72,7 @@ int main () {
         std::cout << i << std::endl;
     }
     */
-    /*
+  /*
     // Implementation of filewriting for XML
     XmlWriter xml;
     std::string name = "FamilyTreeInformation1.xml";
@@ -106,8 +107,8 @@ int main () {
 
     system("pause");
     */
-    // Implementation of writing to file
-    /*
+  // Implementation of writing to file
+  /*
     Person person1("Per", "Sandberg",{1990,01,01}, {2021, 01, 01}, 'm');
     Person person2("Ola", "Nordmann", {2000,01,01}, {2020, 01, 01}, 'm');
 
@@ -154,31 +155,31 @@ int main () {
     Menu::createPerson (list);
     std::cout << list << std::endl;
     */
-    // Making nodes with person objects inside
-    Node a(Person("Gunnar", "Sønsteby"));
-    Node b(Person("Erik", "Sønsteby"));
-    Node c(Person("Anita", "Sønsteby"));
-    Node d(Person("Hans", "Sønsteby"));
-    Node e(Person("Lillian", "Sønsteby"));
+  // Making nodes with person objects inside
+  Node a(Person("Gunnar", "Sønsteby"));
+  Node b(Person("Erik", "Sønsteby"));
+  Node c(Person("Anita", "Sønsteby"));
+  Node d(Person("Hans", "Sønsteby"));
+  Node e(Person("Lillian", "Sønsteby"));
 
-    // Adding relations
-    a.add(b);
-    a.add(c);
-    b.add(d);
-    b.add(e);
+  // Adding relations
+  a.add(b);
+  a.add(c);
+  b.add(d);
+  b.add(e);
 
-    int indent = 3;
-    a.traverseDepth([indent](Node<Person>* f, int depth) {
-        for (int i = 0; i < depth;++i){
-            for (int j = 0; j < indent; ++j){
-                std::cout << " ";
-            }
-        }
-        std::cout << f->getPerson().getFirstName() << " " <<  f->getPerson().getLastName() << std::endl;
-    });
+  int indent = 3;
+  a.traverseDepth([ indent ](Node<Person> *f, int depth) {
+    for (int i = 0; i < depth; ++i) {
+      for (int j = 0; j < indent; ++j) {
+        std::cout << " ";
+      }
+    }
+    std::cout << f->getPerson().getFirstName() << " " << f->getPerson().getLastName() << std::endl;
+  });
 
-    // TODO Fiks denne til å traversere og finne person for så å gjøre endring på personen
-    /*
+  // TODO Fiks denne til å traversere og finne person for så å gjøre endring på personen
+  /*
     auto myPerson = a.getPerson ();
     a.traverseDepthSearch(a, "Gunnar", "Sønsteby", [](&myPerson) {myPerson.setFirstName()}){};
 
@@ -186,16 +187,16 @@ int main () {
     auto personLastName = myPerson.getLastName();
     std::cout << personFirstName << " " << personLastName << " has successfully been changed." << std::endl;
     */
-    std::string fileName = "FamilyTree.json";
-    std::ofstream f;
-    f.open(fileName,std::ios_base::trunc |std::ios_base::out);
-    std::ifstream i(fileName);
-    nlohmann::json j;
-    auto myPerson= a.getPerson();
-    //myPerson.writePerson(j);
-    myPerson = b.getPerson();
-    //myPerson.writePerson(j);
-    f << j;
-    f.close();
-    return 0;
+
+  nlohmann::json j;
+  JsonFile json;
+  auto myPerson = a.getPerson();
+  json.writePerson(j, myPerson);
+  myPerson = b.getPerson();
+  json.writePerson(j, myPerson);
+  std::string s = j.dump(4);
+  std::cout << s << std::endl;
+  //f << j;
+  //f.close();
+  return 0;
 }

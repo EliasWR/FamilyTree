@@ -33,7 +33,7 @@ public:
 
     [[nodiscard]] bool isLeaf() const {
         return _children.empty();
-    }
+     }
 
     bool hasChild() {
         return _parent != nullptr;
