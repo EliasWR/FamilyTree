@@ -17,7 +17,6 @@ private:
     std::shared_ptr<T> _person;
     Node *_parent = nullptr;
     std::vector<Node *> _children;
-
 public:
     // Constructor taking person.
     // Creating person objects with unique ownership in the node.

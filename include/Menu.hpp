@@ -7,6 +7,7 @@
 #include "LinkedList.hpp"
 #include <cstdio>
 #include <cctype>
+#include "ExceptionHandling.hpp"
 
 
 // Indexing of persons
@@ -39,100 +40,6 @@ public:
         std::cout << "In this program you can make and modify a family tree of your own" << std::endl;
         std::cout << "To navigate this program you type the number of your desired command followed by enter." << std::endl;
     }
-    //Functions for testing user input
-    static int checkInput (){
-        int input;
-        std::cin >> input;
-        bool inList = false;
-        while (std::cin.fail()){
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-            std::cout << "Not a valid value. Enter a menu option: ";
-            std::cin >> input;
-        }
-        std::cout << "You selected " << input << std::endl;
-        return input;
-    }
-
-    static int checkCipherAndInput (int length){
-        int input;
-        std::cin >> input;
-        bool rightSize = checkCipherCount(input,length);
-        while ((std::cin.fail()) || (!rightSize)){
-            rightSize = checkCipherCount(input,length);
-            if (!rightSize){
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-                std::cout << "Not a valid value. Try again: ";
-                std::cin >> input;
-            }
-        }
-        return input;
-    }
-
-    int checkInput (const std::vector<int>& list){
-        int input;
-        std::cin >> input;
-        bool inList = false;
-        while (std::cin.fail() || !inList){
-            for (int i : list){
-                if (i == input){
-                    inList = true;
-                    break;
-                }
-            }
-            if (!inList){
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-                std::cout << "Not a valid value. Enter a menu option: ";
-                std::cin >> input;
-            }
-        }
-        std::cout << "You selected " << input << std::endl;
-        return input;
-    }
-
-    static bool checkCipherCount(int number, int cipher) {
-        bool isCorrect = true;
-        int count = 0;
-        while(number!=0) {
-            number /= 10;
-            count ++;
-        }
-        if (count > cipher) {
-            isCorrect = false;
-        }
-        return isCorrect;
-    }
-
-    static bool checkEmptyString(std::string s) {
-        while (s.empty()) {
-            std::cout<<"You have not typed anything, please try again";
-        }
-            return true;
-    }
-
-    std::string checkUpperCase(std::string s) {
-
-        if (!isupper(s[0])) {
-            isupper(s[0]);
-        }
-        return s;
-
-    }
-    char checkSexInput() {
-        char m = 'm';
-        char f = 'f';
-        char o = 'o';
-        char c;
-        std::cin >> c;
-
-        while ((c != m) && (c != f) && (c != o)) {
-            std::cout << "You did not type in any of the given options for sex ['m', 'f' or 'o']";
-            std::cin >> c;
-        }
-        return c;
-    }
 
     void getPersonInfo (Node<Person>& node) {
         Person person = node.getPerson();
@@ -162,7 +69,7 @@ public:
         std::cout << "[4] Edit existing persons relations." << std::endl;
         std::cout << "[5] Exit program" << std::endl;
         std::vector<int> v {1,2,3,4,5};
-        int input = checkInput (v);
+        int input = checkInput(v);
         _state = input;
         return input;
     }
@@ -183,7 +90,7 @@ public:
     }
 
     //functions for main screen options
-    Node<Person> createPerson (FamilyTree::singly_linked_list<Node<Person>>& list){
+    Node<Person> createPerson (){
 
         std::array<int,3> birth{};
         std::array<int,3> death{};
@@ -232,16 +139,15 @@ public:
         _death[2] = _day;
 
         Node node(Person(_firstName, _lastName, _birth, _death, _sex));
-        list.addLast(node);
+
+        // TODO add relation
+
         return node;
-    }
-
-    void editRelation () {
-
     }
 
     void exitProgram () {
         std::cout<<"Thank you for using our Family Tree program! Good bye!";
+        //TODO exit program in a proper way
     }
 
     // Functions for changing attributes
@@ -272,6 +178,8 @@ public:
         checkUpperCase(newFirstName);
         checkEmptyString(newFirstName);
 
+        // TODO implement TDS function when ready
+
         }
 
     void changeLastName() {
@@ -284,6 +192,7 @@ public:
         checkUpperCase(newLastName);
         checkEmptyString(newLastName);
 
+        // TODO implement TDS function when ready
     }
 
     void changeBirthDate() {
@@ -302,6 +211,8 @@ public:
         _day = checkCipherAndInput(_dayAndMonthLen);
 
         newBirthDate[_birth[2], _birth[1], _birth[0]];
+
+        // TODO implement TDS function when ready
     }
 
     void changeDeathDate() {
@@ -321,6 +232,8 @@ public:
         _day = checkCipherAndInput(_dayAndMonthLen);
 
         newDeathDate[_death[2], _death[1], _death[0]];
+
+        // TODO implement TDS function when ready
     }
 
     void changeSex() {
@@ -328,9 +241,11 @@ public:
         getUserInputLastName();
 
         char newSex;
-        std::cout << "Now please enter the new sex of the person you chose ['m' for male, 'f' for female, or '0' for other]" << std::endl;
+        std::cout << "Now please enter the new sex of the person you chose ['m' for male, 'f' for female, or 'o' for other]" << std::endl;
         std::cin >> newSex;
         checkSexInput();
+
+        // TODO implement TDS function when ready
     }
 
     //functions for editing relations
@@ -353,7 +268,6 @@ public:
                 break;
             }
             case 4: {
-                editRelation();
                 break;
             }
             case 5: {
