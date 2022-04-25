@@ -77,5 +77,5 @@ Struktur på skriv står i oppgavebeskrivelse
 ### Ting å gjøre
 Enum i sex
 Birth klasse
-Søke i traversering 
+Søke i traversering
 Skrive riktig til fil

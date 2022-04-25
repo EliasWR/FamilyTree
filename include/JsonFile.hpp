@@ -41,6 +41,12 @@ public:
     writer["sex"] = p.getSex();
   }
 
+  void readPerson (const nlohmann::json& j, Person& p){
+    j.["FirstName"].get<std::string> ();
+    j.["LastName"].get<std::string> ();
+
+  }
+
 };
 
 #ifndef FAMILYTREE_JSONFILE_HPP
