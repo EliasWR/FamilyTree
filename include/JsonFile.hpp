@@ -33,6 +33,9 @@ public:
     return a;
   }
 */
+
+
+
   void writePerson (nlohmann::json &writer, Person p){
     writer["FirstName"] = p.getFirstName();
     writer["LastName"] = p.getLastName();
@@ -42,9 +45,7 @@ public:
   }
 
   void readPerson (const nlohmann::json& j, Person& p){
-    j.["FirstName"].get<std::string> ();
-    j.["LastName"].get<std::string> ();
-
+    auto p = j.get<Person>();
   }
 
 };
