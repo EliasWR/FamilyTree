@@ -33,12 +33,19 @@ public:
     return a;
   }
 */
+
+
+
   void writePerson (nlohmann::json &writer, Person p){
     writer["FirstName"] = p.getFirstName();
     writer["LastName"] = p.getLastName();
     writer["birth"] = p.getBirth();
     writer["death"] = p.getDeath();
     writer["sex"] = p.getSex();
+  }
+
+  void readPerson (const nlohmann::json& j, Person& p){
+    auto p = j.get<Person>();
   }
 
 };
