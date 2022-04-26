@@ -42,32 +42,12 @@ public:
         std::cout << "To navigate this program you type the number of your desired command followed by enter." << std::endl;
     }
 
-    void getPersonInfo (Node<Person>& node) {
-        Person person = node.getPerson();
-        std::string firstName = person.getFirstName();
-        std::string lastName = person.getLastName();
-        std::array <int,3> birth = person.getBirth();
-        std::array <int,3> death = person.getDeath();
-        char _sex = person.getSex();
-        std::cout << firstName << " " << lastName;
-        std::cout << "Is born ";
-        for (int i:birth){
-            std::cout << i << ".";
-        }
-        std::cout << "Died at ";
-        for (int i:death) {
-            std::cout << i << ".";
-        }
-        std::cout << "and is considered the sex ";
-        std::cout << _sex;
-    }
-
     int mainScreen (){
         std::cout << "You have the following options." << std::endl;
         std::cout << "[1] Add new person to tree." << std::endl;
         std::cout << "[2] Remove person from tree." << std::endl;
         std::cout << "[3] Edit existing persons attributes." << std::endl;
-        std::cout << "[4] Edit existing persons relations." << std::endl;
+        std::cout << "[4] Show existing persons attributes." << std::endl;
         std::cout << "[5] Exit program" << std::endl;
         std::vector<int> v {1,2,3,4,5};
         int input = _exh.checkInput(v);
@@ -146,6 +126,27 @@ public:
         return node;
     }
 
+    void getPersonInfo (Node<Person>& node) {
+        Person person = node.getPerson();
+        std::string firstName = person.getFirstName();
+        std::string lastName = person.getLastName();
+        std::array <int,3> birth = person.getBirth();
+        std::array <int,3> death = person.getDeath();
+        char _sex = person.getSex();
+        std::cout << firstName << " " << lastName;
+        std::cout << "Is born ";
+        for (int i:birth){
+            std::cout << i << ".";
+        }
+        std::cout << "Died at ";
+        for (int i:death) {
+            std::cout << i << ".";
+        }
+        std::cout << "and is considered the sex ";
+        std::cout << _sex;
+    }
+
+
     void exitProgram () {
         std::cout<<"Thank you for using our Family Tree program! Good bye!";
         //TODO exit program in a proper way
@@ -169,7 +170,7 @@ public:
         return _lastName;
     }
 
-    void changeFirstName(std::function<void(Node<T> *)> root) {
+    void changeFirstName() {
         getUserInputFirstName();
         getUserInputLastName();
 
@@ -269,6 +270,7 @@ public:
                 break;
             }
             case 4: {
+                getPersonInfo();
                 break;
             }
             case 5: {
