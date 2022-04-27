@@ -189,17 +189,16 @@ int main() {
     */
 
   nlohmann::json j;
-  JsonFile json;
+  JsonFile json(a);
   std::ofstream f;
 
   json.openFile(f);
 
-  Person myPerson = a.getPerson();
-  j = json.writePerson(myPerson);
+  j = json.writePerson();
   json.jsonToFile(f,j);
 
-  myPerson = b.getPerson();
-  j = json.writePerson(myPerson);
+  JsonFile json1(b);
+  j = json1.writePerson();
   json.jsonToFile(f,j);
 
   std::string s = j.dump(4);
