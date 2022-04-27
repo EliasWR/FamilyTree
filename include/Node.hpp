@@ -26,7 +26,15 @@ public:
         return *_person;
     }
 
-    [[nodiscard]] bool isRoot() const {
+    Node &getParent () const {
+      return *_parent;
+    }
+
+    std::vector<Node *> getChildren () const {
+      return *_children;
+    }
+
+    [[nodiscard]]bool isRoot() const {
         return _parent == nullptr;
     }
 

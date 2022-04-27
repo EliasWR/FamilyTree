@@ -7,14 +7,21 @@
 #include "Person.hpp"
 #include "Node.hpp"
 
+template <class T>
 class JsonFile {
 private:
   const std::string _fileName = "FamilyTree.json";
 public:
-  void openFile () {
-    std::ofstream f;
+  void openFile (std::ofstream& f) {
     f.open(_fileName, std::ios_base::trunc | std::ios_base::out);
+  }
 
+  void closeFile (std::ofstream& f){
+    f.close();
+  }
+
+  void jsonToFile (std::ofstream& f, nlohmann::json& j){
+    f << j;
   }
 
   void readFile () {
@@ -26,28 +33,32 @@ public:
   void writeJsonToFile(nlohmann::json j){
 
   }
-/*
-  Node<Person> readPerson (){
 
-    Node<Person> a ();
-    return a;
-  }
-*/
+  nlohmann::json writePerson (Node<Person> node){
+    Person p = node.getPerson();
 
+    std::shared_ptr<T> person = node.getParent();
+    nlohmann::json_pointer parent = person;
 
 
-  void writePerson (nlohmann::json &writer, Person p){
-    writer["FirstName"] = p.getFirstName();
-    writer["LastName"] = p.getLastName();
-    writer["birth"] = p.getBirth();
-    writer["death"] = p.getDeath();
-    writer["sex"] = p.getSex();
+
+    nlohmann::json writer =
+    {
+        {
+         {"FirstName", p.getFirstName()},
+         {"LastName", p.getLastName()},
+         {"birth", p.getBirth()},
+         {"death", p.getDeath()},
+         {"sex", p.getSex()}
+        }
+
+      };
+    return writer;
   }
 
   void readPerson (const nlohmann::json& j, Person& p){
-    auto p = j.get<Person>();
-  }
 
+  }
 };
 
 #ifndef FAMILYTREE_JSONFILE_HPP
