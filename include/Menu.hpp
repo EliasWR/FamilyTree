@@ -148,6 +148,19 @@ public:
 
 
     void exitProgram () {
+        char e = 'e';
+        char b = 'b';
+        char a;
+
+        std::cout<<"Are you sure yo want to exit the program? If yes, type 'e'. If no type 'b'."<<std::endl;
+        std::cin>>a;
+        while ((a != e) && (a != b)) {
+            std::cout << "Sorry but that was not one of the given options ['e' or 'b']. Please try again"<<std::endl;
+            std::cin>>a;
+        }
+        if (a == b) {
+            mainScreen();
+        }
         std::cout<<"Thank you for using our Family Tree program! Good bye!";
         //TODO exit program in a proper way
     }
