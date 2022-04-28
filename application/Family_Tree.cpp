@@ -157,16 +157,10 @@ int main() {
     */
   // Making nodes with person objects inside
   Node a(Person("Gunnar", "Sønsteby"));
-  Node b(Person("Erik", "Sønsteby"));
-  Node c(Person("Anita", "Sønsteby"));
-  Node d(Person("Hans", "Sønsteby"));
-  Node e(Person("Lillian", "Sønsteby"));
-
-  // Adding relations
-  a.add(b);
-  a.add(c);
-  b.add(d);
-  b.add(e);
+  a.add (Person("Erik", "Sønsteby"));
+  a.add (Person("Anita", "Sønsteby"));
+  a.add (Person("Hans", "Sønsteby"));
+  a.add (Person("Lillian", "Sønsteby"));
 
   int indent = 3;
   a.traverseDepth([ indent ](Node<Person> *f, int depth) {
@@ -177,28 +171,24 @@ int main() {
     }
     std::cout << f->getPerson().getFirstName() << " " << f->getPerson().getLastName() << std::endl;
   });
-
+/*
   // TODO Fiks denne til å traversere og finne person for så å gjøre endring på personen
-  /*
     auto myPerson = a.getPerson ();
-    a.traverseDepthSearch(a, "Gunnar", "Sønsteby", [](&myPerson) {myPerson.setFirstName()}){};
+    auto lambda = [](Person &p) {p.setFirstName("Elias");};
+    a.traverseDepthSearch(a, "Gunnar", "Sønsteby", lambda);
 
     auto personFirstName = myPerson.getFirstName();
     auto personLastName = myPerson.getLastName();
     std::cout << personFirstName << " " << personLastName << " has successfully been changed." << std::endl;
-    */
-
+*/
   nlohmann::json j;
-  JsonFile json(a);
+  std::string fileName = "FamilyTree.json";
+  JsonFile json(a, fileName);
   std::ofstream f;
 
   json.openFile(f);
 
   j = json.writePerson();
-  json.jsonToFile(f,j);
-
-  JsonFile json1(b);
-  j = json1.writePerson();
   json.jsonToFile(f,j);
 
   std::string s = j.dump(4);

@@ -2,71 +2,66 @@
 // Created by Elias Woie Refsdal on 25/04/2022.
 //
 
-#include <iostream>
-#include "json.hpp"
-#include "Person.hpp"
 #include "Node.hpp"
+#include "Person.hpp"
+#include "json.hpp"
+#include <iostream>
 
-template <class T>
+template<class T>
 class JsonFile {
 private:
-  const std::string _fileName = "FamilyTree.json";
-  std::shared_ptr<T> _node;
-public:
-  explicit JsonFile(const T &t) : _node(std::shared_ptr<T>(t)) {}
+  const std::string _fileName;
+  const Node<T> &_node;
 
-  void openFile (std::ofstream& f) {
+public:
+  explicit JsonFile(const Node<T> &t, std::string fileName)
+      : _node(t), _fileName(fileName){
+  }
+
+  void openFile() {
+    std::ofstream f;
     f.open(_fileName, std::ios_base::trunc | std::ios_base::out);
   }
 
-  void closeFile (std::ofstream& f){
+  void closeFile(std::ofstream &f) {
     f.close();
   }
 
-  void jsonToFile (std::ofstream& f, nlohmann::json& j){
+  void jsonToFile(std::ofstream &f, nlohmann::json &j) {
     f << j;
   }
 
-  void readFile () {
+  void readFile() {
     std::ifstream i(_fileName);
     nlohmann::json j;
     i >> j;
   }
 
-  void writeJsonToFile(nlohmann::json j){
-
+  void writeJsonToFile(nlohmann::json j) {
   }
 
-  nlohmann::json writePerson (){
+
+  nlohmann::json personToJson(const Person &p) {
+    nlohmann::json jsonPerson{
+      {"FirstName", p.getFirstName()},
+      {"LastName", p.getLastName()},
+      {"birth", p.getBirth()},
+      {"death", p.getDeath()},
+      {"sex", p.getSex()}};
+    return jsonPerson;
+  }
+
+  nlohmann::json writePerson() {
     Person p = _node.getPerson();
+    auto personJson = personToJson (p);
 
-    std::shared_ptr<T> person = _node.getParent();
-    nlohmann::json_pointer parent = person;
+}
 
-    std::shared_ptr<T> childrenList = _node.getChildren();
-    nlohmann::json_pointer children = childrenList;
-
-    int nodeIndex = _node.getIndex();
-
-    nlohmann::json writer = {
-      nodeIndex,{
-        {"ParentNode", parent},
-        {"childrenList", childrenList},
-        {"Person",
-          {{"FirstName", p.getFirstName()},
-          {"LastName", p.getLastName()},
-          {"birth", p.getBirth()},
-          {"death", p.getDeath()},
-          {"sex", p.getSex()}}
-       }}
-    };
-    return writer;
-  }
-
-  void readPerson (const nlohmann::json& j, Person& p){
-
-  }
-};
+void
+readPerson(const nlohmann::json &j, Person &p) {
+}
+}
+;
 
 #ifndef FAMILYTREE_JSONFILE_HPP
 #define FAMILYTREE_JSONFILE_HPP

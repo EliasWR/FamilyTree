@@ -18,7 +18,7 @@ class Node {
 private:
     std::shared_ptr<T> _person;
     Node *_parent = nullptr;
-    std::vector<Node *> _children;
+    std::vector<std::shared_ptr<Node<T>>> _children;
     int _index;
 public:
     // Constructor taking person.
@@ -77,12 +77,12 @@ public:
         }
     }
 
-    void traverseDepthSearch(Node<T> a, std::string firstname, std::string lastname, std::function <void(T)> editingFunc ) {
-        a.traverseDepth([firstname, lastname](Node<T>* a) {
-            if (a->getPerson().getFirstName() == firstname && a->getPerson().getLastName() == lastname) {
-                std::cout << a->getPerson().getFirstName() << a->getPerson().getLastName() << " exists in tree." << std::endl;
-                auto &myPerson = a->getPerson();
-                myPerson.editingFunc(a);
+    void traverseDepthSearch(Node<T> root, std::string firstname, std::string lastname, std::function <void(T&)> editingFunc ) {
+        root.traverseDepth([firstname, lastname, editingFunc](Node<T>* node) {
+            if (node->getPerson().getFirstName() == firstname && node->getPerson().getLastName() == lastname) {
+                std::cout << node->getPerson().getFirstName() << node->getPerson().getLastName() << " exists in tree." << std::endl;
+                auto &myPerson = node->getPerson();
+                editingFunc(myPerson);
             }
         });
     }
@@ -93,9 +93,10 @@ public:
 
     }
 
-    void add(Node &f) {
-        f._parent = this; // this -> parent node*
-        _children.emplace_back(&f);
+    void add(T value) {
+      auto n = std::make_shared<Node <T>>(value);
+      n->_parent = this;
+      _children.emplace_back(n);
     }
 
     template<class E>
