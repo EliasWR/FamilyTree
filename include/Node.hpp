@@ -87,6 +87,10 @@ public:
         });
     }
 
+
+
+    //std::shared_ptr<Node<Person>> traverseDepth
+
     // Traverse, Get node
     // JSon linjeskift
 
