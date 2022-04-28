@@ -88,7 +88,6 @@ public:
     }
 
     // TODO Implement breadth first traversal
-
     void traverseBreadthFirst(std::function<void(Node<T> *)> f) {
 
     }

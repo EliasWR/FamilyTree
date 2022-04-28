@@ -12,22 +12,22 @@ class JsonFile {
 private:
   const std::string _fileName;
   const Node<T> &_node;
+  std::ofstream f;
 
 public:
   explicit JsonFile(const Node<T> &t, std::string fileName)
-      : _node(t), _fileName(fileName){
+      : _node(t), _fileName(fileName) {
   }
 
   void openFile() {
-    std::ofstream f;
     f.open(_fileName, std::ios_base::trunc | std::ios_base::out);
   }
 
-  void closeFile(std::ofstream &f) {
+  void closeFile() {
     f.close();
   }
 
-  void jsonToFile(std::ofstream &f, nlohmann::json &j) {
+  void jsonToFile(nlohmann::json &j) {
     f << j;
   }
 
@@ -38,8 +38,8 @@ public:
   }
 
   void writeJsonToFile(nlohmann::json j) {
-  }
 
+  }
 
   nlohmann::json personToJson(const Person &p) {
     nlohmann::json jsonPerson{
@@ -53,15 +53,14 @@ public:
 
   nlohmann::json writePerson() {
     Person p = _node.getPerson();
-    auto personJson = personToJson (p);
+    nlohmann::json personJson = personToJson(p);
+    return personJson;
+  }
 
-}
+  void readPerson(const nlohmann::json &j, Person &p) {
 
-void
-readPerson(const nlohmann::json &j, Person &p) {
-}
-}
-;
+  }
+};
 
 #ifndef FAMILYTREE_JSONFILE_HPP
 #define FAMILYTREE_JSONFILE_HPP

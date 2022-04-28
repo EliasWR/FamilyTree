@@ -184,17 +184,16 @@ int main() {
   nlohmann::json j;
   std::string fileName = "FamilyTree.json";
   JsonFile json(a, fileName);
-  std::ofstream f;
 
-  json.openFile(f);
+  json.openFile();
 
   j = json.writePerson();
-  json.jsonToFile(f,j);
+  json.jsonToFile(j);
 
   std::string s = j.dump(4);
   std::cout << s << std::endl;
 
-  json.closeFile (f);
+  json.closeFile ();
 
   return 0;
 }
