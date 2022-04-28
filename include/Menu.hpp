@@ -5,9 +5,8 @@
 #include <limits>
 #include <array>
 #include "LinkedList.hpp"
-#include <cstdio>
-#include <cctype>
 #include "ExceptionHandling.hpp"
+#include "Node.hpp"
 
 
 // Indexing of persons
@@ -72,9 +71,6 @@ public:
 
     //functions for main screen options
     Node<Person> createPerson (){
-
-        std::array<int,3> birth{};
-        std::array<int,3> death{};
 
         // Firstname
         std::cout << "Now you can add a new person with 5 attributes to your family tree." << std::endl;
@@ -327,6 +323,7 @@ public:
             }
             default: {
                 std::cout << "That was not one of the menu options, please try again";
+                editAttributes();
                 break;
             }
         }
