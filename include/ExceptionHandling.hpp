@@ -6,14 +6,10 @@
 #include <limits>
 #include <array>
 #include <vector>
+#include <cctype>
 
-class ExceptionHandling {
-private:
+struct ExceptionHandling {
 
-
-
-
-public:
     ExceptionHandling();
 
     static int checkInput () {
@@ -89,9 +85,8 @@ public:
     }
 
     static std::string checkUpperCase(std::string s) {
-
         if (!isupper(s[0])) {
-            isupper(s[0]);
+            s[0]=toupper(s[0]);
         }
         return s;
     }

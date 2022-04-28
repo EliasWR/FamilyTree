@@ -9,6 +9,7 @@
 #include "Node.hpp"
 
 
+
 // Indexing of persons
 // singly linked list holding persons
 template <class T>
@@ -26,6 +27,8 @@ private:
     int _day;
     int _yearLen = 4;
     int _dayAndMonthLen = 2;
+    Node<Person> _node;
+    Node<Person> _rootNode;
 
 public:
     void setState(int state){
@@ -188,7 +191,8 @@ public:
         ExceptionHandling::checkUpperCase(newFirstName);
         ExceptionHandling::checkEmptyString(newFirstName);
 
-        // TODO implement TDS function when ready
+        auto lambda = [newFirstName](Person &p){p.setFirstName(newFirstName);};
+        _node.traverseDepthSearch(_rootNode, getUserInputLastName(), getUserInputLastName(), lambda);
 
         }
 
@@ -202,7 +206,7 @@ public:
         ExceptionHandling::checkUpperCase(newLastName);
         ExceptionHandling::checkEmptyString(newLastName);
 
-        // TODO implement TDS function when ready
+        // TODO implement TDS
     }
 
     void changeBirthDate() {
