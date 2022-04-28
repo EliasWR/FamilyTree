@@ -160,7 +160,6 @@ public:
             mainScreen();
         }
         std::cout<<"Thank you for using our Family Tree program! Good bye!";
-        //TODO exit program in a proper way
     }
 
     // Functions for changing attributes
@@ -192,7 +191,7 @@ public:
         ExceptionHandling::checkEmptyString(newFirstName);
 
         auto lambda = [newFirstName](Person &p){p.setFirstName(newFirstName);};
-        _node.traverseDepthSearch(_rootNode, getUserInputLastName(), getUserInputLastName(), lambda);
+        _node.traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
 
         }
 
@@ -206,48 +205,53 @@ public:
         ExceptionHandling::checkUpperCase(newLastName);
         ExceptionHandling::checkEmptyString(newLastName);
 
-        // TODO implement TDS
+        auto lambda = [newLastName](Person &p){p.setLastName(newLastName);};
+        _node.traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
     }
 
     void changeBirthDate() {
         getUserInputFirstName();
         getUserInputLastName();
+        int newYear;
+        int newMonth;
+        int newDay;
 
         std::array<int,3> newBirthDate{};
         std::cout << "Now please enter the new year of birth of the person you chose [yyyy]" << std::endl;
-        _birth[0] = _year;
-        _year = ExceptionHandling::checkCipherAndInput(_yearLen);
+        std::cin>> newYear;
+        newYear = ExceptionHandling::checkCipherAndInput(_yearLen);
         std::cout << "Now please enter the new month of birth of the person you chose [mm]" <<std::endl;
-        _birth[1] = _month;
-        _month = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
+        std::cin >> newMonth;
+        newMonth = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
         std::cout << "Now please enter the new day of birth of the person you chose [dd]" <<std::endl;
-        _birth[2] = _day;
-        _day = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
+        std::cin >> newDay;
+        newDay = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
 
-        newBirthDate[_birth[2], _birth[1], _birth[0]];
-
-        // TODO implement TDS function when ready
+        auto lambda = [newYear, newMonth, newDay](Person &p){p.setBirth(newYear, newMonth, newDay);};
+        _node.traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
     }
 
     void changeDeathDate() {
         getUserInputFirstName();
         getUserInputLastName();
+        int newYear;
+        int newMonth;
+        int newDay;
 
         std::array<int,3> newDeathDate{};
 
         std::cout << "Now please enter the new year of death of the person you chose [yyyy]" << std::endl;
-        _death[0] = _year;
-        _year = ExceptionHandling::checkCipherAndInput(_yearLen);
+        std::cin >> newYear;
+        newYear = ExceptionHandling::checkCipherAndInput(_yearLen);
         std::cout << "Now please enter the new month of death of the person you chose [mm]" << std::endl;
-        _death[1] = _month;
-        _month = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
+        std::cin >> newMonth;
+        newMonth = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
         std::cout << "Now please enter the new day of the death of the person you chose [dd]" << std::endl;
-        _death[2] = _day;
-        _day = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
+        std::cin >> newDay;
+        newDay = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
 
-        newDeathDate[_death[2], _death[1], _death[0]];
-
-        // TODO implement TDS function when ready
+        auto lambda = [newYear, newMonth, newDay](Person &p){p.setDeath(newYear, newMonth, newDay);};
+        _node.traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
     }
 
     void changeSex() {
@@ -259,7 +263,8 @@ public:
         std::cin >> newSex;
         ExceptionHandling::checkSexInput();
 
-        // TODO implement TDS function when ready
+        auto lambda = [newSex](Person &p){p.setSex(newSex);};
+        _node.traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
     }
 
     //functions for editing relations
@@ -270,6 +275,7 @@ public:
         switch (_state){
             case 1: {
                 createPerson(list);
+                mainScreen();
                 break;
             }
 
@@ -283,6 +289,7 @@ public:
             }
             case 4: {
                 getPersonInfo();
+                mainScreen();
                 break;
             }
             case 5: {
@@ -302,22 +309,27 @@ public:
         switch (_state){
             case 1:{
                 changeFirstName();
+                mainScreen();
                 break;
             }
             case 2: {
                 changeLastName();
+                mainScreen();
                 break;
             }
             case 3: {
                 changeBirthDate();
+                mainScreen();
                 break;
             }
             case 4: {
                 changeDeathDate();
+                mainScreen();
                 break;
             }
             case 5: {
                 changeSex();
+                mainScreen();
                 break;
             }
             case 6: {
