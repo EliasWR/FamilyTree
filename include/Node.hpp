@@ -37,8 +37,8 @@ public:
       return *_parent;
     }
 
-    std::vector<Node *> getChildren () const {
-      return *_children;
+    std::vector<std::shared_ptr<Node<T>>> getChildren () const {
+      return _children;
     }
 
     [[nodiscard]] int getIndex () const {
@@ -57,21 +57,21 @@ public:
         return _parent != nullptr;
     }
 
-    void traverseUpwards(std::function<void(Node<T> *)> f) {
+    void traverseUpwards(std::function<void(Node<T> &)> f) {
         f(this);
         if (hasChild()) {
             _parent->traverseUpwards(f);
         }
     }
 
-    void traverseDepth(std::function<void(Node<T> *)> f) {
+    void traverseDepth(std::function<void(Node<T> &)> f) {
         f(this);
         for (auto c: _children) {
             c->traverseDepth(f);
         }
     }
-    void traverseDepth(std::function<void(Node<T> *, int)> f, int depth = 0) {
-        f(this, depth);
+    void traverseDepth(std::function<void(Node<T> &, int)> f, int depth = 0) {
+        f(*this, depth);
         for (auto c: _children) {
             c->traverseDepth(f, depth + 1);
         }
@@ -86,6 +86,9 @@ public:
             }
         });
     }
+
+    // Traverse, Get node
+    // JSon linjeskift
 
     // TODO Implement breadth first traversal
     void traverseBreadthFirst(std::function<void(Node<T> *)> f) {
