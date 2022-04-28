@@ -7,15 +7,37 @@
 #include "json.hpp"
 #include <iostream>
 
+namespace nlohmann {
+  template <class T>
+  void to_json(json& j, std::shared_ptr<Node<T>> n){
+    throw std::runtime_error("Unknown type T");
+  };
+
+  template <>
+  void to_json(json& j, std::shared_ptr<Node<Person>> n) {
+    Person p = n->getPerson();
+    j = {
+        {"FirstName", p.getFirstName()},
+        {"LastName", p.getLastName()},
+        {"birth", p.getBirth()},
+        {"death", p.getDeath()},
+        {"sex", p.getSex()},
+        {"Children", n->getChildren()}
+    };
+  }
+}
+
+
 template<class T>
 class JsonFile {
 private:
   const std::string _fileName;
-  const Node<T> &_node;
+  std::shared_ptr<Node<T>> &_node;
   std::ofstream f;
+  nlohmann::json j;
 
 public:
-  explicit JsonFile(const Node<T> &t, std::string fileName)
+  explicit JsonFile(std::shared_ptr<Node<T>> &t, std::string fileName)
       : _node(t), _fileName(fileName) {
   }
 
@@ -52,8 +74,7 @@ public:
   }
 
   nlohmann::json writePerson() {
-    Person p = _node.getPerson();
-    nlohmann::json personJson = personToJson(p);
+    nlohmann::json personJson(_node);
     return personJson;
   }
 
