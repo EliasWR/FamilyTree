@@ -3,9 +3,6 @@
 
 ##Group 18
 
-Link for integer check in menu.
-https://stackoverflow.com/questions/19696442/how-to-catch-invalid-input-in-c
-
 ##TODO
 TODO Finish menu class
 
@@ -44,15 +41,20 @@ QT cpp library
 Evt skrive i python
 
 ###Kilder
-Filhåndtering - 
-(02.04.2022)
-https://codereview.stackexchange.com/questions/67334/basic-xml-writer-in-c
+Filhåndtering Json Nhlohmann -
+https://github.com/nlohmann/json
+(20.04.2022)
+
 Macos - github build
+https://codereview.stackexchange.com/questions/67334/basic-xml-writer-in-c
 (20.04.2022)
-https://github.com/markaren/threepp/blob/master/.github/workflows/config.yml
-.clang-format
-(20.04.2022)
+
+Link for integer check in menu.
+https://stackoverflow.com/questions/19696442/how-to-catch-invalid-input-in-c
+(26.04.2022)
+
 Pathfinding
+
 
 ###Cmake
 Fiks cmake filer i alle folders

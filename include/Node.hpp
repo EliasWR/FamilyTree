@@ -11,22 +11,41 @@
 #include <queue>
 #include "Person.hpp"
 
+int globalNodeIndex = 0;
+
 template <class T>
 class Node {
 private:
     std::shared_ptr<T> _person;
     Node *_parent = nullptr;
     std::vector<Node *> _children;
+    int _index;
 public:
     // Constructor taking person.
     // Creating person objects with unique ownership in the node.
-    explicit Node(const T &t) : _person(std::make_unique<T>(t)) {}
+    explicit Node(const T &t) : _person(std::make_unique<T>(t)) {
+      globalNodeIndex += 1;
+      _index = globalNodeIndex;
+      // TODO Make destructor for Nodes
+    }
 
     T &getPerson() const {
         return *_person;
     }
 
-    [[nodiscard]] bool isRoot() const {
+    Node &getParent () const {
+      return *_parent;
+    }
+
+    std::vector<Node *> getChildren () const {
+      return *_children;
+    }
+
+    [[nodiscard]] int getIndex () const {
+      return _index;
+    }
+
+    [[nodiscard]]bool isRoot() const {
         return _parent == nullptr;
     }
 
