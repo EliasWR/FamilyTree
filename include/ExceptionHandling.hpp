@@ -46,7 +46,7 @@ public:
         return input;
     }
 
-    int checkInput (const std::vector<int>& list){
+    static int checkInput (const std::vector<int>& list){
         int input;
         std::cin >> input;
         bool inList = false;
@@ -88,7 +88,7 @@ public:
         return true;
     }
 
-    std::string checkUpperCase(std::string s) {
+    static std::string checkUpperCase(std::string s) {
 
         if (!isupper(s[0])) {
             isupper(s[0]);
@@ -96,7 +96,7 @@ public:
         return s;
     }
 
-    char checkSexInput() {
+    static char checkSexInput() {
         char m = 'm';
         char f = 'f';
         char o = 'o';

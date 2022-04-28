@@ -26,7 +26,6 @@ private:
     int _day;
     int _yearLen = 4;
     int _dayAndMonthLen = 2;
-    ExceptionHandling _exh;
 
 public:
     void setState(int state){
@@ -49,7 +48,7 @@ public:
         std::cout << "[4] Show existing persons attributes." << std::endl;
         std::cout << "[5] Exit program" << std::endl;
         std::vector<int> v {1,2,3,4,5};
-        int input = _exh.checkInput(v);
+        int input = ExceptionHandling::checkInput(v);
         _state = input;
         return input;
     }
@@ -64,7 +63,7 @@ public:
         std::cout << "[6] Exit program." << std::endl;
         std::cout << "Enter your number followed by enter:";
         std::vector<int> v {1,2,3,4,5,6};
-        int input = _exh.checkInput (v);
+        int input = ExceptionHandling::checkInput (v);
         _state = input;
         return input;
     }
@@ -77,42 +76,42 @@ public:
         std::cout << "Type of the attributes followed by enter." << std::endl;
         std::cout << "Please type the persons first name: ";
         std::cin >> _firstName;
-        _exh.checkUpperCase(_firstName);
-        _exh.checkEmptyString(_firstName);
+        ExceptionHandling::checkUpperCase(_firstName);
+        ExceptionHandling::checkEmptyString(_firstName);
 
         // Lastname
         std::cout << "Please type the persons last name: ";
         std::cin >> _lastName;
-        _exh.checkEmptyString(_lastName);
-        _exh.checkUpperCase(_lastName);
+        ExceptionHandling::checkEmptyString(_lastName);
+        ExceptionHandling::checkUpperCase(_lastName);
 
         // Sex
         std::cout << "Please enter the persons sex ['m' for male, 'f' for female, 'o' for other]" << std::endl;;
         std::cin >> _sex;
-        _exh.checkSexInput();
+        ExceptionHandling::checkSexInput();
 
         // Birth
         std::cout << "Please enter the date of birth below." << std::endl;
         std::cout << "Please enter year of birth[yyyy]: ";
-        _year = _exh.checkCipherAndInput(_yearLen);
+        _year = ExceptionHandling::checkCipherAndInput(_yearLen);
         _birth[0] = _year;
         std::cout << "Please enter month of birth[mm]: ";
-        _month = _exh.checkCipherAndInput(_dayAndMonthLen);
+        _month = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
         _birth[1] = _month;
         std::cout << "Please enter day of birth[dd]: ";
-        _day = _exh.checkCipherAndInput(_dayAndMonthLen);
+        _day = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
         _birth[2] = _day;
 
         // Death
         std::cout << "Please enter the date of death below." << std::endl;
         std::cout << "Please enter year of death[yyyy]: ";
-        _year = _exh.checkCipherAndInput(_yearLen);
+        _year = ExceptionHandling::checkCipherAndInput(_yearLen);
         _death[0] = _year;
         std::cout << "Please enter month of death[mm]: ";
-        _month = _exh.checkCipherAndInput(_dayAndMonthLen);
+        _month = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
         _death[1] = _month;
         std::cout << "Please enter day of death[dd]: ";
-        _day = _exh.checkCipherAndInput(_dayAndMonthLen);
+        _day = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
         _death[2] = _day;
 
         Node node(Person(_firstName, _lastName, _birth, _death, _sex));
@@ -166,16 +165,16 @@ public:
     std::string getUserInputFirstName() {
         std::cout<< "Please enter the firstname of the person you would like to edit [Firstname]"<<std::endl;
         std::cin>>_firstName;
-        _exh.checkUpperCase(_firstName);
-        _exh.checkEmptyString(_firstName);
+        ExceptionHandling::checkUpperCase(_firstName);
+        ExceptionHandling::checkEmptyString(_firstName);
         return _firstName;
     }
 
     std::string getUserInputLastName() {
         std::cout<< "Please enter the lastname of the person you would like to edit [Lastname]"<< std::endl;
         std::cin>> _lastName;
-        _exh.checkUpperCase(_lastName);
-        _exh.checkEmptyString(_firstName);
+        ExceptionHandling::checkUpperCase(_lastName);
+        ExceptionHandling::checkEmptyString(_firstName);
         return _lastName;
     }
 
@@ -186,8 +185,8 @@ public:
         std::string newFirstName;
         std::cout<< "Now please enter the new firstname of the person you chose " << std::endl;
         std::cin>> newFirstName;
-        _exh.checkUpperCase(newFirstName);
-        _exh.checkEmptyString(newFirstName);
+        ExceptionHandling::checkUpperCase(newFirstName);
+        ExceptionHandling::checkEmptyString(newFirstName);
 
         // TODO implement TDS function when ready
 
@@ -200,8 +199,8 @@ public:
         std::string newLastName;
         std::cout << "Now please enter the new lastname of the person you chose " <<std::endl;
         std::cin>> newLastName;
-        _exh.checkUpperCase(newLastName);
-        _exh.checkEmptyString(newLastName);
+        ExceptionHandling::checkUpperCase(newLastName);
+        ExceptionHandling::checkEmptyString(newLastName);
 
         // TODO implement TDS function when ready
     }
@@ -213,13 +212,13 @@ public:
         std::array<int,3> newBirthDate{};
         std::cout << "Now please enter the new year of birth of the person you chose [yyyy]" << std::endl;
         _birth[0] = _year;
-        _year = _exh.checkCipherAndInput(_yearLen);
+        _year = ExceptionHandling::checkCipherAndInput(_yearLen);
         std::cout << "Now please enter the new month of birth of the person you chose [mm]" <<std::endl;
         _birth[1] = _month;
-        _month = _exh.checkCipherAndInput(_dayAndMonthLen);
+        _month = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
         std::cout << "Now please enter the new day of birth of the person you chose [dd]" <<std::endl;
         _birth[2] = _day;
-        _day = _exh.checkCipherAndInput(_dayAndMonthLen);
+        _day = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
 
         newBirthDate[_birth[2], _birth[1], _birth[0]];
 
@@ -234,13 +233,13 @@ public:
 
         std::cout << "Now please enter the new year of death of the person you chose [yyyy]" << std::endl;
         _death[0] = _year;
-        _year = _exh.checkCipherAndInput(_yearLen);
+        _year = ExceptionHandling::checkCipherAndInput(_yearLen);
         std::cout << "Now please enter the new month of death of the person you chose [mm]" << std::endl;
         _death[1] = _month;
-        _month = _exh.checkCipherAndInput(_dayAndMonthLen);
+        _month = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
         std::cout << "Now please enter the new day of the death of the person you chose [dd]" << std::endl;
         _death[2] = _day;
-        _day = _exh.checkCipherAndInput(_dayAndMonthLen);
+        _day = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
 
         newDeathDate[_death[2], _death[1], _death[0]];
 
@@ -254,7 +253,7 @@ public:
         char newSex;
         std::cout << "Now please enter the new sex of the person you chose ['m' for male, 'f' for female, or 'o' for other]" << std::endl;
         std::cin >> newSex;
-        _exh.checkSexInput();
+        ExceptionHandling::checkSexInput();
 
         // TODO implement TDS function when ready
     }
