@@ -31,13 +31,14 @@ private:
     Node<Person> _rootNode;
 
 public:
-    void setState(int state){
+    void setState(int state) {
         _state = state;
     }
     [[nodiscard]] int getState() const {
         return _state;
     }
-    void greeting (){
+
+    void greeting () {
         std::cout << "                  " << "Welcome to 'FamilyTree'!"<< std::endl;
         std::cout << "In this program you can make and modify a family tree of your own" << std::endl;
         std::cout << "To navigate this program you type the number of your desired command followed by enter." << std::endl;
@@ -89,7 +90,7 @@ public:
         ExceptionHandling::checkUpperCase(_lastName);
 
         // Sex
-        std::cout << "Please enter the persons sex ['m' for male, 'f' for female, 'o' for other]" << std::endl;;
+        std::cout << "Please enter the persons sex ['m' for male, 'f' for female, 'o' for other]" << std::endl;
         std::cin >> _sex;
         ExceptionHandling::checkSexInput();
 
@@ -257,8 +258,8 @@ public:
     void changeSex() {
         getUserInputFirstName();
         getUserInputLastName();
-
         char newSex;
+
         std::cout << "Now please enter the new sex of the person you chose ['m' for male, 'f' for female, or 'o' for other]" << std::endl;
         std::cin >> newSex;
         ExceptionHandling::checkSexInput();
