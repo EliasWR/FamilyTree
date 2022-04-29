@@ -67,9 +67,9 @@ public:
     nlohmann::json jsonPerson{
       {"FirstName", p.getFirstName()},
       {"LastName", p.getLastName()},
-      {"birth", p.getBirth()},
-      {"death", p.getDeath()},
-      {"sex", p.getSex()}};
+      {"Birth", p.getBirth()},
+      {"Death", p.getDeath()},
+      {"Sex", p.getSex(),"\n"}};
     return jsonPerson;
   }
 

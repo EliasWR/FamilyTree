@@ -4,37 +4,30 @@
 ##Group 18
 
 ##TODO
-TODO Finish menu class
-
-TODO Exception handling
-
-TODO Tests for code
-
 TODO Big O notation on traversal algorithms
 
 TODO Fjerne autogenererte notater øverst og legge til kandidatnr i ReadMe
 
-TODO Linked list with bubble sort
+TODO Due delivery 7th of April*
 
-TODO Indented family tree printing
+TODO Separate to header and source files?
 
-TODO Due delivery 7th of April
+### Ting å gjøre
+Enum i sex
+Birth klasse
+Skrive riktig til fil
+Traverse, Get node
+JSon linjeskift
+Breadth first traversal?
+Lage indents til en funksjon
 
-TODO Separate to header and source files
-
-####Filereading
-Xml reading class needs to write a person
-Json file write and read file
-Inheritance
-
-Lars:
-(Node vil gå oppover til rotnoden og legge på en for hver opp til rotnoden)
-Breadth-first traversal gir automatisk nivået på noden
-
-nlohman json.h
+Fikse depth search
+- hensikt 
+  - Kunne søke og hente ut noder for å legge til relasjon
+  - Kunne søke gjennom uten feilmeldinger
 
 ##Test cases
-Legge til unit test på mac
+Skrive test cases
 
 ###GUI
 QT cpp library
@@ -55,15 +48,7 @@ https://stackoverflow.com/questions/19696442/how-to-catch-invalid-input-in-c
 
 Pathfinding
 
-
-###Cmake
-Fiks cmake filer i alle folders
-
-###Formatering
-Legg til en clang fil
-
-###Trestruktur 
-- Midlertidig lagring i linked list
+###Trestruktur
 - Sette relasjoner
   - Går ikke an å sette relasjoner som finnes tidligere opp i treet
 - Traversering
@@ -75,9 +60,3 @@ Lage readme fil ordentlig
 
 ###Indeviduelt skriv
 Struktur på skriv står i oppgavebeskrivelse
-
-### Ting å gjøre
-Enum i sex
-Birth klasse
-Søke i traversering
-Skrive riktig til fil

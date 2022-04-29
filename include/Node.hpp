@@ -64,20 +64,21 @@ public:
         }
     }
 
-    void traverseDepth(std::function<void(Node<T> &)> f) {
+    void traverseDepth (std::function<void(Node<T> &)> f) {
         f(this);
         for (auto c: _children) {
             c->traverseDepth(f);
         }
     }
-    void traverseDepth(std::function<void(Node<T> &, int)> f, int depth = 0) {
+
+    void traverseDepthPrint (std::function<void(Node<T> &, int)> f, int depth = 0) {
         f(*this, depth);
         for (auto c: _children) {
             c->traverseDepth(f, depth + 1);
         }
     }
 
-    void traverseDepthSearch(Node<T> root, std::string firstname, std::string lastname, std::function <void(T&)> editingFunc ) {
+    void traverseDepthSearch (Node<T> root, std::string firstname, std::string lastname, std::function <void(T&)> editingFunc ) {
         root.traverseDepth([firstname, lastname, editingFunc](Node<T>* node) {
             if (node->getPerson().getFirstName() == firstname && node->getPerson().getLastName() == lastname) {
                 std::cout << node->getPerson().getFirstName() << node->getPerson().getLastName() << " exists in tree." << std::endl;
@@ -87,12 +88,17 @@ public:
         });
     }
 
-
-
-    //std::shared_ptr<Node<Person>> traverseDepth
-
-    // Traverse, Get node
-    // JSon linjeskift
+    // What is the name of your persons parent?
+    std::shared_ptr<Node<Person>> traverseDepthNode (std::shared_ptr<Node<T>> root, std::string firstname, std::string lastname){
+      root.traverseDepth([firstname, lastname](Node<T>* node) {
+        if (node->getPerson().getFirstName() == firstname && node->getPerson().getLastName() == lastname) {
+          std::cout << node->getPerson().getFirstName() << node->getPerson().getLastName() << " was found in tree." << std::endl;
+          return node;
+        }
+      });
+      std::cout << firstname << lastname << " could not be found in tree.\n";
+      // TODO Function is not compatible with name not existing in tree
+    }
 
     // TODO Implement breadth first traversal
     void traverseBreadthFirst(std::function<void(Node<T> *)> f) {
