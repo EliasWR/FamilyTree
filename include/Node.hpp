@@ -71,7 +71,7 @@ public:
         }
     }
 
-    void traverseDepthPrint (std::function<void(Node<T> &, int)> f, int depth = 0) {
+    void traverseDepth (std::function<void(Node<T> &, int)> f, int depth = 0) {
         f(*this, depth);
         for (auto c: _children) {
             c->traverseDepth(f, depth + 1);
@@ -89,14 +89,20 @@ public:
     }
 
     // What is the name of your persons parent?
-    std::shared_ptr<Node<Person>> traverseDepthNode (std::shared_ptr<Node<T>> root, std::string firstname, std::string lastname){
-      root.traverseDepth([firstname, lastname](Node<T>* node) {
+    Node<Person> traverseDepthNode (std::shared_ptr<Node<T>> root, std::string firstname, std::string lastname){
+      //std::shared_ptr<Node<T>> parentNode = nullptr;
+      root->traverseDepth([firstname, lastname /*, parentNode*/](Node<T>* node) {
         if (node->getPerson().getFirstName() == firstname && node->getPerson().getLastName() == lastname) {
           std::cout << node->getPerson().getFirstName() << node->getPerson().getLastName() << " was found in tree." << std::endl;
-          return node;
+          //parentNode = node;
         }
       });
-      std::cout << firstname << lastname << " could not be found in tree.\n";
+      /*
+      if (parentNode == nullptr){
+        std::cout << firstname << lastname << " could not be found in tree.\n";
+      }
+      return parentNode;
+      */
       // TODO Function is not compatible with name not existing in tree
     }
 

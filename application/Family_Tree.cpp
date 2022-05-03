@@ -163,7 +163,7 @@ int main() {
   a->add (Person("Lillian", "Sønsteby"));
 
   int indent = 3;
-  a->traverseDepthPrint ([ indent ](Node<Person> f, int depth) {
+  a->traverseDepth ([ indent ](Node<Person> f, int depth) {
     for (int i = 0; i < depth; ++i) {
       for (int j = 0; j < indent; ++j) {
         std::cout << " ";
@@ -180,7 +180,7 @@ int main() {
     auto personLastName = myPerson.getLastName();
     std::cout << personFirstName << " " << personLastName << " has successfully been changed." << std::endl;
 */
-  std::shared_ptr<Node<Person>> myNode = a->traverseDepthNode(a,"Erik","Sønsteby");
+  Node<Person> myNode = a->traverseDepthNode(a,"Erik","Sønsteby");
 
   nlohmann::json j;
   std::string fileName = "FamilyTree.json";
