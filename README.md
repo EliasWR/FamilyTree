@@ -53,6 +53,10 @@ Splitting date string (convertDate function)
 https://stackoverflow.com/questions/14265581/parse-split-a-string-in-c-using-string-delimiter-standard-c
 (03.05.2022)
 
+Age handling (Printing age)
+https://www.codespeedy.com/calculate-age-from-date-of-birth-in-cpp/
+(03.05.2022)
+
 ###Trestruktur
 - Sette relasjoner
   - Går ikke an å sette relasjoner som finnes tidligere opp i treet

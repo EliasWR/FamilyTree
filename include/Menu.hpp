@@ -27,11 +27,14 @@ private:
     int _day;
     int _yearLen = 4;
     int _dayAndMonthLen = 2;
-    Node<Person> _node;
-    Node<Person> _rootNode;
+    std::shared_ptr<Node<Person>> _node;
+    std::shared_ptr<Node<Person>> _rootNode;
 
 public:
-    void setState(int state) {
+  Menu <std::shared_ptr<Node<Person>>> (std::shared_ptr<Node<Person>> n, std::shared_ptr<Node<Person>> rn) :
+    _node(n), _rootNode(rn){}
+
+  void setState(int state) {
         _state = state;
     }
     [[nodiscard]] int getState() const {
@@ -181,6 +184,17 @@ public:
         return _lastName;
     }
 
+    std::string getCurrentDate () {
+      std::string currentDate;
+      ExceptionHandling e;
+      bool dateStr = false;
+      while (!dateStr) {
+        std::cin >> currentDate;
+        dateStr = e.checkDateLength(currentDate);
+      }
+      return currentDate;
+    }
+
     void changeFirstName() {
         getUserInputFirstName();
         getUserInputLastName();
@@ -192,7 +206,7 @@ public:
         ExceptionHandling::checkEmptyString(newFirstName);
 
         auto lambda = [newFirstName](Person &p){p.setFirstName(newFirstName);};
-        _node.traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
+        _node->traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
 
         }
 
@@ -207,7 +221,7 @@ public:
         ExceptionHandling::checkEmptyString(newLastName);
 
         auto lambda = [newLastName](Person &p){p.setLastName(newLastName);};
-        _node.traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
+        _node->traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
     }
 
     void changeBirthDate() {
@@ -229,7 +243,7 @@ public:
         newDay = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
 
         auto lambda = [newYear, newMonth, newDay](Person &p){p.setBirth(newYear, newMonth, newDay);};
-        _node.traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
+        _node->traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
     }
 
     void changeDeathDate() {
@@ -252,7 +266,7 @@ public:
         newDay = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
 
         auto lambda = [newYear, newMonth, newDay](Person &p){p.setDeath(newYear, newMonth, newDay);};
-        _node.traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
+        _node->traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
     }
 
     void changeSex() {
@@ -265,7 +279,7 @@ public:
         ExceptionHandling::checkSexInput();
 
         auto lambda = [newSex](Person &p){p.setSex(newSex);};
-        _node.traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
+        _node->traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
     }
 
     //functions for editing relations

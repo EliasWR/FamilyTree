@@ -198,12 +198,20 @@ int main() {
 
   json.closeFile ();
   */
-  std::string date = "01.02.2022";
-  Date d(01,01,01);
-  d.stringToInt (date);
-  std::string str = d.getDate();
-  std::cout << str;
 
+
+  std::string birthDate = "17.10.2000";
+  std::string presDate = "03.05.2022";
+  Date d(01,01,01);
+  d.setDate (birthDate);
+  std::string str = d.getDate();
+  std::cout << str << std::endl;
+
+  // Get current date
+  Menu<std::shared_ptr<Node<Person>>> m(a, a);
+  //std::string currentDate = m.getCurrentDate();
+  //d.setCurrentDate(currentDate);
+  d.calculateAge(birthDate, presDate);
 
   return 0;
 }

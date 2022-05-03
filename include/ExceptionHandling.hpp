@@ -10,7 +10,7 @@
 
 struct ExceptionHandling {
 
-    ExceptionHandling();
+    ExceptionHandling(){}
 
     static int checkInput () {
         int input;
