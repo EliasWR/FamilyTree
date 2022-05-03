@@ -39,7 +39,7 @@ https://github.com/nlohmann/json
 (20.04.2022)
 
 Macos - github build
-https://codereview.stackexchange.com/questions/67334/basic-xml-writer-in-c
+https://github.com/markaren/threepp/blob/master/.github/workflows/config.yml
 (20.04.2022)
 
 Link for integer check in menu.
@@ -47,6 +47,11 @@ https://stackoverflow.com/questions/19696442/how-to-catch-invalid-input-in-c
 (26.04.2022)
 
 Pathfinding
+(03.05.2022)
+
+Splitting date string (convertDate function)
+https://stackoverflow.com/questions/14265581/parse-split-a-string-in-c-using-string-delimiter-standard-c
+(03.05.2022)
 
 ###Trestruktur
 - Sette relasjoner

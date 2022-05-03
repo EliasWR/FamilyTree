@@ -6,6 +6,7 @@
 #include "Person.hpp"
 #include "json.hpp"
 #include "JsonFile.hpp"
+#include "Date.hpp"
 #include <iostream>
 
 // Uncomment any implementation to testrun
@@ -180,6 +181,7 @@ int main() {
     auto personLastName = myPerson.getLastName();
     std::cout << personFirstName << " " << personLastName << " has successfully been changed." << std::endl;
 */
+  /*
   Node<Person> myNode = a->traverseDepthNode(a,"Erik","Sønsteby");
 
   nlohmann::json j;
@@ -195,6 +197,13 @@ int main() {
   std::cout << s << std::endl;
 
   json.closeFile ();
+  */
+  std::string date = "01.02.2022";
+  Date d(01,01,01);
+  d.stringToInt (date);
+  std::string str = d.getDate();
+  std::cout << str;
+
 
   return 0;
 }

@@ -202,7 +202,7 @@ public:
 
         std::string newLastName;
         std::cout << "Now please enter the new lastname of the person you chose " <<std::endl;
-        std::cin>> newLastName;
+        std::cin >> newLastName;
         ExceptionHandling::checkUpperCase(newLastName);
         ExceptionHandling::checkEmptyString(newLastName);
 
@@ -219,7 +219,7 @@ public:
 
         std::array<int,3> newBirthDate{};
         std::cout << "Now please enter the new year of birth of the person you chose [yyyy]" << std::endl;
-        std::cin>> newYear;
+        std::cin >> newYear;
         newYear = ExceptionHandling::checkCipherAndInput(_yearLen);
         std::cout << "Now please enter the new month of birth of the person you chose [mm]" <<std::endl;
         std::cin >> newMonth;

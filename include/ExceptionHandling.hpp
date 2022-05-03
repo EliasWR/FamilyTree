@@ -105,6 +105,14 @@ struct ExceptionHandling {
         return c;
     }
 
+    bool checkDateLength (std::string dateString){
+      int desiredLength = 10;
+      int stringLength = dateString.length ();
+      if (stringLength == desiredLength){
+        return true;
+      }
+      return false;
+    }
 };
 
 
