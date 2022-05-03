@@ -31,8 +31,7 @@ private:
     std::shared_ptr<Node<Person>> _rootNode;
 
 public:
-  Menu <std::shared_ptr<Node<Person>>> (std::shared_ptr<Node<Person>> n, std::shared_ptr<Node<Person>> rn) :
-    _node(n), _rootNode(rn){}
+  Menu (std::shared_ptr<Node<Person>> n, std::shared_ptr<Node<Person>> rn) : _node(n), _rootNode(rn){}
 
   void setState(int state) {
         _state = state;

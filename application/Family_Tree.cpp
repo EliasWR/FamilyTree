@@ -121,7 +121,7 @@ int main() {
   */
 
   // TODO Date handling example
-  /*
+
   std::string birthDate = "17.10.2000";
   std::string presDate = "03.05.2022";
   Date d(01,01,01);
@@ -130,11 +130,11 @@ int main() {
   std::cout << str << std::endl;
 
   // Get current date
-  Menu<std::shared_ptr<Node<Person>>> m(a, a);
+  auto m = Menu<std::shared_ptr<Node<Person>>> (a, a);
   //std::string currentDate = m.getCurrentDate();
   //d.setCurrentDate(currentDate);
   d.calculateAge(birthDate, presDate);
-  */
+
 
   return 0;
 }
