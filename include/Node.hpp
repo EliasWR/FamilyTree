@@ -79,19 +79,18 @@ public:
 
     // What is the name of your persons parent?
     Node<Person> traverseDepthNode (std::shared_ptr<Node<T>> root, std::string firstname, std::string lastname){
-      //std::shared_ptr<Node<T>> parentNode = nullptr;
+      std::shared_ptr<Node<T>> parentNode = nullptr;
       root->traverseDepth([firstname, lastname /*, parentNode*/](Node<T>* node) {
         if (node->getPerson().getFirstName() == firstname && node->getPerson().getLastName() == lastname) {
           std::cout << node->getPerson().getFirstName() << node->getPerson().getLastName() << " was found in tree." << std::endl;
-          //parentNode = node;
+          parentNode = node;
         }
       });
-      /*
+
       if (parentNode == nullptr){
         std::cout << firstname << lastname << " could not be found in tree.\n";
       }
       return parentNode;
-      */
       // TODO Function is not compatible with name not existing in tree
     }
 
