@@ -36,8 +36,7 @@ public:
 
   void setState(int state) {
         _state = state;
-    }
-    [[nodiscard]] int getState() const {
+    }[[nodiscard]] int getState() const {
         return _state;
     }
 

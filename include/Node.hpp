@@ -76,11 +76,11 @@ public:
             }
         });
     }
-
+    /*
     // What is the name of your persons parent?
     Node<Person> traverseDepthNode (std::shared_ptr<Node<T>> root, std::string firstname, std::string lastname){
       std::shared_ptr<Node<T>> parentNode = nullptr;
-      root->traverseDepth([firstname, lastname /*, parentNode*/](Node<T>* node) {
+      root->traverseDepth([firstname, lastname , parentNode](Node<T>* node) {
         if (node->getPerson().getFirstName() == firstname && node->getPerson().getLastName() == lastname) {
           std::cout << node->getPerson().getFirstName() << node->getPerson().getLastName() << " was found in tree." << std::endl;
           parentNode = node;
@@ -98,7 +98,7 @@ public:
     void traverseBreadthFirst(std::function<void(Node<T> *)> f) {
 
     }
-
+    */
     void add(T value) {
       auto n = std::make_shared<Node <T>>(value);
       n->_parent = this;
