@@ -54,7 +54,7 @@ public:
     }
 
     void traverseDepth (std::function<void(Node<T> &)> f) {
-        f(this);
+        f(*this);
         for (auto c: _children) {
             c->traverseDepth(f);
         }
@@ -66,23 +66,33 @@ public:
             c->traverseDepth(f, depth + 1);
         }
     }
+    void traverseDepth (std::function<void(Node<T> &)> f, std::string firstName, std::string lastName) {
+      if (getPerson().getFirstName() == firstName && getPerson().getLastName() == lastName){
+        f(*this);
+      }
+      else {
+        for (auto c: _children) {
+          c->traverseDepth(f, firstName, lastName);
+        }
+      }
+    }
 
     void traverseDepthSearch (std::shared_ptr<Node<T>> root, std::string firstname, std::string lastname, std::function <void(T&)> editingFunc ) {
-        root.traverseDepth([firstname, lastname, editingFunc](Node<T>* node) {
-            if (node->getPerson().getFirstName() == firstname && node->getPerson().getLastName() == lastname) {
-                std::cout << node->getPerson().getFirstName() << node->getPerson().getLastName() << " exists in tree." << std::endl;
-                auto &myPerson = node->getPerson();
+        root->traverseDepth([firstname, lastname, editingFunc](Node<T> &node) {
+            if (node.getPerson().getFirstName() == firstname && node.getPerson().getLastName() == lastname) {
+                std::cout << node.getPerson().getFirstName() << node.getPerson().getLastName() << " exists in tree." << std::endl;
+                auto &myPerson = node.getPerson();
                 editingFunc(myPerson);
             }
         });
     }
     /*
     // What is the name of your persons parent?
-    Node<Person> traverseDepthNode (std::shared_ptr<Node<T>> root, std::string firstname, std::string lastname){
+    std::shared_ptr<Node<Person>> traverseDepthNode (Node<T> &root, std::string firstname, std::string lastname){
       std::shared_ptr<Node<T>> parentNode = nullptr;
-      root->traverseDepth([firstname, lastname , parentNode](Node<T>* node) {
-        if (node->getPerson().getFirstName() == firstname && node->getPerson().getLastName() == lastname) {
-          std::cout << node->getPerson().getFirstName() << node->getPerson().getLastName() << " was found in tree." << std::endl;
+      root->traverseDepth([firstname, lastname , parentNode](Node<T> &node) {
+        if (node.getPerson().getFirstName() == firstname && node.getPerson().getLastName() == lastname) {
+          std::cout << node.getPerson().getFirstName() << node.getPerson().getLastName() << " was found in tree." << std::endl;
           parentNode = node;
         }
       });
@@ -93,12 +103,14 @@ public:
       return parentNode;
       // TODO Function is not compatible with name not existing in tree
     }
-
+    */
     // TODO Implement breadth first traversal
     void traverseBreadthFirst(std::function<void(Node<T> *)> f) {
 
     }
-    */
+
+
+
     void add(T value) {
       auto n = std::make_shared<Node <T>>(value);
       n->_parent = this;
@@ -117,6 +129,5 @@ std::ostream &operator<<(std::ostream &os, const Node<T> &l) {
     os << myPerson.getLastName();
     return os;
 }
-
 
 #endif//FAMILYTREE_NODE_HPP

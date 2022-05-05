@@ -7,6 +7,18 @@
 #include "Date.hpp"
 #include <iostream>
 
+void printTree (std::shared_ptr<Node<Person>>& node) {
+  int indent = 3;
+  node->traverseDepth([ indent ](Node<Person> &f, int depth) {
+    for (int i = 0; i < depth; ++i) {
+      for (int j = 0; j < indent; ++j) {
+        std::cout << " ";
+      }
+    }
+    std::cout << f.getPerson().getFirstName() << " " << f.getPerson().getLastName() << std::endl;
+  });
+}
+
 // Uncomment any implementation to testrun
 int main() {
   /*
@@ -70,9 +82,8 @@ int main() {
     FamilyTree::singly_linked_list<Node<Person>> list;
     Menu::createPerson (list);
     std::cout << list << std::endl;
-
     */
-  //
+
   // TODO Making nodes with person objects inside
   auto a = std::make_shared<Node<Person>>(Person("Gunnar", "Sønsteby"));
   a->add (Person("Erik", "Sønsteby"));
@@ -80,29 +91,23 @@ int main() {
   a->add (Person("Hans", "Sønsteby"));
   a->add (Person("Lillian", "Sønsteby"));
 
-  int indent = 3;
-  a->traverseDepth ([ indent ](Node<Person> f, int depth) {
-    for (int i = 0; i < depth; ++i) {
-      for (int j = 0; j < indent; ++j) {
-        std::cout << " ";
-      }
-    }
-    std::cout << f.getPerson().getFirstName() << " " << f.getPerson().getLastName() << std::endl;
-  });
   // TODO Traversal with editing example
-  /*
-    auto myPerson = a.getPerson ();
-    auto lambda = [](Person &p) {p.setFirstName("Elias");};
-    a.traverseDepthSearch(a, "Gunnar", "Sønsteby", lambda);
+  Person p("Henrik", "Sønsteby");
+  auto lambda1 = [p](Node<Person> &node) {node.add(p);};
+  a->traverseDepth (lambda1,"Erik","Sønsteby");
+
+  auto &myPerson = a->getPerson ();
+  auto lambda = [](Person &p) {p.setFirstName("Elias");};
+  a->traverseDepthSearch(a, "Gunnar", "Sønsteby", lambda);
 
     auto personFirstName = myPerson.getFirstName();
     auto personLastName = myPerson.getLastName();
     std::cout << personFirstName << " " << personLastName << " has successfully been changed." << std::endl;
-*/
-  // TODO Example of filewriting and traversal returning node
-  /*
-  Node<Person> myNode = a->traverseDepthNode(a,"Erik","Sønsteby");
 
+    printTree(a);
+  // TODO Example of filewriting and traversal returning node
+
+  /*
   nlohmann::json j;
   std::string fileName = "FamilyTree.json";
   JsonFile json(a, fileName);
