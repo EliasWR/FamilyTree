@@ -41,8 +41,8 @@ struct ExceptionHandling {
         }
         return input;
     }
-
-    static int checkInput (const std::vector<int>& list){
+// TODO Rename and refactor
+    static int checkIntAndList(const std::vector<int>& list){
         int input;
         std::cin >> input;
         bool inList = false;
@@ -60,7 +60,6 @@ struct ExceptionHandling {
                 std::cin >> input;
             }
         }
-        std::cout << "You selected " << input << std::endl;
         return input;
     }
 
@@ -115,10 +114,10 @@ struct ExceptionHandling {
     }
 
     static bool checkUserInput(char input) {
-        char a;
-        char b;
+        char a = 'a';
+        char e = 'e';
 
-        while ((input != a) && (input !=b)) {
+        while ((input != a) && (input != e)) {
             std::cout << "That was not one of your given options, please try again" << std::endl;
             std::cin>> input;
         }

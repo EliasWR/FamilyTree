@@ -16,16 +16,11 @@ private:
     std::string _firstName;
     std::string _lastName;
     char _sex = '0';
-    std::string _birth{};
-    std::string _death{};
+    std::string _birth;
+    std::string _death;
     bool _isAlive;
-    int _year = 0;
-    int _month = 0;
-    int _day = 0;
-    int _yearLen = 4;
-    int _dayAndMonthLen = 2;
-    std::shared_ptr<Node<Person>> _rootNode;
-    bool _firstPersonCreated = false;
+    std::shared_ptr<Node<Person>> _rootNode = nullptr;
+    bool _exitMenu = false;
 
 public:
   Menu (){}
@@ -34,14 +29,26 @@ public:
       _state = state;
   }
 
-    [[nodiscard]] int getState() const {
-        return _state;
-    }
+  [[nodiscard]] int getState() const {
+    return _state;
+  }
+
+  void setExitMenu (bool exitMenu) {
+    _exitMenu = exitMenu;
+  }
+
+  [[nodiscard]] bool getExitMenu (){
+    return _exitMenu;
+  }
 
     void greeting () {
         std::cout << "                  " << "Welcome to 'FamilyTree'!"<< std::endl;
         std::cout << "In this program you can make and modify a family tree of your own" << std::endl;
         std::cout << "To navigate this program you type the number of your desired command followed by enter." << std::endl;
+    }
+
+    void feedback (){
+      std::cout << "Operation was successfully executed"<< std::endl << std::endl;
     }
 
     void mainScreen (){
@@ -52,7 +59,7 @@ public:
         std::cout << "[4] Show existing persons attributes." << std::endl;
         std::cout << "[5] Exit program" << std::endl;
         std::vector<int> v {1,2,3,4,5};
-        int input = ExceptionHandling::checkInput(v);
+        int input = ExceptionHandling::checkIntAndList(v);
         _state = input;
         mainScreenCases();
     }
@@ -65,9 +72,9 @@ public:
         std::cout << "[4] Edit exising persons day of death" << std::endl;
         std::cout << "[5] Edit existing persons sex" << std::endl;
         std::cout << "[6] Exit program." << std::endl;
-        std::cout << "Enter your number followed by enter:";
+        std::cout << "Enter your number followed by enter:"<< std::endl;
         std::vector<int> v {1,2,3,4,5,6};
-        int input = ExceptionHandling::checkInput (v);
+        int input = ExceptionHandling::checkIntAndList(v);
         _state = input;
         return input;
     }
@@ -78,13 +85,13 @@ public:
         // Firstname
         std::cout << "Now you can add a new person with 5 attributes to your family tree." << std::endl;
         std::cout << "Type of the attributes followed by enter." << std::endl;
-        std::cout << "Please type the persons first name: ";
+        std::cout << "Please type the persons first name: "<< std::endl;
         std::cin >> _firstName;
         ExceptionHandling::checkUpperCase(_firstName);
         ExceptionHandling::checkEmptyString(_firstName);
 
         // Lastname
-        std::cout << "Please type the persons last name: ";
+        std::cout << "Please type the persons last name: "<< std::endl;
         std::cin >> _lastName;
         ExceptionHandling::checkEmptyString(_lastName);
         ExceptionHandling::checkUpperCase(_lastName);
@@ -95,28 +102,12 @@ public:
         ExceptionHandling::checkSexInput();
 
         // Birth
-        std::cout << "Please enter the date of birth below." << std::endl;
-        std::cout << "Please enter year of birth[yyyy]: ";
-        _year = ExceptionHandling::checkCipherAndInput(_yearLen);
-        _birth[0] = _year;
-        std::cout << "Please enter month of birth[mm]: ";
-        _month = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
-        _birth[1] = _month;
-        std::cout << "Please enter day of birth[dd]: ";
-        _day = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
-        _birth[2] = _day;
+        std::cout << "Now please enter the date of birth in the following format[dd.mm.yyyy]" << std::endl;
+        _birth = getDate();
 
         // Death
-        std::cout << "Please enter the date of death below." << std::endl;
-        std::cout << "Please enter year of death[yyyy]: ";
-        _year = ExceptionHandling::checkCipherAndInput(_yearLen);
-        _death[0] = _year;
-        std::cout << "Please enter month of death[mm]: ";
-        _month = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
-        _death[1] = _month;
-        std::cout << "Please enter day of death[dd]: ";
-        _day = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
-        _death[2] = _day;
+        std::cout << "Now please enter the date of birth in the following format[dd.mm.yyyy]" << std::endl;
+        _birth = getDate();
     }
 
 
@@ -138,26 +129,28 @@ public:
         _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
     }
 
-
-    int exitProgram () {
-        char b = 'b';
+    void exitProgram () {
+        char a = 'a';
         char e = 'e';
         char input;
 
-        std::cout << "Are you sure you want to exit the program";
-        std::cin>>input;
-        ExceptionHandling::checkUserInput(input);
-
+        std::cout << "Are you sure you want to exit the program?"<< std::endl;
         std::cout << "To return to the main menu, type 'b'" << std::endl;
         std::cout << "To exit program, type 'e'" << std::endl;
         std::cin>>input;
         ExceptionHandling::checkUserInput(input);
 
-        if (input == b) {
+        if (input == a) {
             mainScreen();
         }
-        std::cout<<"Thank you for using our Family Tree program! Good bye!";
-        return 0;
+        else if (input == e){
+          std::cout << "Thank you for using our Family Tree program! Good bye!" << std::endl;
+          _exitMenu = true;
+        }
+        else{
+          std::cout << "Your input could not be interpreted, terminating program." << std::endl;
+          _exitMenu = true;
+        }
     }
 
     // Functions for changing attributes
@@ -259,13 +252,15 @@ public:
     void mainScreenCases (){
         switch (_state) {
             case 1: {
-                if(!_firstPersonCreated) {
+              if(_rootNode == nullptr) {
                     savePersonInfo();
                     createFirstPerson();
-                    _firstPersonCreated = true;
+                    feedback();
                 }
-                savePersonInfo();
-                createGeneralPerson();
+                else {
+                  savePersonInfo();
+                  createGeneralPerson();
+                }
                 break;
             }
 
@@ -279,7 +274,6 @@ public:
             }
             case 4: {
                 getPersonInfo();
-                mainScreen();
                 break;
             }
             case 5: {
@@ -299,27 +293,22 @@ public:
         switch (_state){
             case 1:{
                 changeFirstName();
-                mainScreen();
                 break;
             }
             case 2: {
                 changeLastName();
-                mainScreen();
                 break;
             }
             case 3: {
                 changeBirthDate();
-                mainScreen();
                 break;
             }
             case 4: {
                 changeDeathDate();
-                mainScreen();
                 break;
             }
             case 5: {
                 changeSex();
-                mainScreen();
                 break;
             }
             case 6: {

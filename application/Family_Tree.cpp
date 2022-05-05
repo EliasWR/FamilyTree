@@ -96,6 +96,7 @@ int main() {
     printTree(a);
 */
   // TODO Example of filewriting and traversal returning node
+  /*
   nlohmann::json j;
   std::string fileName = "FamilyTree.json";
   JsonFile json(a, fileName);
@@ -112,7 +113,7 @@ int main() {
 
   json.openFile();
   json.readFile();
-
+*/
   // TODO Date handling example
 /*
   std::string birthDate = "17.10.2000";
@@ -127,8 +128,12 @@ int main() {
   //std::string currentDate = m.getCurrentDate();
   //d.setCurrentDate(currentDate);
   //d.calculateAge(birthDate, presDate);
-    Menu<Person> m;
-    m.mainScreen();
 
+  // TODO Initial read from file
+  Menu<Person> m;
+  m.greeting();
+  while (!m.getExitMenu()) {
+    m.mainScreen();
+  }
   return 0;
 }
