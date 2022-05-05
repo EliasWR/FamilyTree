@@ -59,6 +59,20 @@ public:
     void setSex (char sex) {
         _sex = sex;
     }
+
+    void printPersonInfo() {
+        std::cout << _firstName << " " << _lastName;
+        std::cout << "Is born ";
+        for (int i:_birth){
+            std::cout << i << ".";
+        }
+        std::cout << "Died at ";
+        for (int i:_death) {
+            std::cout << i << ".";
+        }
+        std::cout << "and is considered the sex ";
+        std::cout << _sex;
+    }
 };
 
 #endif//FAMILYTREE_PERSON_HPP

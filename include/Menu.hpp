@@ -138,26 +138,8 @@ public:
     void getPersonInfo () {
         std::string a = getUserInputFirstName();
         std::string b = getUserInputLastName();
-        _rootNode->traverseDepth([a,b](Node<Person> &f) {
-
-        };
-        Person person = node.getPerson();
-        std::string firstName = person.getFirstName();
-        std::string lastName = person.getLastName();
-        std::array <int,3> birth = person.getBirth();
-        std::array <int,3> death = person.getDeath();
-        char _sex = person.getSex();
-        std::cout << firstName << " " << lastName;
-        std::cout << "Is born ";
-        for (int i:birth){
-            std::cout << i << ".";
-        }
-        std::cout << "Died at ";
-        for (int i:death) {
-            std::cout << i << ".";
-        }
-        std::cout << "and is considered the sex ";
-        std::cout << _sex;
+        auto lambda = [](Person p) { p.printPersonInfo(); };
+        _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
     }
 
 
@@ -216,8 +198,8 @@ public:
     }
 
     void changeFirstName() {
-        getUserInputFirstName();
-        getUserInputLastName();
+        std::string a = getUserInputFirstName();
+        std::string b = getUserInputLastName();
         std::string newFirstName;
 
         std::cout<< "Now please enter the new firstname of the person you chose " << std::endl;
@@ -226,8 +208,7 @@ public:
         ExceptionHandling::checkEmptyString(newFirstName);
 
         auto lambda = [newFirstName](Person &p){p.setFirstName(newFirstName);};
-        _rootNode->traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
-
+        _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
         }
 
     void changeLastName() {
