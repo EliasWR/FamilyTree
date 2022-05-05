@@ -18,24 +18,26 @@ private:
     int _state = 0;
     std::string _firstName;
     std::string _lastName;
-    char _sex;
+    char _sex = '0';
     std::array<int,3> _birth{};
     std::array<int,3> _death{};
     bool _isAlive;
-    int _year;
-    int _month;
-    int _day;
+    int _year = 0;
+    int _month = 0;
+    int _day = 0;
     int _yearLen = 4;
     int _dayAndMonthLen = 2;
-    std::shared_ptr<Node<Person>> _node;
     std::shared_ptr<Node<Person>> _rootNode;
+    bool _firstPersonCreated = false;
 
 public:
-  Menu (std::shared_ptr<Node<Person>> n, std::shared_ptr<Node<Person>> rn) : _node(n), _rootNode(rn){}
+  Menu (){}
 
   void setState(int state) {
-        _state = state;
-    }[[nodiscard]] int getState() const {
+      _state = state;
+  }
+
+    [[nodiscard]] int getState() const {
         return _state;
     }
 
@@ -45,7 +47,7 @@ public:
         std::cout << "To navigate this program you type the number of your desired command followed by enter." << std::endl;
     }
 
-    int mainScreen (){
+    void mainScreen (){
         std::cout << "You have the following options." << std::endl;
         std::cout << "[1] Add new person to tree." << std::endl;
         std::cout << "[2] Remove person from tree." << std::endl;
@@ -55,7 +57,7 @@ public:
         std::vector<int> v {1,2,3,4,5};
         int input = ExceptionHandling::checkInput(v);
         _state = input;
-        return input;
+        mainScreenCases();
     }
 
     int editAttributes (){
@@ -74,7 +76,7 @@ public:
     }
 
     //functions for main screen options
-    Node<Person> createPerson (){
+    void savePersonInfo (){
 
         // Firstname
         std::cout << "Now you can add a new person with 5 attributes to your family tree." << std::endl;
@@ -118,15 +120,27 @@ public:
         std::cout << "Please enter day of death[dd]: ";
         _day = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
         _death[2] = _day;
-
-        Node node(Person(_firstName, _lastName, _birth, _death, _sex));
-
-        // TODO add relation
-
-        return node;
     }
 
-    void getPersonInfo (Node<Person>& node) {
+
+    void createFirstPerson() {
+      _rootNode = std::make_shared<Node<Person>>(Person(_firstName, _lastName, _birth, _death, _sex));
+  }
+
+  void createGeneralPerson() {
+
+      Person p(_firstName, _lastName, _birth, _death, _sex);
+      auto lambda1 = [p](Node<Person> &node) {node.add(p);};
+      _rootNode->traverseDepth (lambda1,getUserInputFirstName(),getUserInputLastName());
+  }
+
+
+    void getPersonInfo () {
+        std::string a = getUserInputFirstName();
+        std::string b = getUserInputLastName();
+        _rootNode->traverseDepth([a,b](Node<Person> &f) {
+
+        };
         Person person = node.getPerson();
         std::string firstName = person.getFirstName();
         std::string lastName = person.getLastName();
@@ -147,39 +161,47 @@ public:
     }
 
 
-    void exitProgram () {
-        char e = 'e';
+    int exitProgram () {
         char b = 'b';
-        char a;
+        char e = 'e';
+        char input;
 
-        std::cout<<"Are you sure yo want to exit the program? If yes, type 'e'. If no type 'b'."<<std::endl;
-        std::cin>>a;
-        while ((a != e) && (a != b)) {
-            std::cout << "Sorry but that was not one of the given options ['e' or 'b']. Please try again"<<std::endl;
-            std::cin>>a;
-        }
-        if (a == b) {
+        std::cout << "Are you sure you want to exit the program";
+        std::cin>>input;
+        ExceptionHandling::checkUserInput(input);
+
+        std::cout << "To return to the main menu, type 'b'" << std::endl;
+        std::cout << "To exit program, type 'e'" << std::endl;
+        std::cin>>input;
+        ExceptionHandling::checkUserInput(input);
+
+        if (input == b) {
             mainScreen();
         }
         std::cout<<"Thank you for using our Family Tree program! Good bye!";
+        return 0;
     }
 
     // Functions for changing attributes
 
     std::string getUserInputFirstName() {
-        std::cout<< "Please enter the firstname of the person you would like to edit [Firstname]"<<std::endl;
-        std::cin>>_firstName;
-        ExceptionHandling::checkUpperCase(_firstName);
-        ExceptionHandling::checkEmptyString(_firstName);
-        return _firstName;
+        std::string traversalFirstName;
+
+        std::cout<< "Please enter the firstname of the person [Firstname]"<<std::endl;
+        std::cin>>traversalFirstName;
+        ExceptionHandling::checkUpperCase(traversalFirstName);
+        ExceptionHandling::checkEmptyString(traversalFirstName);
+        return traversalFirstName;
     }
 
     std::string getUserInputLastName() {
-        std::cout<< "Please enter the lastname of the person you would like to edit [Lastname]"<< std::endl;
-        std::cin>> _lastName;
-        ExceptionHandling::checkUpperCase(_lastName);
-        ExceptionHandling::checkEmptyString(_firstName);
-        return _lastName;
+        std::string traversalLastName;
+
+        std::cout<< "Please enter the lastname of the person [Lastname]"<< std::endl;
+        std::cin>> traversalLastName;
+        ExceptionHandling::checkUpperCase(traversalLastName);
+        ExceptionHandling::checkEmptyString(traversalLastName);
+        return traversalLastName;
     }
 
     std::string getCurrentDate () {
@@ -196,15 +218,15 @@ public:
     void changeFirstName() {
         getUserInputFirstName();
         getUserInputLastName();
-
         std::string newFirstName;
+
         std::cout<< "Now please enter the new firstname of the person you chose " << std::endl;
         std::cin>> newFirstName;
         ExceptionHandling::checkUpperCase(newFirstName);
         ExceptionHandling::checkEmptyString(newFirstName);
 
         auto lambda = [newFirstName](Person &p){p.setFirstName(newFirstName);};
-        _node->traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
+        _rootNode->traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
 
         }
 
@@ -219,7 +241,7 @@ public:
         ExceptionHandling::checkEmptyString(newLastName);
 
         auto lambda = [newLastName](Person &p){p.setLastName(newLastName);};
-        _node->traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
+        _rootNode->traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
     }
 
     void changeBirthDate() {
@@ -241,7 +263,7 @@ public:
         newDay = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
 
         auto lambda = [newYear, newMonth, newDay](Person &p){p.setBirth(newYear, newMonth, newDay);};
-        _node->traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
+        _rootNode->traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
     }
 
     void changeDeathDate() {
@@ -264,7 +286,7 @@ public:
         newDay = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
 
         auto lambda = [newYear, newMonth, newDay](Person &p){p.setDeath(newYear, newMonth, newDay);};
-        _node->traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
+        _rootNode->traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
     }
 
     void changeSex() {
@@ -277,18 +299,23 @@ public:
         ExceptionHandling::checkSexInput();
 
         auto lambda = [newSex](Person &p){p.setSex(newSex);};
-        _node->traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
+        _rootNode->traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
     }
 
     //functions for editing relations
 
 
 
-    void mainScreenCases (FamilyTree::singly_linked_list<Node<Person>>& list){
-        switch (_state){
+    void mainScreenCases (){
+        switch (_state) {
             case 1: {
-                createPerson(list);
-                mainScreen();
+                if(!_firstPersonCreated) {
+                    savePersonInfo();
+                    createFirstPerson();
+                    _firstPersonCreated = true;
+                }
+                savePersonInfo();
+                createGeneralPerson();
                 break;
             }
 

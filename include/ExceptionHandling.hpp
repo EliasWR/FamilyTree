@@ -105,13 +105,24 @@ struct ExceptionHandling {
         return c;
     }
 
-    bool checkDateLength (std::string dateString){
+    static bool checkDateLength (std::string dateString){
       int desiredLength = 10;
       int stringLength = dateString.length ();
       if (stringLength == desiredLength){
         return true;
       }
       return false;
+    }
+
+    static bool checkUserInput(char input) {
+        char a;
+        char b;
+
+        while ((input != a) && (input !=b)) {
+            std::cout << "That was not one of your given options, please try again" << std::endl;
+            std::cin>> input;
+        }
+        return true;
     }
 };
 

@@ -83,22 +83,22 @@ int main() {
     Menu::createPerson (list);
     std::cout << list << std::endl;
     */
-
+/*
   // TODO Making nodes with person objects inside
-  auto a = std::make_shared<Node<Person>>(Person("Gunnar", "Sønsteby"));
-  a->add (Person("Erik", "Sønsteby"));
-  a->add (Person("Anita", "Sønsteby"));
-  a->add (Person("Hans", "Sønsteby"));
-  a->add (Person("Lillian", "Sønsteby"));
+  auto a = std::make_shared<Node<Person>>(Person("Gunnar", "Sonsteby"));
+  a->add (Person("Erik", "Sonsteby"));
+  a->add (Person("Anita", "Sonsteby"));
+  a->add (Person("Hans", "Sonsteby"));
+  a->add (Person("Lillian", "Sonsteby"));
 
   // TODO Traversal with editing example
-  Person p("Henrik", "Sønsteby");
+  Person p("Henrik", "Sonsteby");
   auto lambda1 = [p](Node<Person> &node) {node.add(p);};
-  a->traverseDepth (lambda1,"Erik","Sønsteby");
+  a->traverseDepth (lambda1,"Erik","Sonsteby");
 
   auto &myPerson = a->getPerson ();
   auto lambda = [](Person &p) {p.setFirstName("Elias");};
-  a->traverseDepthSearch(a, "Gunnar", "Sønsteby", lambda);
+  a->traverseDepthSearch(a, "Gunnar", "Sonsteby", lambda);
 
     auto personFirstName = myPerson.getFirstName();
     auto personLastName = myPerson.getLastName();
@@ -131,13 +131,14 @@ int main() {
   d.setDate (birthDate);
   std::string str = d.getDate();
   std::cout << str << std::endl;
-
+*/
   // Get current date
-  auto m = Menu<std::shared_ptr<Node<Person>>> (a, a);
+
   //std::string currentDate = m.getCurrentDate();
   //d.setCurrentDate(currentDate);
-  d.calculateAge(birthDate, presDate);
-
+  //d.calculateAge(birthDate, presDate);
+    Menu<Person> m;
+    m.mainScreen();
 
   return 0;
 }
