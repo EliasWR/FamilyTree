@@ -72,16 +72,6 @@ int main() {
     Person p;
     p.readPerson(fileName);
     std::cout << p.getFirstName() << " " << p.getLastName();
-
-    // TODO Menu implementation (OLD)
-    // Implementation of menu
-    Menu menu;
-    menu.mainScreen();
-    menu.mainScreenCases ();
-    // Lage ny nodeList
-    FamilyTree::singly_linked_list<Node<Person>> list;
-    Menu::createPerson (list);
-    std::cout << list << std::endl;
     */
 /*
   // TODO Making nodes with person objects inside
