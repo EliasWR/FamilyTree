@@ -80,7 +80,7 @@ public:
     void traverseDepthSearch (std::shared_ptr<Node<T>> root, std::string firstname, std::string lastname, std::function <void(T&)> editingFunc ) {
         root->traverseDepth([firstname, lastname, editingFunc](Node<T> &node) {
             if (node.getPerson().getFirstName() == firstname && node.getPerson().getLastName() == lastname) {
-                std::cout << node.getPerson().getFirstName() << node.getPerson().getLastName() << " exists in tree." << std::endl;
+                std::cout << node.getPerson().getFirstName() << " " << node.getPerson().getLastName() << " exists in tree." << std::endl;
                 auto &myPerson = node.getPerson();
                 editingFunc(myPerson);
             }

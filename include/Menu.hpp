@@ -121,7 +121,6 @@ public:
       _rootNode->traverseDepth (lambda1,getUserInputFirstName(),getUserInputLastName());
   }
 
-
     void getPersonInfo () {
         std::string a = getUserInputFirstName();
         std::string b = getUserInputLastName();
