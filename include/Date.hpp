@@ -12,7 +12,7 @@ private:
   int _presDay, _presMonth, _presYear;
 
 public:
-  Date () : _day(0), _month(0), _year(0) {};
+  Date () : _day(0), _month(0), _year(0), _presDay(0), _presMonth(0), _presYear(0){};
   Date (int day, int month, int year) : _day(day), _month(month), _year(year){};
 
   std::string const getDate () {

@@ -1,4 +1,3 @@
-#include "LinkedList.hpp"
 #include "Menu.hpp"
 #include "Node.hpp"
 #include "Person.hpp"
@@ -73,14 +72,14 @@ int main() {
     p.readPerson(fileName);
     std::cout << p.getFirstName() << " " << p.getLastName();
     */
-/*
+
   // TODO Making nodes with person objects inside
   auto a = std::make_shared<Node<Person>>(Person("Gunnar", "Sonsteby"));
   a->add (Person("Erik", "Sonsteby"));
   a->add (Person("Anita", "Sonsteby"));
   a->add (Person("Hans", "Sonsteby"));
   a->add (Person("Lillian", "Sonsteby"));
-
+/*
   // TODO Traversal with editing example
   Person p("Henrik", "Sonsteby");
   auto lambda1 = [p](Node<Person> &node) {node.add(p);};
@@ -95,9 +94,8 @@ int main() {
     std::cout << personFirstName << " " << personLastName << " has successfully been changed." << std::endl;
 
     printTree(a);
+*/
   // TODO Example of filewriting and traversal returning node
-
-
   nlohmann::json j;
   std::string fileName = "FamilyTree.json";
   JsonFile json(a, fileName);
@@ -112,9 +110,11 @@ int main() {
 
   json.closeFile ();
 
+  json.openFile();
+  json.readFile();
 
   // TODO Date handling example
-
+/*
   std::string birthDate = "17.10.2000";
   std::string presDate = "03.05.2022";
   Date d(01,01,2001);

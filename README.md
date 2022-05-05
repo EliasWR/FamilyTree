@@ -34,6 +34,10 @@ QT cpp library
 Evt skrive i python
 
 ###Kilder
+Utgangspunkt for prosjektet var Folders skrevet av Lars Ivar Hatledal
+https://github.com/AIS1002-OOP/folders/blob/master/main.cpp
+(05.05.2022)
+
 Filhåndtering Json Nhlohmann -
 https://github.com/nlohmann/json
 (20.04.2022)

@@ -10,8 +10,8 @@
 
 class Person {
 private:
-    std::array<int,3> _birth{};
-    std::array<int,3> _death{};
+    std::string _birth;
+    std::string _death;
     std::string _firstName, _lastName;
     char _sex;
 
@@ -19,7 +19,7 @@ public:
     // Constructors
     Person (){}
     Person (std::string firstName, std::string lastName):_firstName(firstName), _lastName(lastName){}
-    Person (std::string firstName, std::string lastName, std::array<int,3> birth, std::array<int,3> death, char sex):
+    Person (std::string firstName, std::string lastName, std::string birth, std::string death, char sex):
             _firstName(firstName), _lastName(lastName), _birth(birth), _death(death), _sex(sex){}
 
     //TODO Add bool isAlive to private and constructor.
@@ -34,24 +34,20 @@ public:
     [[nodiscard]]std::string getLastName() const {
         return _lastName;
     }
-    void setLastName (std::string firstName) {
-        _lastName = firstName;
+    void setLastName (std::string lastName) {
+        _lastName = lastName;
     }
-    [[nodiscard]]std::array<int,3> getBirth () const {
+    [[nodiscard]]std::string getBirth () const {
         return _birth;
     }
-    void setBirth (int year, int month, int day) {
-        _birth[0] = year;
-        _birth[1] = month;
-        _birth[2] = day;
+    void setBirth (std::string birth) {
+        _birth = birth;
     }
-    [[nodiscard]]std::array<int,3> getDeath () const {
+    [[nodiscard]]std::string getDeath () const {
         return _death;
     }
-    void setDeath (int year, int month, int day) {
-        _birth[0] = year;
-        _birth[1] = month;
-        _birth[2] = day;
+    void setDeath (std::string death) {
+        _death = death;
     }
     [[nodiscard]]char getSex () const {
         return _sex;

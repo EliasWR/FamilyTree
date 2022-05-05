@@ -1,6 +1,5 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch.hpp"
-#include "LinkedList.hpp"
 #include "Menu.hpp"
 #include "Node.hpp"
 #include "Person.hpp"

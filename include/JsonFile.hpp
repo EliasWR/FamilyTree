@@ -9,6 +9,7 @@
 
 namespace nlohmann {
   template <class T>
+  // Overloading the to_json function from the nlohmann library
   void to_json(json& j, std::shared_ptr<Node<T>> n){
     throw std::runtime_error("Unknown type T");
   };
@@ -18,26 +19,46 @@ namespace nlohmann {
     j = json{
         {"FirstName", p.getFirstName()},
         {"LastName", p.getLastName()},
-        {"birth", p.getBirth()},
-        {"death", p.getDeath()},
-        {"sex", p.getSex()},
+        {"Birth", p.getBirth()},
+        {"Death", p.getDeath()},
+        {"Sex", p.getSex()},
         {"Children", n->getChildren()}
     };
   }
-}
 
+  void from_Json(json& j, std::shared_ptr<Node<Person>> n){
+    Person p = n->getPerson();
+    std::string firstName;
+    std::string lastName;
+    std::string birth;
+    std::string death;
+    char sex;
+
+    j.at("FirstName").get_to(firstName);
+    j.at("LastName").get_to(lastName);
+    j.at("Birth").get_to(birth);
+    j.at("Death").get_to(death);
+    j.at("Sex").get_to(sex);
+
+    p.setFirstName(firstName);
+    p.setLastName(lastName);
+    p.setBirth(birth);
+    p.setDeath(death);
+    p.setSex(sex);
+  }
+}
 
 template<class T>
 class JsonFile {
 private:
   const std::string _fileName;
-  std::shared_ptr<Node<T>> &_node;
+  std::shared_ptr<Node<T>> &_rootNode;
   std::ofstream f;
   nlohmann::json j;
 
 public:
   explicit JsonFile(std::shared_ptr<Node<T>> &t, std::string fileName)
-      : _node(t), _fileName(fileName) {
+      : _rootNode(t), _fileName(fileName) {
   }
 
   void openFile() {
@@ -58,10 +79,12 @@ public:
     i >> j;
   }
 
-  void writeJsonToFile(nlohmann::json j) {
-
+  void readFile (nlohmann::json j) {
+    std::ifstream file(_fileName);
+    file >> j;
   }
-
+// TODO Not used, remove
+  /*
   nlohmann::json personToJson(const Person &p) {
     nlohmann::json jsonPerson{
       {"FirstName", p.getFirstName()},
@@ -71,9 +94,9 @@ public:
       {"Sex", p.getSex(),"\n"}};
     return jsonPerson;
   }
-
+*/
   nlohmann::json writePerson() {
-    nlohmann::json personJson(_node);
+    nlohmann::json personJson(_rootNode);
     return personJson;
   }
 

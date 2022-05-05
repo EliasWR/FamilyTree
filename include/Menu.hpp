@@ -4,11 +4,8 @@
 #include <iostream>
 #include <limits>
 #include <array>
-#include "LinkedList.hpp"
 #include "ExceptionHandling.hpp"
 #include "Node.hpp"
-
-
 
 // Indexing of persons
 // singly linked list holding persons
@@ -282,10 +279,6 @@ public:
         auto lambda = [newSex](Person &p){p.setSex(newSex);};
         _rootNode->traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
     }
-
-    //functions for editing relations
-
-
 
     void mainScreenCases (){
         switch (_state) {
