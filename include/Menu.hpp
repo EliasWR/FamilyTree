@@ -16,8 +16,8 @@ private:
     std::string _firstName;
     std::string _lastName;
     char _sex = '0';
-    std::array<int,3> _birth{};
-    std::array<int,3> _death{};
+    std::string _birth{};
+    std::string _death{};
     bool _isAlive;
     int _year = 0;
     int _month = 0;
@@ -125,7 +125,6 @@ public:
   }
 
   void createGeneralPerson() {
-
       Person p(_firstName, _lastName, _birth, _death, _sex);
       auto lambda1 = [p](Node<Person> &node) {node.add(p);};
       _rootNode->traverseDepth (lambda1,getUserInputFirstName(),getUserInputLastName());
@@ -183,15 +182,15 @@ public:
         return traversalLastName;
     }
 
-    std::string getCurrentDate () {
-      std::string currentDate;
+    std::string getDate () {
+      std::string date;
       ExceptionHandling e;
       bool dateStr = false;
       while (!dateStr) {
-        std::cin >> currentDate;
-        dateStr = e.checkDateLength(currentDate);
+        std::cin >> date;
+        dateStr = e.checkDateLength(date);
       }
-      return currentDate;
+      return date;
     }
 
     void changeFirstName() {
@@ -225,45 +224,22 @@ public:
     void changeBirthDate() {
         getUserInputFirstName();
         getUserInputLastName();
-        int newYear;
-        int newMonth;
-        int newDay;
 
-        std::array<int,3> newBirthDate{};
-        std::cout << "Now please enter the new year of birth of the person you chose [yyyy]" << std::endl;
-        std::cin >> newYear;
-        newYear = ExceptionHandling::checkCipherAndInput(_yearLen);
-        std::cout << "Now please enter the new month of birth of the person you chose [mm]" <<std::endl;
-        std::cin >> newMonth;
-        newMonth = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
-        std::cout << "Now please enter the new day of birth of the person you chose [dd]" <<std::endl;
-        std::cin >> newDay;
-        newDay = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
+        std::cout << "Now please enter the birth of the person in following format [dd.mm.yyyy]" << std::endl;
+        std::string newBirthDate = getDate();
 
-        auto lambda = [newYear, newMonth, newDay](Person &p){p.setBirth(newYear, newMonth, newDay);};
+        auto lambda = [newBirthDate](Person &p){p.setBirth(newBirthDate);};
         _rootNode->traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
     }
 
     void changeDeathDate() {
         getUserInputFirstName();
         getUserInputLastName();
-        int newYear;
-        int newMonth;
-        int newDay;
 
-        std::array<int,3> newDeathDate{};
+        std::cout << "Now please enter the death of the person in following format [dd.mm.yyyy]" << std::endl;
+        std::string newBirthDate = getDate();
 
-        std::cout << "Now please enter the new year of death of the person you chose [yyyy]" << std::endl;
-        std::cin >> newYear;
-        newYear = ExceptionHandling::checkCipherAndInput(_yearLen);
-        std::cout << "Now please enter the new month of death of the person you chose [mm]" << std::endl;
-        std::cin >> newMonth;
-        newMonth = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
-        std::cout << "Now please enter the new day of the death of the person you chose [dd]" << std::endl;
-        std::cin >> newDay;
-        newDay = ExceptionHandling::checkCipherAndInput(_dayAndMonthLen);
-
-        auto lambda = [newYear, newMonth, newDay](Person &p){p.setDeath(newYear, newMonth, newDay);};
+        auto lambda = [newBirthDate](Person &p){p.setDeath(newBirthDate);};
         _rootNode->traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
     }
 
@@ -272,7 +248,7 @@ public:
         getUserInputLastName();
         char newSex;
 
-        std::cout << "Now please enter the new sex of the person you chose ['m' for male, 'f' for female, or 'o' for other]" << std::endl;
+        std::cout << "Now please enter the new sex of the person you chose. [m] for male, [f] for female, or [o] for other." << std::endl;
         std::cin >> newSex;
         ExceptionHandling::checkSexInput();
 
