@@ -11,6 +11,7 @@
 
 // Node.hpp tests
 // Tests werther a Node can be made and edited
+/*
 TEST_CASE("NodeChangePerson"){
   std::string initFirstName = "Gunnar";
   std::string initLastName = "Sønsteby";
@@ -28,6 +29,7 @@ TEST_CASE("NodeChangePerson"){
   bool lastName = (initLastName == personLastName);
   REQUIRE (firstName && lastName);
 }
+*/
 /*
 TEST_CASE("Traversal"){
   auto a = std::make_shared<Node<Person>>(Person("Gunnar", "Sønsteby"));
