@@ -13,10 +13,9 @@ namespace nlohmann {
     throw std::runtime_error("Unknown type T");
   };
 
-  template <>
   void to_json(json& j, std::shared_ptr<Node<Person>> n) {
     Person p = n->getPerson();
-    j = {
+    j = json{
         {"FirstName", p.getFirstName()},
         {"LastName", p.getLastName()},
         {"birth", p.getBirth()},

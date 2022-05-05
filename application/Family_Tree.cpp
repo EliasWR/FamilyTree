@@ -127,7 +127,7 @@ int main() {
 
   std::string birthDate = "17.10.2000";
   std::string presDate = "03.05.2022";
-  Date d(01,01,01);
+  Date d(01,01,2001);
   d.setDate (birthDate);
   std::string str = d.getDate();
   std::cout << str << std::endl;
