@@ -107,7 +107,7 @@ int main() {
     printTree(a);
   // TODO Example of filewriting and traversal returning node
 
-  /*
+
   nlohmann::json j;
   std::string fileName = "FamilyTree.json";
   JsonFile json(a, fileName);
@@ -121,7 +121,7 @@ int main() {
   std::cout << s << std::endl;
 
   json.closeFile ();
-  */
+
 
   // TODO Date handling example
 

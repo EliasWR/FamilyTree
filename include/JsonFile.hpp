@@ -50,7 +50,7 @@ public:
   }
 
   void jsonToFile(nlohmann::json &j) {
-    f << j;
+    f << j.dump(4);
   }
 
   void readFile() {
