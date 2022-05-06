@@ -10,19 +10,14 @@
 
 class Person {
 private:
-    std::string _birth;
-    std::string _death;
-    std::string _firstName, _lastName;
-    char _sex;
+    std::string _firstName, _lastName, _birth, _death, _sex;
 
 public:
     // Constructors
     Person (){}
     Person (std::string firstName, std::string lastName):_firstName(firstName), _lastName(lastName){}
-    Person (std::string firstName, std::string lastName, std::string birth, std::string death, char sex):
+    Person (std::string firstName, std::string lastName, std::string birth, std::string death, std::string sex):
             _firstName(firstName), _lastName(lastName), _birth(birth), _death(death), _sex(sex){}
-
-    //TODO Add bool isAlive to private and constructor.
 
     // Getters and setters for private variables of Person class
     [[nodiscard]]std::string getFirstName() const {
@@ -49,10 +44,10 @@ public:
     void setDeath (std::string death) {
         _death = death;
     }
-    [[nodiscard]]char getSex () const {
+    [[nodiscard]]std::string getSex () const {
         return _sex;
     }
-    void setSex (char sex) {
+    void setSex (std::string sex) {
         _sex = sex;
     }
 

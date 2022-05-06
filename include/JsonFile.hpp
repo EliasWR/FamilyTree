@@ -27,25 +27,20 @@ namespace nlohmann {
   }
 
   void from_Json(json& j, std::shared_ptr<Node<Person>> n){
-    Person p = n->getPerson();
-    std::string firstName;
-    std::string lastName;
-    std::string birth;
-    std::string death;
-    char sex;
+    std::string firstName, lastName, birth, death, sex;
+    std::shared_ptr<Node<Person>> rootNode = nullptr;
+    std::shared_ptr<Node<Person>> parent = nullptr;
 
+    if (j.contains("FirstName")) { firstName = j.at("FirstName"); }
+    if (j.contains("LastName")) { lastName = j.at("LastName"); }
+    if (j.contains("Birth")) { birth = j.at("Birth"); }
+    if (j.contains("Death")) { death = j.at("Death"); }
+    if (j.contains("Sex")) { sex = j.at("Sex"); }
 
-    firstName = j.at("FirstName");
-    j.at("LastName").get_to(lastName);
-    j.at("Birth").get_to(birth);
-    j.at("Death").get_to(death);
-    j.at("Sex").get_to(sex);
+    if (parent == nullptr){
+      rootNode = std::make_shared<Node<Person>>(Person (firstName, lastName, birth, death, sex));
+    }
 
-    p.setFirstName(firstName);
-    p.setLastName(lastName);
-    p.setBirth(birth);
-    p.setDeath(death);
-    p.setSex(sex);
   }
 }
 
