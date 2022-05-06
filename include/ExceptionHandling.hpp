@@ -26,7 +26,7 @@ struct ExceptionHandling {
         return input;
     }
 
-    static int checkCipherAndInput (int length){
+    static int checkCipherAndInput(int length){
         int input;
         std::cin >> input;
         bool rightSize = checkCipherCount(input,length);
@@ -98,7 +98,7 @@ struct ExceptionHandling {
         std::cin >> c;
 
         while ((c != m) && (c != f) && (c != o)) {
-            std::cout << "You did not type in any of the given options for sex ['m', 'f' or 'o']";
+            std::cout << "You did not type in any of the given options for sex ['m', 'f' or 'o']. Please try again." << std::endl;
             std::cin >> c;
         }
         return c;
@@ -107,9 +107,10 @@ struct ExceptionHandling {
     static bool checkDateLength (std::string dateString){
       int desiredLength = 10;
       int stringLength = dateString.length ();
-      if (stringLength == desiredLength){
+      if ((stringLength == desiredLength) || (dateString == "0")){
         return true;
       }
+      std::cout << "You did not enter the date in the correct format [dd.mm.yyyy]. Please try again." << std::endl;
       return false;
     }
 
@@ -123,6 +124,7 @@ struct ExceptionHandling {
         }
         return true;
     }
+
 };
 
 
