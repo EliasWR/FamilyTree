@@ -6,17 +6,7 @@
 #include "Date.hpp"
 #include <iostream>
 
-void printTree (std::shared_ptr<Node<Person>>& node) {
-  int indent = 3;
-  node->traverseDepth([ indent ](Node<Person> &f, int depth) {
-    for (int i = 0; i < depth; ++i) {
-      for (int j = 0; j < indent; ++j) {
-        std::cout << " ";
-      }
-    }
-    std::cout << f.getPerson().getFirstName() << " " << f.getPerson().getLastName() << std::endl;
-  });
-}
+
 
 // Uncomment any implementation to testrun
 int main() {

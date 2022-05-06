@@ -90,18 +90,16 @@ struct ExceptionHandling {
         return s;
     }
 
-    static char checkSexInput() {
-        char m = 'm';
-        char f = 'f';
-        char o = 'o';
-        char c;
-        std::cin >> c;
+    static std::string checkSexInput(std::string s) {
+        std::string m = "male";
+        std::string f = "female";
+        std::string o = "other";
 
-        while ((c != m) && (c != f) && (c != o)) {
+        while ((s != m) && (s != f) && (s != o)) {
             std::cout << "You did not type in any of the given options for sex ['m', 'f' or 'o']. Please try again." << std::endl;
-            std::cin >> c;
+            std::cin >> s;
         }
-        return c;
+        return s;
     }
 
     static bool checkDateLength (std::string dateString){
@@ -114,11 +112,11 @@ struct ExceptionHandling {
       return false;
     }
 
-    static bool checkUserInput(char input) {
-        char a = 'a';
-        char e = 'e';
+    static bool checkUserInput(std::string input) {
+        std::string b = "back";
+        std::string e = "exit";
 
-        while ((input != a) && (input != e)) {
+        while ((input != b) && (input != e)) {
             std::cout << "That was not one of your given options, please try again" << std::endl;
             std::cin>> input;
         }

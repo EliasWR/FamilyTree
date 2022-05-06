@@ -53,16 +53,19 @@ public:
 
     void printPersonInfo() {
         std::cout << _firstName << " " << _lastName;
-        std::cout << "Is born ";
-        for (int i:_birth){
-            std::cout << i << ".";
+        std::cout << " is born on the ";
+        std::cout << _birth;
+
+        if (_death != "0") {
+            std::cout << ", died at ";
+            std::cout << _death;
         }
-        std::cout << "Died at ";
-        for (int i:_death) {
-            std::cout << i << ".";
+        else {
+            std::cout << ", is alive";
         }
-        std::cout << "and is considered the sex ";
+        std::cout << " and is a ";
         std::cout << _sex;
+        std::cout << "." <<std::endl;
     }
 };
 
