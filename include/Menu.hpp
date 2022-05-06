@@ -98,16 +98,16 @@ public:
 
         // Sex
         std::cout << "Please enter the persons sex ['m' for male, 'f' for female, 'o' for other]" << std::endl;
-        std::cin >> _sex;
-        ExceptionHandling::checkSexInput();
+        _sex = ExceptionHandling::checkSexInput();
 
         // Birth
         std::cout << "Now please enter the date of birth in the following format[dd.mm.yyyy]" << std::endl;
         _birth = getDate();
 
         // Death
-        std::cout << "Now please enter the date of birth in the following format[dd.mm.yyyy]" << std::endl;
-        _birth = getDate();
+        std::cout << "Now please enter the date of death in the following format[dd.mm.yyyy]" << std::endl;
+        std::cout << "If the person you are adding, is alive, enter '0'" << std::endl;
+        _death = getDate();
     }
 
 
@@ -176,11 +176,10 @@ public:
 
     std::string getDate () {
       std::string date;
-      ExceptionHandling e;
       bool dateStr = false;
       while (!dateStr) {
         std::cin >> date;
-        dateStr = e.checkDateLength(date);
+        dateStr = ExceptionHandling::checkDateLength(date);
       }
       return date;
     }
@@ -256,7 +255,7 @@ public:
                     createFirstPerson();
                     feedback();
                 }
-                else {
+                else if {
                   savePersonInfo();
                   createGeneralPerson();
                 }
