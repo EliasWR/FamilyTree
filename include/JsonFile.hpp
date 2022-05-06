@@ -34,7 +34,8 @@ namespace nlohmann {
     std::string death;
     char sex;
 
-    j.at("FirstName").get_to(firstName);
+
+    firstName = j.at("FirstName");
     j.at("LastName").get_to(lastName);
     j.at("Birth").get_to(birth);
     j.at("Death").get_to(death);
