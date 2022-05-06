@@ -219,11 +219,12 @@ public:
         _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
         std::cout << "The new firstname of your person is now ";
         std:: cout << newFirstName << std::endl;
+        feedback();
         }
 
     void changeLastName() {
-        getUserInputFirstName();
-        getUserInputLastName();
+        std::string a = getUserInputFirstName();
+        std::string b = getUserInputLastName();
 
         std::string newLastName;
         std::cout << "Now please enter the new lastname of the person you chose " <<std::endl;
@@ -232,44 +233,55 @@ public:
         ExceptionHandling::checkEmptyString(newLastName);
 
         auto lambda = [newLastName](Person &p){p.setLastName(newLastName);};
-        _rootNode->traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
+        _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
         std::cout << "The new lastname of your person is now ";
         std::cout << newLastName << std::endl;
+        feedback();
     }
 
     void changeBirthDate() {
-        getUserInputFirstName();
-        getUserInputLastName();
+        std::string a = getUserInputFirstName();
+        std::string b = getUserInputLastName();
 
-        std::cout << "Now please enter the birth of the person in following format [dd.mm.yyyy]" << std::endl;
+        std::cout << "Now please enter the new birthdate of the person in following format [dd.mm.yyyy]" << std::endl;
         std::string newBirthDate = getDate();
 
         auto lambda = [newBirthDate](Person &p){p.setBirth(newBirthDate);};
-        _rootNode->traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
+        _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
+        std::cout << "The new birthdate of the person is now ";
+        std::cout << newBirthDate << std::endl;
+        feedback();
+
     }
 
     void changeDeathDate() {
-        getUserInputFirstName();
-        getUserInputLastName();
+        std::string a = getUserInputFirstName();
+        std::string b = getUserInputLastName();
 
-        std::cout << "Now please enter the death of the person in following format [dd.mm.yyyy]" << std::endl;
-        std::string newBirthDate = getDate();
+        std::cout << "Now please enter the new date of death of the person in following format [dd.mm.yyyy]" << std::endl;
+        std::string newDeathDate = getDate();
 
-        auto lambda = [newBirthDate](Person &p){p.setDeath(newBirthDate);};
-        _rootNode->traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
+        auto lambda = [newDeathDate](Person &p){p.setDeath(newDeathDate);};
+        _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
+        std::cout << "The new date of death of the person is now ";
+        std::cout << newDeathDate << std::endl;
+        feedback();
     }
 
     void changeSex() {
-        getUserInputFirstName();
-        getUserInputLastName();
+        std::string a = getUserInputFirstName();
+        std::string b = getUserInputLastName();
         std::string newSex;
 
-        std::cout << "Now please enter the new sex of the person you chose. [m] for male, [f] for female, or [o] for other." << std::endl;
+        std::cout << "Now please enter the new sex of the person you chose ['male', 'female' or 'other']." << std::endl;
         std::cin >> newSex;
         ExceptionHandling::checkSexInput(newSex);
 
         auto lambda = [newSex](Person &p){p.setSex(newSex);};
-        _rootNode->traverseDepthSearch(_rootNode, getUserInputFirstName(), getUserInputLastName(), lambda);
+        _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
+        std::cout << "The new sex of the person you chose is now ";
+        std::cout << newSex << std::endl;
+        feedback();
     }
 
     void mainScreenCases (){
