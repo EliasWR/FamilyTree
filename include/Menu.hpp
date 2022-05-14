@@ -45,6 +45,12 @@ public:
         std::cout << "                  " << "Welcome to 'FamilyTree'!"<< std::endl;
         std::cout << "In this program you can make and modify a family tree of your own" << std::endl;
         std::cout << "To navigate this program you type the number of your desired command followed by enter." << std::endl;
+        std::cout << "To start the program you need to add your first person, whom is the root of your tree and the start of your heritage!" << std::endl << std::endl;
+        createFirstPerson();
+        savePersonInfo();
+    }
+    void createFirstPerson() {
+        _rootNode = std::make_shared<Node<Person>>(Person(_firstName, _lastName, _birth, _death, _sex));
     }
 
     void feedback (){
@@ -85,7 +91,7 @@ public:
 
         // Firstname
         std::cout << "Now you can add a new person with 5 attributes to your family tree." << std::endl;
-        std::cout << "Type of the attributes followed by enter." << std::endl;
+        std::cout << "Type the attributes followed by enter." << std::endl << std::endl;
         std::cout << "Please type the persons first name: "<< std::endl;
         std::cout << "If the person has multiple firstnames, use '-' between them" << std::endl;
         std::cin >> _firstName;
@@ -114,11 +120,6 @@ public:
         std::cout << "If the person you are adding, is alive, enter '0'" << std::endl;
         _death = getDate();
     }
-
-
-    void createFirstPerson() {
-      _rootNode = std::make_shared<Node<Person>>(Person(_firstName, _lastName, _birth, _death, _sex));
-  }
 
   void createGeneralPerson() {
       std::cout << "You need to enter the name of your persons parent" <<std::endl;
@@ -287,15 +288,8 @@ public:
     void mainScreenCases (){
         switch (_state) {
             case 1: {
-              if(_rootNode == nullptr) {
-                    savePersonInfo();
-                    createFirstPerson();
-                    feedback();
-                }
-                else {
-                  savePersonInfo();
-                  createGeneralPerson();
-                }
+                savePersonInfo();
+                createGeneralPerson();
                 break;
             }
 
