@@ -9,27 +9,25 @@
 
 namespace nlohmann {
   template <class T>
-  // Overloading the to_json function from the nlohmann library
+  // Overloading the json functions from the nlohmann library
   void to_json(json& j, std::shared_ptr<Node<T>> n){
     throw std::runtime_error("Unknown type T");
   };
 
   void to_json(json& j, std::shared_ptr<Node<Person>> n) {
-    Person p = n->getPerson();
+    std::shared_ptr<Person> p = n->getPerson();
     j = json{
-        {"FirstName", p.getFirstName()},
-        {"LastName", p.getLastName()},
-        {"Birth", p.getBirth()},
-        {"Death", p.getDeath()},
-        {"Sex", p.getSex()},
+        {"FirstName", p->getFirstName()},
+        {"LastName", p->getLastName()},
+        {"Birth", p->getBirth()},
+        {"Death", p->getDeath()},
+        {"Sex", p->getSex()},
         {"Children", n->getChildren()}
     };
   }
 
-  void from_Json(json& j, std::shared_ptr<Node<Person>> n){
+  std::shared_ptr<Node<Person>> from_Json(json& j, std::shared_ptr<Node<Person>> rootNode){
     std::string firstName, lastName, birth, death, sex;
-    std::shared_ptr<Node<Person>> rootNode = nullptr;
-    std::shared_ptr<Node<Person>> parent = nullptr;
 
     if (j.contains("FirstName")) { firstName = j.at("FirstName"); }
     if (j.contains("LastName")) { lastName = j.at("LastName"); }
@@ -37,10 +35,22 @@ namespace nlohmann {
     if (j.contains("Death")) { death = j.at("Death"); }
     if (j.contains("Sex")) { sex = j.at("Sex"); }
 
-    if (parent == nullptr){
-      rootNode = std::make_shared<Node<Person>>(Person (firstName, lastName, birth, death, sex));
+    Person person (firstName, lastName, birth, death, sex);
+
+    if (rootNode->isEmpty()) {
+      rootNode = std::make_shared<Node<Person>>(person);
     }
 
+    else if (j.contains("Children") && !j.at("Children").is_null()) {
+      for (auto jsonChildNode : j.at("Children")) {
+        auto lambda = [person] (Node<Person> &node){
+          node.add(person);
+        };
+        rootNode->traverseDepth(lambda, firstName, lastName);
+        from_Json(j,rootNode);
+      }
+    }
+    return rootNode;
   }
 }
 
@@ -79,18 +89,7 @@ public:
     std::ifstream file(_fileName);
     file >> j;
   }
-// TODO Not used, remove
-  /*
-  nlohmann::json personToJson(const Person &p) {
-    nlohmann::json jsonPerson{
-      {"FirstName", p.getFirstName()},
-      {"LastName", p.getLastName()},
-      {"Birth", p.getBirth()},
-      {"Death", p.getDeath()},
-      {"Sex", p.getSex(),"\n"}};
-    return jsonPerson;
-  }
-*/
+
   nlohmann::json writePerson() {
     nlohmann::json personJson(_rootNode);
     return personJson;

@@ -15,32 +15,41 @@ template <class T>
 class Node {
 private:
     std::shared_ptr<T> _person;
-    Node *_parent = nullptr;
+    std::shared_ptr<Node<T>> _parent = nullptr;
     std::vector<std::shared_ptr<Node<T>>> _children;
 public:
     // Constructor taking person.
     // Creating person objects with unique ownership in the node.
     explicit Node(const T &t) : _person(std::make_unique<T>(t)) {}
 
-    T &getPerson() const {
-        return *_person;
+    [[nodiscard]] std::shared_ptr<T> &getPerson() const {
+        return _person;
     }
 
-    Node &getParent () const {
-      return *_parent;
+    [[nodiscard]] std::shared_ptr<Node<T>> &getParent () const {
+      return _parent;
     }
 
-    std::vector<std::shared_ptr<Node<T>>> getChildren () const {
+    [[nodiscard]] std::vector<std::shared_ptr<Node<T>>> getChildren () const {
       return _children;
     }
 
-    [[nodiscard]]bool isRoot() const {
+    void setChildren (std::vector<std::shared_ptr<Node<T>>> children){
+      _children = children;
+    }
+
+    [[nodiscard]] bool isRoot() const {
         return _parent == nullptr;
     }
 
     [[nodiscard]] bool isLeaf() const {
         return _children.empty();
      }
+
+    [[nodiscard]] bool isEmpty () const {
+      bool empty = (_person == nullptr);
+      return empty;
+    }
 
     bool hasChild() {
         return _parent != nullptr;
@@ -91,6 +100,26 @@ public:
       auto n = std::make_shared<Node <T>>(value);
       n->_parent = this;
       _children.emplace_back(n);
+    }
+
+    void removePerson (std::shared_ptr<Node<T>> root, std::string firstName, std::string lastName) {
+
+      auto lambda1 = [](Node<Person> &node) {
+        if (node.isLeaf()){
+          std::shared_ptr<Node<Person>> parentNode = node.getParent();
+          std::vector<std::shared_ptr<Node<Person>>> childrenVector = parentNode->getChildren();
+          // TODO Remove from parents children vector
+        }
+      };
+      root->traverseDepth (lambda1, firstName, lastName);
+      auto lambda2 = [](Person &p){
+        p.setFirstName("Empty");
+        p.setLastName("Person");
+        p.setBirth("00.00.0000");
+        p.setDeath("00.00.0000");
+        p.setSex("0");
+      };
+      root->traverseDepthSearch (root,firstName,lastName, lambda2);
     }
 
     template<class E>
