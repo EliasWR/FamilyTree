@@ -69,6 +69,8 @@ int main() {
   a->add (Person("Anita", "Sonsteby"));
   a->add (Person("Hans", "Sonsteby"));
   a->add (Person("Lillian", "Sonsteby"));
+  Menu<Person> m;
+  m.printTree(a);
 /*
   // TODO Traversal with editing example
   Person p("Henrik", "Sonsteby");
@@ -103,8 +105,7 @@ int main() {
   j = json.readFile(j);
   std::string emptyString = "";
   auto node = std::make_shared<Node<Person>> ();
-  auto b = json.nodeFromJson(j, node, emptyString, emptyString);
-  Menu<Person> m;
+  auto b = json.nodeFromJson(j, node);
   m.printTree(b);
   // TODO Date handling example
 /*
