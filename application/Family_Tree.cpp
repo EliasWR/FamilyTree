@@ -94,7 +94,7 @@ int main() {
 */
   // TODO Example of filewriting and traversal returning node
   nlohmann::json j;
-  std::string fileName = "/Users/eliaswoierefsdal/CLionProjects/FamilyTree/cmake-build-debug/application/FamilyTree.json";
+  std::string fileName = "FamilyTree.json";
   JsonFile json(a, fileName);
 
   json.openFile();

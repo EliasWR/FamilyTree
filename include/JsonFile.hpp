@@ -99,9 +99,9 @@ public:
     }
 
     if (j.contains("Children") && !j.at("Children").empty()) {
-      if (j.contains("FirstName")) { _parentFirstName = j.at("FirstName"); }
-      if (j.contains("LastName")) { _parentLastName = j.at("LastName"); }
       for (auto jsonChildNode : j.at("Children")) {
+        if (j.contains("FirstName")) { _parentFirstName = j.at("FirstName"); }
+        if (j.contains("LastName")) { _parentLastName = j.at("LastName"); }
         person = personFromJson (jsonChildNode);
         auto lambda = [person] (Node<Person> &node){ node.add(person);};
         rootNode->traverseDepth(lambda, _parentFirstName, _parentLastName);
