@@ -18,7 +18,7 @@ private:
     Node *_parent = nullptr;
     std::vector<std::shared_ptr<Node<T>>> _children;
 public:
-    explicit Node (){}
+    explicit Node () = default;
     // Constructor taking person.
     // Creating person objects with unique ownership in the node.
     explicit Node (const T &t) : _person(std::make_unique<T>(t)) {}
@@ -57,7 +57,7 @@ public:
     }
 
     void traverseUpwards(std::function<void(Node<T> &)> f) {
-        f(this);
+        f(*this);
         if (hasChild()) {
             _parent->traverseUpwards(f);
         }
@@ -118,11 +118,28 @@ public:
         p.setLastName("Person");
         p.setBirth("00.00.0000");
         p.setDeath("00.00.0000");
-        p.setSex("0");
+        p.setSex("Other");
       };
       root->traverseDepthSearch (root,firstName,lastName, lambda2);
     }
-
+    /*
+    void removePerson(std::shared_ptr<Node<T>> root, std::string firstName, std::string lastName) {
+      auto lambda = [ *this ](Node<Person> &node) {
+        if (node.isLeaf()) {
+          std::shared_ptr<Node<Person>> parentNode = node.getParent();
+          std::remove(parentNode->_children.begin(), parentNode->_children.end(), this);
+        } else {
+          Person &p = node.getPerson();
+          p.setFirstName("Empty");
+          p.setLastName("Person");
+          p.setBirth("00.00.0000");
+          p.setDeath("00.00.0000");
+          p.setSex("0");
+        }
+      };
+      root->traverseDepth(lambda, firstName, lastName);
+    }
+     */
     template<class E>
     friend std::ostream &operator<<(std::ostream &, const Node<E> &);
 };

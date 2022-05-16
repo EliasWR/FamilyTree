@@ -89,17 +89,21 @@ public:
 
     Person person (firstName, lastName, birth, death, sex);
 
+    //std::cout << "1:" << rootNode->isRoot() << std::endl << "2:" << rootNode->isEmpty() << std::endl;
+    //std::cout << "3:" << j.contains("Children") << std::endl << "4:" << !j.at("Children").empty()<< std::endl;
+
     if (rootNode->isRoot() && rootNode->isEmpty()) {
       rootNode = std::make_shared<Node<Person>>(person);
+      nodeFromJson (j, rootNode, firstName, lastName);
     }
 
-    else if (j.contains("Children") && !j.at("Children").is_null()) {
+    else if (j.contains("Children") && !j.at("Children").empty()) {
       for (auto jsonChildNode : j.at("Children")) {
         auto lambda = [person] (Node<Person> &node){
           node.add(person);
         };
         rootNode->traverseDepth(lambda, prevFirstName, prevFirstName);
-        rootNode = nodeFromJson (j,rootNode, firstName, lastName);
+        nodeFromJson (jsonChildNode, rootNode, firstName, lastName);
       }
     }
     return rootNode;
