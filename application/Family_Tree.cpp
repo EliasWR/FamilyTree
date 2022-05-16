@@ -86,9 +86,8 @@ int main() {
     printTree(a);
 */
   // TODO Example of filewriting and traversal returning node
-  /*
   nlohmann::json j;
-  std::string fileName = "FamilyTree.json";
+  std::string fileName = "/Users/eliaswoierefsdal/CLionProjects/FamilyTree/cmake-build-debug/application/FamilyTree.json";
   JsonFile json(a, fileName);
 
   json.openFile();
@@ -101,9 +100,12 @@ int main() {
 
   json.closeFile ();
 
-  json.openFile();
-  json.readFile();
-*/
+  j = json.readFile(j);
+  std::string emptyString = "";
+  auto node = std::make_shared<Node<Person>> ();
+  auto b = json.nodeFromJson(j, node, emptyString, emptyString);
+  Menu<Person> m;
+  m.printTree(b);
   // TODO Date handling example
 /*
   std::string birthDate = "17.10.2000";
@@ -119,11 +121,17 @@ int main() {
   //d.setCurrentDate(currentDate);
   //d.calculateAge(birthDate, presDate);
 
+  // TODO Menu Example
+  /*
   // TODO Initial read from file
   Menu<Person> m;
   m.greeting();
   while (!m.getExitMenu()) {
     m.mainScreen();
   }
+   */
+
+
+
   return 0;
 }

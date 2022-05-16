@@ -10,48 +10,26 @@
 namespace nlohmann {
   template <class T>
   // Overloading the json functions from the nlohmann library
-  void to_json(json& j, std::shared_ptr<Node<T>> n){
+  void to_json (json& j, std::shared_ptr<Node<T>> n){
     throw std::runtime_error("Unknown type T");
   };
 
-  void to_json(json& j, std::shared_ptr<Node<Person>> n) {
-    std::shared_ptr<Person> p = n->getPerson();
+  void to_json (json& j, std::shared_ptr<Node<Person>> n) {
+    Person p = n->getPerson();
     j = json{
-        {"FirstName", p->getFirstName()},
-        {"LastName", p->getLastName()},
-        {"Birth", p->getBirth()},
-        {"Death", p->getDeath()},
-        {"Sex", p->getSex()},
+        {"FirstName", p.getFirstName()},
+        {"LastName", p.getLastName()},
+        {"Birth", p.getBirth()},
+        {"Death", p.getDeath()},
+        {"Sex", p.getSex()},
         {"Children", n->getChildren()}
     };
   }
 
-  std::shared_ptr<Node<Person>> from_Json(json& j, std::shared_ptr<Node<Person>> rootNode){
-    std::string firstName, lastName, birth, death, sex;
-
-    if (j.contains("FirstName")) { firstName = j.at("FirstName"); }
-    if (j.contains("LastName")) { lastName = j.at("LastName"); }
-    if (j.contains("Birth")) { birth = j.at("Birth"); }
-    if (j.contains("Death")) { death = j.at("Death"); }
-    if (j.contains("Sex")) { sex = j.at("Sex"); }
-
-    Person person (firstName, lastName, birth, death, sex);
-
-    if (rootNode->isEmpty()) {
-      rootNode = std::make_shared<Node<Person>>(person);
-    }
-
-    else if (j.contains("Children") && !j.at("Children").is_null()) {
-      for (auto jsonChildNode : j.at("Children")) {
-        auto lambda = [person] (Node<Person> &node){
-          node.add(person);
-        };
-        rootNode->traverseDepth(lambda, firstName, lastName);
-        from_Json(j,rootNode);
-      }
-    }
-    return rootNode;
-  }
+  template <class T>
+  void from_json (json& j, std::shared_ptr<Node<T>> n){
+    throw std::runtime_error("Unknown type T");
+  };
 }
 
 template<class T>
@@ -85,9 +63,10 @@ public:
     i >> j;
   }
 
-  void readFile (nlohmann::json j) {
+  nlohmann::json readFile (nlohmann::json j) {
     std::ifstream file(_fileName);
     file >> j;
+    return j;
   }
 
   nlohmann::json writePerson() {
@@ -97,6 +76,33 @@ public:
 
   void readPerson(const nlohmann::json &j, Person &p) {
 
+  }
+
+  std::shared_ptr<Node<Person>> nodeFromJson (nlohmann::json& j, std::shared_ptr<Node<Person>> rootNode, std::string prevFirstName, std::string prevLastName){
+    std::string firstName, lastName, birth, death, sex;
+
+    if (j.contains("FirstName")) { firstName = j.at("FirstName"); }
+    if (j.contains("LastName")) { lastName = j.at("LastName"); }
+    if (j.contains("Birth")) { birth = j.at("Birth"); }
+    if (j.contains("Death")) { death = j.at("Death"); }
+    if (j.contains("Sex")) { sex = j.at("Sex"); }
+
+    Person person (firstName, lastName, birth, death, sex);
+
+    if (rootNode->isRoot() && rootNode->isEmpty()) {
+      rootNode = std::make_shared<Node<Person>>(person);
+    }
+
+    else if (j.contains("Children") && !j.at("Children").is_null()) {
+      for (auto jsonChildNode : j.at("Children")) {
+        auto lambda = [person] (Node<Person> &node){
+          node.add(person);
+        };
+        rootNode->traverseDepth(lambda, prevFirstName, prevFirstName);
+        rootNode = nodeFromJson (j,rootNode, firstName, lastName);
+      }
+    }
+    return rootNode;
   }
 };
 

@@ -15,18 +15,20 @@ template <class T>
 class Node {
 private:
     std::shared_ptr<T> _person;
-    std::shared_ptr<Node<T>> _parent = nullptr;
+    Node *_parent = nullptr;
     std::vector<std::shared_ptr<Node<T>>> _children;
 public:
+    explicit Node (){}
     // Constructor taking person.
     // Creating person objects with unique ownership in the node.
-    explicit Node(const T &t) : _person(std::make_unique<T>(t)) {}
+    explicit Node (const T &t) : _person(std::make_unique<T>(t)) {}
+    // Constructor for empty node
 
-    [[nodiscard]] std::shared_ptr<T> &getPerson() const {
-        return _person;
+    [[nodiscard]] T &getPerson() const {
+        return *_person;
     }
 
-    [[nodiscard]] std::shared_ptr<Node<T>> &getParent () const {
+    [[nodiscard]] std::shared_ptr<Node> &getParent () const {
       return _parent;
     }
 
@@ -39,7 +41,7 @@ public:
     }
 
     [[nodiscard]] bool isRoot() const {
-        return _parent == nullptr;
+        return (_parent == nullptr);
     }
 
     [[nodiscard]] bool isLeaf() const {
@@ -47,8 +49,7 @@ public:
      }
 
     [[nodiscard]] bool isEmpty () const {
-      bool empty = (_person == nullptr);
-      return empty;
+      return (_person == nullptr);
     }
 
     bool hasChild() {

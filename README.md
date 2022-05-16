@@ -8,8 +8,6 @@ TODO Big O notation on traversal algorithms
 
 TODO Fjerne autogenererte notater øverst og legge til kandidatnr i ReadMe
 
-TODO Due delivery 7th of April*
-
 TODO Separate to header and source files?
 
 ### Ting å gjøre

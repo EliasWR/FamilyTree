@@ -147,7 +147,7 @@ public:
                     std::cout << " ";
                 }
             }
-            std::cout << f.getPerson()->getFirstName() << " " << f.getPerson()->getLastName() << std::endl;
+            std::cout << f.getPerson().getFirstName() << " " << f.getPerson().getLastName() << std::endl;
         });
         feedback();
     }
