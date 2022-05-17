@@ -58,12 +58,6 @@ public:
     f << j.dump(4);
   }
 
-  void readFile() {
-    std::ifstream i(_fileName);
-    nlohmann::json j;
-    i >> j;
-  }
-
   nlohmann::json readFile (nlohmann::json j) {
     std::ifstream file(_fileName);
     file >> j;
@@ -73,10 +67,6 @@ public:
   nlohmann::json writePerson() {
     nlohmann::json personJson(_rootNode);
     return personJson;
-  }
-
-  void readPerson(const nlohmann::json &j, Person &p) {
-
   }
 
   Person personFromJson (nlohmann::json& j){

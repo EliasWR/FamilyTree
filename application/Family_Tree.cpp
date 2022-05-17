@@ -108,9 +108,8 @@ int main() {
   json.closeFile ();
 
   j = json.readFile(j);
-  std::string emptyString = "";
-  auto node = std::make_shared<Node<Person>> ();
-  auto b = json.nodeFromJson(j, node);
+  auto emptyNode = std::make_shared<Node<Person>> ();
+  auto b = json.nodeFromJson(j, emptyNode);
   m.printTree(b);
   // TODO Date handling example
 /*
