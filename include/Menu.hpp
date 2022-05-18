@@ -205,7 +205,7 @@ public:
         std::cout << "To return to the main menu, type 'back'" << std::endl;
         std::cout << "To exit program, type 'exit'" << std::endl;
         std::cin>>input;
-        ExceptionHandling::checkUserInput(input);
+        ExceptionHandling::checkExitMenuInput(input);
 
         if (input == "back") {
             mainScreen();
