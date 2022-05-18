@@ -28,7 +28,7 @@ struct ExceptionHandling {
             if (!inList){
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-                std::cout << "Not a valid value. Please try again." << std::endl;
+                std::cout << "You did not type a given option. Please try again." << std::endl;
                 std::cin >> input;
             }
         }
