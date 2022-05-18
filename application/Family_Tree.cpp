@@ -123,14 +123,12 @@ int main() {
 
   Menu<Person> m;
 
-  auto mainNode = std::make_shared<Node<Person>> ();
+  // auto mainNode = std::make_shared<Node<Person>> ();
 
-  m.getSavedNodes();
   m.greeting();
   while (!m.getExitMenu()) {
     m.mainScreen();
   }
 
   return 0;
-
 }
