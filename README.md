@@ -1,6 +1,13 @@
 # FamilyTree
 2022_03_07_OOP_Task
 
+God dokumentasjon
+/// 
+Beskrive hva metoden gjør 
+Beskrive hver av input parameterene
+Beskrive hva den returnerer
+Eksempel på kall
+
 ##Group 18
 
 ##TODO

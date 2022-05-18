@@ -96,7 +96,7 @@ public:
     std::cout << "[5] Show all existing persons in your family tree." << std::endl;
     std::cout << "[6] Exit program." << std::endl;
     std::vector<int> v{1, 2, 3, 4, 5, 6};
-    int input = ExceptionHandling::checkIntAndList(v);
+    int input = ExceptionHandling::checkStateInput(v);
     _state = input;
     mainScreenCases();
   }
@@ -111,13 +111,12 @@ public:
     std::cout << "[6] Exit program." << std::endl;
     std::cout << "Enter your number followed by enter:" << std::endl;
     std::vector<int> v{1, 2, 3, 4, 5, 6};
-    int input = ExceptionHandling::checkIntAndList(v);
+    int input = ExceptionHandling::checkStateInput(v);
     _state = input;
     editAttributeCases();
   }
 
   //functions for main screen options
-  // TODO Make it return a person and remove class private variables
   Person createPerson() {
     // Firstname
     std::string firstName, lastName, sex, birth, death;

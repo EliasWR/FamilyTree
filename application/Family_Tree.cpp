@@ -6,8 +6,6 @@
 
 // Uncomment any implementation to testrun
 int main() {
-
-  // TODO Example of filewriting and traversal returning node
  /*
   auto a = std::make_shared<Node<Person>>(Person("Gunnar", "Sonsteby"));
   a->add (Person("Erik", "Sonsteby"));
@@ -40,14 +38,31 @@ int main() {
   Menu<Person> m;
   m.printTree(b);
 */
-  // TODO Menu Example
+  auto a = std::make_shared<Node<Person>>(Person("Gunnar", "Sonsteby"));
+  a->add (Person("Erik", "Sonsteby"));
+  a->add (Person("Anita", "Sonsteby"));
+  a->add (Person("Hans", "Sonsteby"));
+  a->add (Person("Lillian", "Sonsteby"));
 
+  Person p1("Henrik", "Sonsteby");
+  auto lambda1 = [p1](Node<Person> &node) {node.add(p1);};
+  a->traverseDepth (lambda1,"Erik","Sonsteby");
+
+  Person p2("Ole", "Sonsteby");
+  auto lambda2 = [p2](Node<Person> &node) {node.add(p2);};
+  a->traverseDepth (lambda2,"Hans","Sonsteby");
+
+  std::vector<std::shared_ptr<Node<Person>>> v;
+  a->printBreadth(a->traverseBreadth(a,v));
+  /*
   Menu<Person> m;
 
   m.greeting();
   while (m.getState() != 6) {
     m.mainScreen();
   }
+*/
+
 
   return 0;
 }

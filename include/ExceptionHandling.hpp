@@ -13,8 +13,7 @@ struct ExceptionHandling {
 
     ExceptionHandling() = default;
 
-// TODO Rename and refactor
-    static int checkIntAndList(const std::vector<int>& list){
+    static int checkStateInput(const std::vector<int>& list){
         int input;
         std::cin >> input;
         bool inList = false;

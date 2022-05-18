@@ -63,6 +63,25 @@ public:
         }
     }
 
+    std::vector<std::shared_ptr<Node<T>>> traverseBreadth (std::shared_ptr<Node<T>> node, std::vector<std::shared_ptr<Node<T>>> v) {
+      auto children = node->getChildren();
+
+      for (auto c: children) {
+        v = traverseBreadth(c, v);
+        std::cout << node->getPerson().getFirstName() << " " << node->getPerson().getLastName() << std::endl;
+        children = node->getChildren();
+        v.push_back(c);
+      }
+      return v;
+    }
+
+    void printBreadth (std::vector<std::shared_ptr<Node<T>>> v) {
+      for (int i = v.size(); i > 0; i--){
+        auto node = v[i-1];
+        std::cout << node->getPerson().getFirstName() << " " << node->getPerson().getLastName() << std::endl;
+      }
+    }
+
     void traverseDepth (std::function<void(Node<T> &)> f) {
         f(*this);
         for (auto c: _children) {
@@ -76,6 +95,7 @@ public:
             c->traverseDepth(f, depth + 1);
         }
     }
+
     void traverseDepth (std::function<void(Node<T> &)> f, std::string firstName, std::string lastName) {
       if (getPerson().getFirstName() == firstName && getPerson().getLastName() == lastName){
         f(*this);
