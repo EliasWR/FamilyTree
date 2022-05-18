@@ -69,6 +69,13 @@ int main() {
   a->add (Person("Anita", "Sonsteby"));
   a->add (Person("Hans", "Sonsteby"));
   a->add (Person("Lillian", "Sonsteby"));
+
+  Person p("Henrik", "Sonsteby");
+  auto lambda1 = [p](Node<Person> &node) {node.add(p);};
+  a->traverseDepth (lambda1,"Erik","Sonsteby");
+
+  Menu<Person> m;
+  m.printTree(a);
 /*
   // TODO Traversal with editing example
   Person p("Henrik", "Sonsteby");
@@ -88,7 +95,7 @@ int main() {
   // TODO Example of filewriting and traversal returning node
   /*
   nlohmann::json j;
-  std::string fileName = "/Users/eliaswoierefsdal/CLionProjects/FamilyTree/cmake-build-debug/application/FamilyTree.json";
+  std::string fileName = "FamilyTree.json";
   JsonFile json(a, fileName);
 
   json.openFile();
@@ -102,10 +109,8 @@ int main() {
   json.closeFile ();
 
   j = json.readFile(j);
-  std::string emptyString = "";
-  auto node = std::make_shared<Node<Person>> ();
-  auto b = json.nodeFromJson(j, node, emptyString, emptyString);
-  Menu<Person> m;
+  auto emptyNode = std::make_shared<Node<Person>> ();
+  auto b = json.nodeFromJson(j, emptyNode);
   m.printTree(b);
   // TODO Date handling example
    /*

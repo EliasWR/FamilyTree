@@ -39,6 +39,7 @@ private:
   std::shared_ptr<Node<T>> &_rootNode;
   std::ofstream f;
   nlohmann::json j;
+  std::string _firstName, _lastName, _birth, _death, _sex, _parentFirstName, _parentLastName;
 
 public:
   explicit JsonFile(std::shared_ptr<Node<T>> &t, std::string fileName)
@@ -57,12 +58,6 @@ public:
     f << j.dump(4);
   }
 
-  void readFile() {
-    std::ifstream i(_fileName);
-    nlohmann::json j;
-    i >> j;
-  }
-
   nlohmann::json readFile (nlohmann::json j) {
     std::ifstream file(_fileName);
     file >> j;
@@ -74,36 +69,33 @@ public:
     return personJson;
   }
 
-  void readPerson(const nlohmann::json &j, Person &p) {
+  Person personFromJson (nlohmann::json& j){
+    if (j.contains("FirstName")) { _firstName = j.at("FirstName"); }
+    if (j.contains("LastName")) { _lastName = j.at("LastName"); }
+    if (j.contains("Birth")) { _birth = j.at("Birth"); }
+    if (j.contains("Death")) { _death = j.at("Death"); }
+    if (j.contains("Sex")) { _sex = j.at("Sex"); }
 
+    Person person (_firstName, _lastName, _birth, _death, _sex);
+    return person;
   }
 
-  std::shared_ptr<Node<Person>> nodeFromJson (nlohmann::json& j, std::shared_ptr<Node<Person>> rootNode, std::string prevFirstName, std::string prevLastName){
-    std::string firstName, lastName, birth, death, sex;
+  std::shared_ptr<Node<Person>> nodeFromJson (nlohmann::json& j, std::shared_ptr<Node<Person>> rootNode){
+    Person person;
 
-    if (j.contains("FirstName")) { firstName = j.at("FirstName"); }
-    if (j.contains("LastName")) { lastName = j.at("LastName"); }
-    if (j.contains("Birth")) { birth = j.at("Birth"); }
-    if (j.contains("Death")) { death = j.at("Death"); }
-    if (j.contains("Sex")) { sex = j.at("Sex"); }
-
-    Person person (firstName, lastName, birth, death, sex);
-
-    //std::cout << "1:" << rootNode->isRoot() << std::endl << "2:" << rootNode->isEmpty() << std::endl;
-    //std::cout << "3:" << j.contains("Children") << std::endl << "4:" << !j.at("Children").empty()<< std::endl;
-
-    if (rootNode->isRoot() && rootNode->isEmpty()) {
+    if (rootNode->isEmpty()) {
+      person = personFromJson (j);
       rootNode = std::make_shared<Node<Person>>(person);
-      nodeFromJson (j, rootNode, firstName, lastName);
     }
 
-    else if (j.contains("Children") && !j.at("Children").empty()) {
+    if (j.contains("Children") && !j.at("Children").empty()) {
       for (auto jsonChildNode : j.at("Children")) {
-        auto lambda = [person] (Node<Person> &node){
-          node.add(person);
-        };
-        rootNode->traverseDepth(lambda, prevFirstName, prevFirstName);
-        nodeFromJson (jsonChildNode, rootNode, firstName, lastName);
+        if (j.contains("FirstName")) { _parentFirstName = j.at("FirstName"); }
+        if (j.contains("LastName")) { _parentLastName = j.at("LastName"); }
+        person = personFromJson (jsonChildNode);
+        auto lambda = [person] (Node<Person> &node){ node.add(person);};
+        rootNode->traverseDepth(lambda, _parentFirstName, _parentLastName);
+        nodeFromJson (jsonChildNode, rootNode);
       }
     }
     return rootNode;
