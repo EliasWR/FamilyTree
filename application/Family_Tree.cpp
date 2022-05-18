@@ -120,7 +120,6 @@ int main() {
   std::cout << str << std::endl;
 */
   // Get current date
-
   //std::string currentDate = m.getCurrentDate();
   //d.setCurrentDate(currentDate);
   //d.calculateAge(birthDate, presDate);
