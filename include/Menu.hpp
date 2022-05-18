@@ -14,10 +14,8 @@ template<class T>
 class Menu {
 private:
   int _state = 0;
-  bool _isAlive;
   std::shared_ptr<Node<Person>> _rootNode = nullptr;
-  bool _exitMenu = false;
-  std::string _fileName = "FamilyTree.json";
+  const std::string _fileName = "FamilyTree.json";
 
 public:
   Menu() {
@@ -31,21 +29,11 @@ public:
     return _state;
   }
 
-  void setExitMenu(bool exitMenu) {
-    _exitMenu = exitMenu;
-  }
-
-  [[nodiscard]] bool getExitMenu() {
-    return _exitMenu;
-  }
-
   void greeting() {
     getSavedNodes ();
     Date date;
-    std::cout << "                  "
-              << "Welcome to 'FamilyTree'!" << std::endl;
-    std::cout << "                  "
-              << "Todays date is: " << date.getCurrentDate() << std::endl;
+    std::cout << "                  " << "Welcome to 'FamilyTree'!" << std::endl;
+    std::cout << "                  "<< "Todays date is: " << date.getCurrentDate() << std::endl;
     std::cout << "In this program you can make and modify a family tree of your own" << std::endl;
     std::cout << "To navigate this program you type the number of your desired command followed by enter." << std::endl;
 
@@ -169,8 +157,10 @@ public:
 
   void createGeneralPerson(Person& p) {
     std::cout << "You need to enter the name of your persons parent" << std::endl;
-    std::string a = getUserInputFirstName();
-    std::string b = getUserInputLastName();
+    std::cout << "Please enter the firstname of the parent [Firstname]" << std::endl;
+    std::string a = getNameInput();
+    std::cout << "Please enter the lastname of the parent [Lastname]" << std::endl;
+    std::string b = getNameInput();
     auto lambda1 = [ p ](Node<Person> &node) {
       node.add(p);
     };
@@ -179,8 +169,10 @@ public:
   }
 
   void printPerson () {
-    std::string a = getUserInputFirstName();
-    std::string b = getUserInputLastName();
+    std::cout << "Please enter the firstname of the person [Firstname]" << std::endl;
+    std::string a = getNameInput();
+    std::cout << "Please enter the lastname of the person [Lastname]" << std::endl;
+    std::string b = getNameInput();
     auto lambda = [](Person p) {
       p.printPersonInfo();
     };
@@ -211,37 +203,24 @@ public:
     ExceptionHandling::checkExitMenuInput(input);
 
     if (input == "back") {
-      mainScreen();
+      _state = 1;
     } else if (input == "exit") {
       std::cout << "Thank you for using our Family Tree program! Good bye!" << std::endl;
-      _exitMenu = true;
+      _state = 6;
       saveNodes(_rootNode);
     } else {
-      std::cout << "Your input could not be interpreted, terminating program." << std::endl;
-      _exitMenu = true;
+      std::cout << "Your input could not be interpreted, going back to program." << std::endl;
+      _state = 1;
     }
   }
 
-  // Functions for changing attributes
-  // TODO Dette suger! Samme funksjon to ganger.
-  std::string getUserInputFirstName() {
-    std::string traversalFirstName;
-
-    std::cout << "Please enter the firstname of the person [Firstname]" << std::endl;
-    std::cin >> traversalFirstName;
-    ExceptionHandling::checkUpperCase(traversalFirstName);
-    ExceptionHandling::checkEmptyString(traversalFirstName);
-    return traversalFirstName;
-  }
-
-  std::string getUserInputLastName() {
-    std::string traversalLastName;
-
-    std::cout << "Please enter the lastname of the person [Lastname]" << std::endl;
-    std::cin >> traversalLastName;
-    ExceptionHandling::checkUpperCase(traversalLastName);
-    ExceptionHandling::checkEmptyString(traversalLastName);
-    return traversalLastName;
+  // Functions for getting user input
+  std::string getNameInput() {
+    std::string name;
+    std::cin >> name;
+    ExceptionHandling::checkUpperCase(name);
+    ExceptionHandling::checkEmptyString(name);
+    return name;
   }
 
   std::string getDate() {
@@ -255,14 +234,12 @@ public:
   }
 
   void changeFirstName() {
-    std::string a = getUserInputFirstName();
-    std::string b = getUserInputLastName();
-    std::string newFirstName;
-
+    std::cout << "Please enter the firstname of the person [Firstname]" << std::endl;
+    std::string a = getNameInput();
+    std::cout << "Please enter the lastname of the person [Lastname]" << std::endl;
+    std::string b = getNameInput();
     std::cout << "Now please enter the new firstname of the person you chose " << std::endl;
-    std::cin >> newFirstName;
-    ExceptionHandling::checkUpperCase(newFirstName);
-    ExceptionHandling::checkEmptyString(newFirstName);
+    std::string newFirstName = getNameInput();
 
     auto lambda = [ newFirstName ](Person &p) {
       p.setFirstName(newFirstName);
@@ -274,8 +251,10 @@ public:
   }
 
   void changeLastName() {
-    std::string a = getUserInputFirstName();
-    std::string b = getUserInputLastName();
+    std::cout << "Please enter the firstname of the person [Firstname]" << std::endl;
+    std::string a = getNameInput();
+    std::cout << "Please enter the lastname of the person [Lastname]" << std::endl;
+    std::string b = getNameInput();
 
     std::string newLastName;
     std::cout << "Now please enter the new lastname of the person you chose " << std::endl;
@@ -293,13 +272,15 @@ public:
   }
 
   void changeBirthDate() {
-    std::string a = getUserInputFirstName();
-    std::string b = getUserInputLastName();
+    std::cout << "Please enter the firstname of the person [Firstname]" << std::endl;
+    std::string a = getNameInput();
+    std::cout << "Please enter the lastname of the person [Lastname]" << std::endl;
+    std::string b = getNameInput();
 
     std::cout << "Now please enter the new birthdate of the person in following format [dd.mm.yyyy]" << std::endl;
     std::string newBirthDate = getDate();
 
-    auto lambda = [ newBirthDate ](Person &p) {
+    auto lambda = [newBirthDate](Person &p) {
       p.setBirth(newBirthDate);
     };
     _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
@@ -309,8 +290,10 @@ public:
   }
 
   void changeDeathDate() {
-    std::string a = getUserInputFirstName();
-    std::string b = getUserInputLastName();
+    std::cout << "Please enter the firstname of the person [Firstname]" << std::endl;
+    std::string a = getNameInput();
+    std::cout << "Please enter the lastname of the person [Lastname]" << std::endl;
+    std::string b = getNameInput();
 
     std::cout << "Now please enter the new date of death of the person in following format [dd.mm.yyyy]" << std::endl;
     std::string newDeathDate = getDate();
@@ -325,8 +308,10 @@ public:
   }
 
   void changeSex() {
-    std::string a = getUserInputFirstName();
-    std::string b = getUserInputLastName();
+    std::cout << "Please enter the firstname of the person [Firstname]" << std::endl;
+    std::string a = getNameInput();
+    std::cout << "Please enter the lastname of the person [Lastname]" << std::endl;
+    std::string b = getNameInput();
     std::string newSex;
 
     std::cout << "Now please enter the new sex of the person you chose ['male', 'female' or 'other']." << std::endl;
