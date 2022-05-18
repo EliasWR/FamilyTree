@@ -15,16 +15,9 @@ TODO Big O notation on traversal algorithms
 
 TODO Fjerne autogenererte notater øverst og legge til kandidatnr i ReadMe
 
-TODO Separate to header and source files?
 
 ### Ting å gjøre
 Enum i sex
-Birth klasse
-Skrive riktig til fil
-Traverse, Get node
-JSon linjeskift
-Breadth first traversal?
-Lage indents til en funksjon
 
 Fikse depth search
 - hensikt 

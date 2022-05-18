@@ -90,12 +90,13 @@ public:
   void mainScreen() {
     std::cout << "You have the following options." << std::endl;
     std::cout << "[1] Add new person to tree." << std::endl;
-    std::cout << "[2] Remove person from tree." << std::endl;
+    std::cout << "[2] Empty a person's attributes." << std::endl;
     std::cout << "[3] Edit existing persons attributes." << std::endl;
     std::cout << "[4] Show existing persons attributes." << std::endl;
     std::cout << "[5] Show all existing persons in your family tree." << std::endl;
-    std::cout << "[6] Exit program." << std::endl;
-    std::vector<int> v{1, 2, 3, 4, 5, 6};
+    std::cout << "[9] Exit program." << std::endl;
+    std::cout << "Enter your number followed by enter:" << std::endl;
+    std::vector<int> v{1, 2, 3, 4, 5, 6, 9};
     int input = ExceptionHandling::checkStateInput(v);
     _state = input;
     mainScreenCases();
@@ -108,9 +109,10 @@ public:
     std::cout << "[3] Edit existing persons birthday" << std::endl;
     std::cout << "[4] Edit exising persons day of death" << std::endl;
     std::cout << "[5] Edit existing persons sex" << std::endl;
-    std::cout << "[6] Exit program." << std::endl;
+    std::cout << "[6] Go back to main menu." << std::endl;
+    std::cout << "[9] Exit program." << std::endl;
     std::cout << "Enter your number followed by enter:" << std::endl;
-    std::vector<int> v{1, 2, 3, 4, 5, 6};
+    std::vector<int> v{1, 2, 3, 4, 5, 6, 9};
     int input = ExceptionHandling::checkStateInput(v);
     _state = input;
     editAttributeCases();
@@ -160,10 +162,10 @@ public:
     std::string a = getNameInput();
     std::cout << "Please enter the lastname of the parent [Lastname]" << std::endl;
     std::string b = getNameInput();
-    auto lambda1 = [ p ](Node<Person> &node) {
+    auto lambda = [ p ](Node<Person> &node) {
       node.add(p);
     };
-    _rootNode->traverseDepth(lambda1, a, b);
+    _rootNode->traverseDepth(lambda, a, b);
     feedback();
   }
 
@@ -176,7 +178,6 @@ public:
       p.printPersonInfo();
     };
     _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
-    feedback();
   }
 
   void printTree(std::shared_ptr<Node<Person>> &node) {
@@ -192,6 +193,22 @@ public:
     feedback();
   }
 
+  void emptyPerson() {
+    std::cout << "Please enter the firstname of the person [Firstname]" << std::endl;
+    std::string firstName = getNameInput();
+    std::cout << "Please enter the lastname of the person [Lastname]" << std::endl;
+    std::string lastName = getNameInput();
+
+    auto lambda = [](Person &p) {
+      p.setFirstName("Empty");
+      p.setLastName("Empty");
+      p.setBirth("00.00.0000");
+      p.setDeath("00.00.0000");
+      p.setSex("other");
+    };
+    _rootNode->traverseDepthSearch(_rootNode, firstName, lastName, lambda);
+  }
+
   void exitProgram() {
     std::string input;
 
@@ -205,7 +222,7 @@ public:
       _state = 1;
     } else if (input == "exit") {
       std::cout << "Thank you for using our Family Tree program! Good bye!" << std::endl;
-      _state = 6;
+      _state = 9;
       saveNodes(_rootNode);
     } else {
       std::cout << "Your input could not be interpreted, going back to program." << std::endl;
@@ -246,7 +263,6 @@ public:
     _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
     std::cout << "The new firstname of your person is now ";
     std::cout << newFirstName << std::endl;
-    feedback();
   }
 
   void changeLastName() {
@@ -267,7 +283,6 @@ public:
     _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
     std::cout << "The new lastname of your person is now ";
     std::cout << newLastName << std::endl;
-    feedback();
   }
 
   void changeBirthDate() {
@@ -285,7 +300,7 @@ public:
     _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
     std::cout << "The new birthdate of the person is now ";
     std::cout << newBirthDate << std::endl;
-    feedback();
+
   }
 
   void changeDeathDate() {
@@ -303,7 +318,6 @@ public:
     _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
     std::cout << "The new date of death of the person is now ";
     std::cout << newDeathDate << std::endl;
-    feedback();
   }
 
   void changeSex() {
@@ -323,7 +337,6 @@ public:
     _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
     std::cout << "The new sex of the person you chose is now ";
     std::cout << newSex << std::endl;
-    feedback();
   }
 
   void mainScreenCases() {
@@ -335,6 +348,7 @@ public:
       }
 
       case 2: {
+        emptyPerson ();
         break;
       }
       case 3: {
@@ -349,7 +363,7 @@ public:
         printTree(_rootNode);
         break;
       }
-      case 6: {
+      case 9: {
         exitProgram();
         break;
       }
@@ -384,6 +398,9 @@ public:
         break;
       }
       case 6: {
+        break;
+      }
+      case 9: {
         exitProgram();
         break;
       }

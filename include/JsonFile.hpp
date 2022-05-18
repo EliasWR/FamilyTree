@@ -34,7 +34,7 @@ private:
   std::string _parentFirstName, _parentLastName;
 
 public:
-  explicit JsonFile(std::shared_ptr<Node<T>> &t, std::string fileName)
+  explicit JsonFile(std::shared_ptr<Node<T>> &t, std::string const &fileName)
       : _rootNode(t), _fileName(fileName) {}
 
   void openFile() {
