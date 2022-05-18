@@ -11,7 +11,7 @@
 
 struct ExceptionHandling {
 
-    ExceptionHandling(){}
+    ExceptionHandling() = default;
 
 // TODO Rename and refactor
     static int checkIntAndList(const std::vector<int>& list){
@@ -35,7 +35,7 @@ struct ExceptionHandling {
         return input;
     }
 
-    static bool checkEmptyString(std::string s) {
+    static bool checkEmptyString(const std::string& s) {
         while (s.empty()) {
             std::cout<<"You have not typed anything, please try again";
         }
@@ -58,7 +58,7 @@ struct ExceptionHandling {
         return s;
     }
 
-    static bool checkDateLength (std::string dateString){
+    static bool checkDateLength (const std::string& dateString){
       int desiredLength = 10;
       int stringLength = dateString.length ();
       if ((stringLength == desiredLength) || (dateString == "0")){
@@ -80,12 +80,5 @@ struct ExceptionHandling {
     }
 
 };
-
-
-
-
-
-
-
 
 #endif //FAMILYTREE_EXCEPTIONHANDLING_HPP

@@ -9,11 +9,11 @@
 #include <iostream>
 
 // Node.hpp tests
-// Tests werther a Node can be made and edited
+// Tests whether a Node can be made and edited
 
 TEST_CASE("NodeChangePerson"){
   std::string initFirstName = "Gunnar";
-  std::string initLastName = "Sønsteby";
+  std::string initLastName = "Sonsteby";
   std::string newFirstName = "Fredrik";
 
   auto a = std::make_shared<Node<Person>>(Person(initFirstName, initLastName));
@@ -46,9 +46,21 @@ TEST_CASE("Traversal"){
   a->traverseDepthSearch(a, firstName2, firstName2, lambda);
 }
 */
-// Date.hpp tests
-TEST_CASE("DisplayAge"){
+// Person.hpp test
+// Tests whether a person object can be created
+TEST_CASE("createPerson"){
+std::string initFirstName = "Espen";
+std::string initLastName = "Olsen";
 
+Person a = {initFirstName, initLastName};
+
+std::string newLastName = a.getLastName();
+std::string newFirstName = a.getFirstName();
+
+bool firstname = (newFirstName == initFirstName);
+bool lastname = (newLastName == initLastName);
+bool result = firstname && lastname;
+REQUIRE(result);
 }
 
 // Menu tests
