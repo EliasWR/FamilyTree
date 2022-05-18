@@ -46,8 +46,9 @@ public:
         std::cout << "In this program you can make and modify a family tree of your own" << std::endl;
         std::cout << "To navigate this program you type the number of your desired command followed by enter." << std::endl;
         std::cout << "To start the program you need to add your first person, whom is the root of your tree and the start of your heritage!" << std::endl << std::endl;
-        createFirstPerson();
         savePersonInfo();
+        createFirstPerson();
+
     }
     void createFirstPerson() {
         _rootNode = std::make_shared<Node<Person>>(Person(_firstName, _lastName, _birth, _death, _sex));
@@ -252,7 +253,6 @@ public:
         std::cout << "The new birthdate of the person is now ";
         std::cout << newBirthDate << std::endl;
         feedback();
-
     }
 
     void changeDeathDate() {

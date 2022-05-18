@@ -5,6 +5,7 @@
 #include <sstream>
 #include <chrono>
 #include "Menu.hpp"
+#include <ctime>
 
 class Date {
 private:
@@ -101,6 +102,18 @@ public:
     _presDay = v[0];
     _presMonth = v[1];
     _presYear = v[2];
+  }
+
+  std::string trackCurrentDate() {
+      std::time_t t = std::time(nullptr);
+      std::tm* now = std::localtime(&t);
+
+      int currentYear = now->tm_year + 1900;
+      int currentMonth = now->tm_mon + 1;
+      int currentDay = now->tm_mday;
+
+      std::string currentDate = std::to_string(currentYear) + "." + std::to_string(currentMonth) + "." + std::to_string(currentDay);
+      return currentDate;
   }
 
   void calculateAge (std::string birthDate, std::string currentDate){
