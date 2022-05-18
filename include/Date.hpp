@@ -101,8 +101,7 @@ public:
     {
       day = _presDay - _day;
     }
-    std::cout << "Is : " << std::endl;
-    std::cout << year << " years and " << month << " months old" << std::endl;
+    std::cout << ", is " << year << " years and " << month << " months old";
   }
 };
 
