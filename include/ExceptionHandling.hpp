@@ -7,6 +7,7 @@
 #include <array>
 #include <vector>
 #include <cctype>
+#include <string>
 
 struct ExceptionHandling {
 
@@ -83,11 +84,8 @@ struct ExceptionHandling {
         return true;
     }
 
-    static std::string checkUpperCase(std::string s) {
-        if (!isupper(s[0])) {
-            s[0]=toupper(s[0]);
-        }
-        return s;
+    static void checkUpperCase(std::string &s) {
+        s[0]=std::toupper(s[0]);
     }
 
     static std::string checkSexInput(std::string s) {
@@ -96,7 +94,7 @@ struct ExceptionHandling {
         std::string o = "other";
 
         while ((s != m) && (s != f) && (s != o)) {
-            std::cout << "You did not type in any of the given options for sex ['m', 'f' or 'o']. Please try again." << std::endl;
+            std::cout << "You did not type in any of the given options for sex ['male', 'female' or 'other']. Please try again." << std::endl;
             std::cin >> s;
         }
         return s;
