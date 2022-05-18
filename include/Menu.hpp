@@ -48,9 +48,10 @@ public:
         std::cout << "In this program you can make and modify a family tree of your own" << std::endl;
         std::cout << "To navigate this program you type the number of your desired command followed by enter." << std::endl;
         std::cout << "To start the program you need to add your first person, whom is the root of your tree and the start of your heritage!" << std::endl << std::endl;
-        savePersonInfo();
-        createFirstPerson();
-
+        if (_rootNode == nullptr){
+          savePersonInfo();
+          createFirstPerson();
+        }
     }
 
     void saveNodes (std::shared_ptr<Node<Person>> rootNode) {
@@ -73,8 +74,12 @@ public:
       nlohmann::json j;
       auto emptyNode = std::make_shared<Node<Person>> ();
       JsonFile json (emptyNode, _fileName);
+
+      json.closeFile ();
       j = json.readFile(j);
+
       auto node = json.nodeFromJson(j, emptyNode);
+      _rootNode = node;
       std::cout << "The following Tree was previously saved:" << std::endl;
       printTree(node);
     }
