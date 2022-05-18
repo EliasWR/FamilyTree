@@ -7,6 +7,7 @@
 #include <array>
 #include <fstream>
 #include "json.hpp"
+#include "Date.hpp"
 
 class Person {
 private:
@@ -63,6 +64,10 @@ public:
         else {
             std::cout << ", is alive";
         }
+        Date d;
+        d.calculateAge(_birth, d.getCurrentDate());
+        std::cout <<"";
+
         std::cout << " and is a ";
         std::cout << _sex;
         std::cout << "." <<std::endl;

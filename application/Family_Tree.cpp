@@ -4,8 +4,6 @@
 #include "Date.hpp"
 #include <iostream>
 
-
-
 // Uncomment any implementation to testrun
 int main() {
   /*
@@ -62,6 +60,7 @@ int main() {
     */
 
   // TODO Making nodes with person objects inside
+  /*
   auto a = std::make_shared<Node<Person>>(Person("Gunnar", "Sonsteby"));
   a->add (Person("Erik", "Sonsteby"));
   a->add (Person("Anita", "Sonsteby"));
@@ -71,12 +70,7 @@ int main() {
   Person p("Henrik", "Sonsteby");
   auto lambda1 = [p](Node<Person> &node) {node.add(p);};
   a->traverseDepth (lambda1,"Erik","Sonsteby");
-
-  Menu<Person> m;
-  m.printTree(a);
-
-  m.saveNodes(a);
-  m.getSavedNodes();
+*/
 /*
   // TODO Traversal with editing example
   auto &myPerson = a->getPerson ();
@@ -112,14 +106,12 @@ int main() {
   */
   // TODO Date handling example
    /*
-/*
   std::string birthDate = "17.10.2000";
   std::string presDate = "03.05.2022";
   Date d(01,01,2001);
   d.setDate (birthDate);
   std::string str = d.getDate();
   std::cout << str << std::endl;
-*/
   // Get current date
   //std::string currentDate = m.getCurrentDate();
   //d.setCurrentDate(currentDate);
@@ -127,13 +119,22 @@ int main() {
 
   // TODO Menu Example
   // TODO Initial read from file
+  /*
   Menu<Person> m;
+
+  auto mainNode = std::make_shared<Node<Person>> ();
+  m.printTree(mainNode);
+
+  m.getSavedNodes();
   m.greeting();
   while (!m.getExitMenu()) {
     m.mainScreen();
   }
-Dato d =
+  m.saveNodes(mainNode);
+*/
 
+  Date date;
+  std::cout << date.trackCurrentDate ();
 
   return 0;
 }

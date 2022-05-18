@@ -4,6 +4,7 @@
 #include <iostream>
 #include <sstream>
 #include <chrono>
+#include <string>
 #include "Menu.hpp"
 #include <ctime>
 
@@ -20,27 +21,6 @@ public:
     std::string day = std::to_string(_day);
     std::string month = std::to_string(_month);
     std::string year = std::to_string(_year);
-
-    std::string date;
-    if (day.length() == 1){
-      date.append("0");
-    }
-    date.append(day);
-    date.append(".");
-    if (month.length() == 1){
-      date.append("0");
-    }
-    date.append(month);
-    date.append(".");
-    date.append(year);
-
-    return date;
-  }
-
-  std::string const getCurrentDate () {
-    std::string day = std::to_string(_presDay);
-    std::string month = std::to_string(_presMonth);
-    std::string year = std::to_string(_presYear);
 
     std::string date;
     if (day.length() == 1){
@@ -81,30 +61,7 @@ public:
     _year = v[2];
   }
 
-  void setCurrentDate (std::string dateString){
-    int day = 0;
-    int month = 0;
-    int year = 0;
-    std::vector<int> v = {day, month, year};
-
-    std::string delimiter = ".";
-    int counter = 0;
-    size_t pos = 0;
-    std::string token;
-
-    while ((pos = dateString.find(delimiter)) != std::string::npos) {
-      token = dateString.substr(0, pos);
-      v[counter] = std::stoi(token);
-      dateString.erase(0, pos + delimiter.length());
-      counter++;
-    }
-    v[counter] = std::stoi(dateString);
-    _presDay = v[0];
-    _presMonth = v[1];
-    _presYear = v[2];
-  }
-
-  std::string trackCurrentDate() {
+  std::string getCurrentDate() {
       std::time_t t = std::time(nullptr);
       std::tm* now = std::localtime(&t);
 
@@ -112,12 +69,15 @@ public:
       int currentMonth = now->tm_mon + 1;
       int currentDay = now->tm_mday;
 
-      std::string currentDate = std::to_string(currentYear) + "." + std::to_string(currentMonth) + "." + std::to_string(currentDay);
+      _presDay = currentDay;
+      _presMonth = currentMonth;
+      _presYear = currentYear;
+
+      std::string currentDate = std::to_string(currentDay) + "." + std::to_string(currentMonth) + "." + std::to_string(currentYear);
       return currentDate;
   }
 
   void calculateAge (std::string birthDate, std::string currentDate){
-    setCurrentDate(currentDate);
     setDate(birthDate);
 
     int day, month, year;
@@ -141,8 +101,8 @@ public:
     {
       day = _presDay - _day;
     }
-    std::cout << "Your age is : \n";
-    std::cout << year << " years " << month << " months " << day << " days. ";
+    std::cout << "Is : " << std::endl;
+    std::cout << year << " years and " << month << " months old" << std::endl;
   }
 };
 
