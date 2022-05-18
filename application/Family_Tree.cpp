@@ -130,10 +130,7 @@ int main() {
   while (!m.getExitMenu()) {
     m.mainScreen();
   }
-  m.saveNodes(mainNode);
-
-  Date date;
-  std::cout << date.getCurrentDate ();
 
   return 0;
+
 }

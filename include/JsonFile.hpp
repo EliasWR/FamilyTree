@@ -47,6 +47,15 @@ public:
     f.close();
   }
 
+  bool isEmpty () {
+    std::ifstream file(_fileName);
+    if (!file) {
+      std::cout << "File could not be opened.";
+      return true;
+    }
+    return file.peek() == std::ifstream::traits_type::eof();
+  }
+
   void jsonToFile(nlohmann::json &j) {
     f << j.dump(4);
   }

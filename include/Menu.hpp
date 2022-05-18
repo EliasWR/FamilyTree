@@ -45,12 +45,18 @@ public:
 
     void greeting () {
         std::cout << "                  " << "Welcome to 'FamilyTree'!"<< std::endl;
+        Date date;
+        std::cout << "                  " << "Todays date is: " << date.getCurrentDate () << std::endl;
         std::cout << "In this program you can make and modify a family tree of your own" << std::endl;
         std::cout << "To navigate this program you type the number of your desired command followed by enter." << std::endl;
-        std::cout << "To start the program you need to add your first person, whom is the root of your tree and the start of your heritage!" << std::endl << std::endl;
+
         if (_rootNode == nullptr){
+          std::cout << "To start the program you need to add your first person, whom is the root of your tree and the start of your heritage!" << std::endl;
           savePersonInfo();
           createFirstPerson();
+        }
+        else {
+          std::cout << std::endl;
         }
     }
 
@@ -59,13 +65,11 @@ public:
       std::string fileName = "FamilyTree.json";
       JsonFile json(rootNode, fileName);
 
+      json.closeFile();
       json.openFile();
 
       j = json.writePerson();
       json.jsonToFile(j);
-
-      std::string s = j.dump(4);
-      std::cout << s << std::endl;
 
       json.closeFile ();
     }
@@ -75,13 +79,20 @@ public:
       auto emptyNode = std::make_shared<Node<Person>> ();
       JsonFile json (emptyNode, _fileName);
 
-      json.closeFile ();
-      j = json.readFile(j);
+      json.openFile();
 
-      auto node = json.nodeFromJson(j, emptyNode);
-      _rootNode = node;
-      std::cout << "The following Tree was previously saved:" << std::endl;
-      printTree(node);
+      if (!json.isEmpty()){
+        json.closeFile ();
+        j = json.readFile(j);
+
+        auto node = json.nodeFromJson(j, emptyNode);
+        _rootNode = node;
+        std::cout << "You can continue building your tree where you left off: " << std::endl;
+        printTree(node);
+      }
+      else {
+        json.closeFile ();
+      }
     }
 
     void createFirstPerson() {
@@ -202,6 +213,7 @@ public:
         else if (input == "exit"){
           std::cout << "Thank you for using our Family Tree program! Good bye!" << std::endl;
           _exitMenu = true;
+          saveNodes(_rootNode);
         }
         else {
           std::cout << "Your input could not be interpreted, terminating program." << std::endl;
