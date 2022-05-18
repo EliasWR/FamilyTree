@@ -4,6 +4,7 @@
 #include <iostream>
 #include <limits>
 #include <array>
+#include "JsonFile.hpp"
 #include "ExceptionHandling.hpp"
 #include "Node.hpp"
 
@@ -21,6 +22,7 @@ private:
     bool _isAlive;
     std::shared_ptr<Node<Person>> _rootNode = nullptr;
     bool _exitMenu = false;
+    std::string _fileName = "FamilyTree.json";
 
 public:
   Menu (){}
@@ -50,6 +52,33 @@ public:
         createFirstPerson();
 
     }
+
+    void saveNodes (std::shared_ptr<Node<Person>> rootNode) {
+      nlohmann::json j;
+      std::string fileName = "FamilyTree.json";
+      JsonFile json(rootNode, fileName);
+
+      json.openFile();
+
+      j = json.writePerson();
+      json.jsonToFile(j);
+
+      std::string s = j.dump(4);
+      std::cout << s << std::endl;
+
+      json.closeFile ();
+    }
+
+    void getSavedNodes (){
+      nlohmann::json j;
+      auto emptyNode = std::make_shared<Node<Person>> ();
+      JsonFile json (emptyNode, _fileName);
+      j = json.readFile(j);
+      auto node = json.nodeFromJson(j, emptyNode);
+      std::cout << "The following Tree was previously saved:" << std::endl;
+      printTree(node);
+    }
+
     void createFirstPerson() {
         _rootNode = std::make_shared<Node<Person>>(Person(_firstName, _lastName, _birth, _death, _sex));
     }
@@ -88,8 +117,8 @@ public:
     }
 
     //functions for main screen options
+    // TODO Make it return a person and remove class private variables
     void savePersonInfo (){
-
         // Firstname
         std::cout << "Now you can add a new person with 5 attributes to your family tree." << std::endl;
         std::cout << "Type the attributes followed by enter." << std::endl << std::endl;
@@ -176,7 +205,7 @@ public:
     }
 
     // Functions for changing attributes
-
+    // TODO Dette suger! Samme funksjon to ganger.
     std::string getUserInputFirstName() {
         std::string traversalFirstName;
 

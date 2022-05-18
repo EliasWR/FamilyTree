@@ -1,8 +1,6 @@
 #include "Menu.hpp"
 #include "Node.hpp"
 #include "Person.hpp"
-#include "json.hpp"
-#include "JsonFile.hpp"
 #include "Date.hpp"
 #include <iostream>
 
@@ -76,12 +74,11 @@ int main() {
 
   Menu<Person> m;
   m.printTree(a);
+
+  m.saveNodes(a);
+  m.getSavedNodes();
 /*
   // TODO Traversal with editing example
-  Person p("Henrik", "Sonsteby");
-  auto lambda1 = [p](Node<Person> &node) {node.add(p);};
-  a->traverseDepth (lambda1,"Erik","Sonsteby");
-
   auto &myPerson = a->getPerson ();
   auto lambda = [](Person &p) {p.setFirstName("Elias");};
   a->traverseDepthSearch(a, "Gunnar", "Sonsteby", lambda);
@@ -112,6 +109,7 @@ int main() {
   auto emptyNode = std::make_shared<Node<Person>> ();
   auto b = json.nodeFromJson(j, emptyNode);
   m.printTree(b);
+  */
   // TODO Date handling example
    /*
 /*
@@ -123,7 +121,6 @@ int main() {
   std::cout << str << std::endl;
 */
   // Get current date
-
   //std::string currentDate = m.getCurrentDate();
   //d.setCurrentDate(currentDate);
   //d.calculateAge(birthDate, presDate);

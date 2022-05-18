@@ -1,6 +1,5 @@
-//
-// Created by Elias Woie Refsdal on 25/04/2022.
-//
+#ifndef FAMILYTREE_JSONFILE_HPP
+#define FAMILYTREE_JSONFILE_HPP
 
 #include "Node.hpp"
 #include "Person.hpp"
@@ -25,26 +24,20 @@ namespace nlohmann {
         {"Children", n->getChildren()}
     };
   }
-
-  template <class T>
-  void from_json (json& j, std::shared_ptr<Node<T>> n){
-    throw std::runtime_error("Unknown type T");
-  };
 }
 
-template<class T>
+template <class T>
 class JsonFile {
 private:
   const std::string _fileName;
   std::shared_ptr<Node<T>> &_rootNode;
   std::ofstream f;
   nlohmann::json j;
-  std::string _firstName, _lastName, _birth, _death, _sex, _parentFirstName, _parentLastName;
+  std::string _parentFirstName, _parentLastName;
 
 public:
   explicit JsonFile(std::shared_ptr<Node<T>> &t, std::string fileName)
-      : _rootNode(t), _fileName(fileName) {
-  }
+      : _rootNode(t), _fileName(fileName) {}
 
   void openFile() {
     f.open(_fileName, std::ios_base::trunc | std::ios_base::out);
@@ -70,13 +63,14 @@ public:
   }
 
   Person personFromJson (nlohmann::json& j){
-    if (j.contains("FirstName")) { _firstName = j.at("FirstName"); }
-    if (j.contains("LastName")) { _lastName = j.at("LastName"); }
-    if (j.contains("Birth")) { _birth = j.at("Birth"); }
-    if (j.contains("Death")) { _death = j.at("Death"); }
-    if (j.contains("Sex")) { _sex = j.at("Sex"); }
+    std::string firstName, lastName, birth, death, sex;
+    if (j.contains("FirstName")) { firstName = j.at("FirstName"); }
+    if (j.contains("LastName")) { lastName = j.at("LastName"); }
+    if (j.contains("Birth")) { birth = j.at("Birth"); }
+    if (j.contains("Death")) { death = j.at("Death"); }
+    if (j.contains("Sex")) { sex = j.at("Sex"); }
 
-    Person person (_firstName, _lastName, _birth, _death, _sex);
+    Person person (firstName, lastName, birth, death, sex);
     return person;
   }
 
@@ -98,11 +92,9 @@ public:
         nodeFromJson (jsonChildNode, rootNode);
       }
     }
+    _rootNode = rootNode;
     return rootNode;
   }
 };
-
-#ifndef FAMILYTREE_JSONFILE_HPP
-#define FAMILYTREE_JSONFILE_HPP
 
 #endif//FAMILYTREE_JSONFILE_HPP
