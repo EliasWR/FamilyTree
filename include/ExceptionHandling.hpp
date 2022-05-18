@@ -13,35 +13,6 @@ struct ExceptionHandling {
 
     ExceptionHandling(){}
 
-    static int checkInput () {
-        int input;
-        std::cin >> input;
-        bool inList = false;
-        while (std::cin.fail()) {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "Not a valid value. Enter a menu option: ";
-            std::cin >> input;
-        }
-        std::cout << "You selected " << input << std::endl;
-        return input;
-    }
-
-    static int checkCipherAndInput(int length){
-        int input;
-        std::cin >> input;
-        bool rightSize = checkCipherCount(input,length);
-        while ((std::cin.fail()) || (!rightSize)){
-            rightSize = checkCipherCount(input,length);
-            if (!rightSize){
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-                std::cout << "Not a valid value. Try again: ";
-                std::cin >> input;
-            }
-        }
-        return input;
-    }
 // TODO Rename and refactor
     static int checkIntAndList(const std::vector<int>& list){
         int input;
@@ -57,24 +28,11 @@ struct ExceptionHandling {
             if (!inList){
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-                std::cout << "Not a valid value. Enter a menu option: ";
+                std::cout << "Not a valid value. Please try again." << std::endl;
                 std::cin >> input;
             }
         }
         return input;
-    }
-
-    static bool checkCipherCount(int number, int cipher) {
-        bool isCorrect = true;
-        int count = 0;
-        while(number!=0) {
-            number /= 10;
-            count ++;
-        }
-        if (count > cipher) {
-            isCorrect = false;
-        }
-        return isCorrect;
     }
 
     static bool checkEmptyString(std::string s) {
@@ -110,7 +68,7 @@ struct ExceptionHandling {
       return false;
     }
 
-    static bool checkUserInput(std::string input) {
+    static bool checkExitMenuInput(std::string input) {
         std::string b = "back";
         std::string e = "exit";
 
