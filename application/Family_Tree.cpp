@@ -119,11 +119,8 @@ int main() {
   //d.calculateAge(birthDate, presDate);
 */
   // TODO Menu Example
-  // TODO Initial read from file
 
   Menu<Person> m;
-
-  // auto mainNode = std::make_shared<Node<Person>> ();
 
   m.greeting();
   while (!m.getExitMenu()) {

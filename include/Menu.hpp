@@ -14,11 +14,6 @@ template<class T>
 class Menu {
 private:
   int _state = 0;
-  std::string _firstName;
-  std::string _lastName;
-  std::string _sex;
-  std::string _birth;
-  std::string _death;
   bool _isAlive;
   std::shared_ptr<Node<Person>> _rootNode = nullptr;
   bool _exitMenu = false;
@@ -56,8 +51,8 @@ public:
 
     if (_rootNode == nullptr) {
       std::cout << "To start the program you need to add your first person, whom is the root of your tree and the start of your heritage!" << std::endl;
-      savePersonInfo();
-      createFirstPerson();
+      Person person = createPerson();
+      createFirstPerson(person);
     } else {
       std::cout << std::endl;
     }
@@ -95,8 +90,8 @@ public:
     json.closeFile();
   }
 
-  void createFirstPerson() {
-    _rootNode = std::make_shared<Node<Person>>(Person(_firstName, _lastName, _birth, _death, _sex));
+  void createFirstPerson(Person& p) {
+    _rootNode = std::make_shared<Node<Person>>(p);
   }
 
   void feedback() {
@@ -110,8 +105,8 @@ public:
     std::cout << "[2] Remove person from tree." << std::endl;
     std::cout << "[3] Edit existing persons attributes." << std::endl;
     std::cout << "[4] Show existing persons attributes." << std::endl;
-    std::cout << "[5] Show all existing persons in your family tree!." << std::endl;
-    std::cout << "[6] Exit program" << std::endl;
+    std::cout << "[5] Show all existing persons in your family tree." << std::endl;
+    std::cout << "[6] Exit program." << std::endl;
     std::vector<int> v{1, 2, 3, 4, 5, 6};
     int input = ExceptionHandling::checkIntAndList(v);
     _state = input;
@@ -135,45 +130,47 @@ public:
 
   //functions for main screen options
   // TODO Make it return a person and remove class private variables
-  void savePersonInfo() {
+  Person createPerson() {
     // Firstname
+    std::string firstName, lastName, sex, birth, death;
     std::cout << "Now you can add a new person with 5 attributes to your family tree." << std::endl;
     std::cout << "Type the attributes followed by enter." << std::endl
               << std::endl;
     std::cout << "Please type the persons first name: " << std::endl;
     std::cout << "If the person has multiple firstnames, use '-' between them" << std::endl;
-    std::cin >> _firstName;
-    ExceptionHandling::checkUpperCase(_firstName);
-    ExceptionHandling::checkEmptyString(_firstName);
+    std::cin >> firstName;
+    ExceptionHandling::checkUpperCase(firstName);
+    ExceptionHandling::checkEmptyString(firstName);
 
     // Lastname
     std::cout << "Please type the persons last name: " << std::endl;
     std::cout << "If the person has multiple lastnames, use '-' between them" << std::endl;
-    std::cin >> _lastName;
-    ExceptionHandling::checkEmptyString(_lastName);
-    ExceptionHandling::checkUpperCase(_lastName);
+    std::cin >> lastName;
+    ExceptionHandling::checkEmptyString(lastName);
+    ExceptionHandling::checkUpperCase(lastName);
 
     // Sex
     std::cout << "Please enter the persons sex ['male', 'female' or 'other']" << std::endl;
-    std::cin >> _sex;
-    ExceptionHandling::checkEmptyString(_sex);
-    ExceptionHandling::checkSexInput(_sex);
+    std::cin >> sex;
+    ExceptionHandling::checkEmptyString(sex);
+    ExceptionHandling::checkSexInput(sex);
 
     // Birth
     std::cout << "Now please enter the date of birth in the following format[dd.mm.yyyy]" << std::endl;
-    _birth = getDate();
+    birth = getDate();
 
     // Death
     std::cout << "Now please enter the date of death in the following format[dd.mm.yyyy]" << std::endl;
     std::cout << "If the person you are adding, is alive, enter '0'" << std::endl;
-    _death = getDate();
+    death = getDate();
+    Person person(firstName, lastName, birth, death, sex);
+    return person;
   }
 
-  void createGeneralPerson() {
+  void createGeneralPerson(Person& p) {
     std::cout << "You need to enter the name of your persons parent" << std::endl;
     std::string a = getUserInputFirstName();
     std::string b = getUserInputLastName();
-    Person p(_firstName, _lastName, _birth, _death, _sex);
     auto lambda1 = [ p ](Node<Person> &node) {
       node.add(p);
     };
@@ -181,7 +178,7 @@ public:
     feedback();
   }
 
-  void getPersonInfo() {
+  void printPerson () {
     std::string a = getUserInputFirstName();
     std::string b = getUserInputLastName();
     auto lambda = [](Person p) {
@@ -348,8 +345,8 @@ public:
   void mainScreenCases() {
     switch (_state) {
       case 1: {
-        savePersonInfo();
-        createGeneralPerson();
+        Person p = createPerson();
+        createGeneralPerson(p);
         break;
       }
 
@@ -361,7 +358,7 @@ public:
         break;
       }
       case 4: {
-        getPersonInfo();
+        printPerson();
         break;
       }
       case 5: {
