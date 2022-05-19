@@ -10,9 +10,18 @@
 #include <vector>
 
 struct ExceptionHandling {
-
+  /// @what Default constructor for ExceptionHandling class
+  /// @param N/A
+  /// @returns N/A
+  /// @Usage N/A
+  /// @example ExceptionHandling e;
   ExceptionHandling() = default;
 
+  /// @what Function for taking user input until user choses a valid option
+  /// @param "const std::vector<int> &list" for checking against user options
+  /// @returns "int input" after checks and input is a valid value
+  /// @Usage Menu::mainScreen, Main::editAttributes
+  /// @example int input = ExceptionHandling::checkStateInput(v);
   static int checkStateInput(const std::vector<int> &list) {
     int input;
     std::cin >> input;
@@ -34,14 +43,20 @@ struct ExceptionHandling {
     return input;
   }
 
-  static bool checkEmptyString(const std::string &s) {
-    while (s.empty()) {
+  /// @what Function checking if string is empty
+  /// @param "const std::string &s" passing string by reference to check if it is empty
+  /// @returns N/A
+  /// @Usage Menu::mainScreen, Main::editAttributes
+  /// @example int input = ExceptionHandling::checkStateInput(v);
+  static bool stringEmpty(const std::string &s) {
+    bool isEmpty = s.empty();
+    if (isEmpty) {
       std::cout << "You have not typed anything, please try again";
     }
-    return true;
+    return isEmpty;
   }
 
-  static void checkUpperCase(std::string &s) {
+  static void toUpper(std::string &s) {
     s[ 0 ] = std::toupper(s[ 0 ]);
   }
 

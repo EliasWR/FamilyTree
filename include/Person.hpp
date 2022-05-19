@@ -10,16 +10,32 @@ private:
   std::string _firstName, _lastName, _birth, _death, _sex;
 
 public:
-  // Constructors
+  /// @what Constructor for Person
+  /// @param N/A
+  /// @returns N/A
+  /// @Usage JsonFile::NodeFromJson
+  /// @example Person p;
   Person() = default;
+
+  /// @what Constructor for Person initializing firstname, lastname
+  /// @param "std::string firstName" and "std::string lastName" initializing only firstname and lastname of person
+  /// @returns N/A
+  /// @Usage testFamilyTree.cpp
+  /// @example Person p (firstName, lastName);
   Person(std::string firstName, std::string lastName)
       : _firstName(firstName), _lastName(lastName) {
   }
+
+  /// @what Constructor for Person initializing all attributes of person
+  /// @param strings initializing all variables
+  /// @returns N/A
+  /// @Usage JsonFile::personFromJson, Menu::createPerson
+  /// @example Person p (firstName, lastName, birth, death, sex);
   Person(std::string firstName, std::string lastName, std::string birth, std::string death, std::string sex)
       : _firstName(firstName), _lastName(lastName), _birth(birth), _death(death), _sex(sex) {
   }
 
-  // Getters and setters for private variables of Person class
+  /// Getters and setters for private variables of Person class
   [[nodiscard]] std::string getFirstName() const {
     return _firstName;
   }
@@ -51,6 +67,11 @@ public:
     _sex = sex;
   }
 
+  /// @what Function for printing all persons attributes
+  /// @param N/A
+  /// @returns N/A
+  /// @Usage Menu::printPerson
+  /// @example p.printPersonInfo();
   void printPersonInfo() {
     std::cout << _firstName << " " << _lastName;
     std::cout << " is born on the ";

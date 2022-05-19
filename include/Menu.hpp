@@ -131,21 +131,27 @@ public:
     std::cout << "Please type the persons first name: " << std::endl;
     std::cout << "If the person has multiple firstnames, use '-' between them" << std::endl;
     std::cin >> firstName;
-    ExceptionHandling::checkUpperCase(firstName);
-    ExceptionHandling::checkEmptyString(firstName);
+    while (ExceptionHandling::stringEmpty(firstName)) {
+      std::cin >> firstName;
+    }
+    ExceptionHandling::toUpper(firstName);
 
     // Lastname
     std::cout << "Please type the persons last name: " << std::endl;
     std::cout << "If the person has multiple lastnames, use '-' between them" << std::endl;
     std::cin >> lastName;
-    ExceptionHandling::checkEmptyString(lastName);
-    ExceptionHandling::checkUpperCase(lastName);
+    while (ExceptionHandling::stringEmpty(lastName)) {
+      std::cin >> lastName;
+    }
+    ExceptionHandling::toUpper(lastName);
 
     // Sex
     std::cout << "Please enter the persons sex ['male', 'female' or 'other']" << std::endl;
     std::cin >> sex;
-    ExceptionHandling::checkEmptyString(sex);
-    ExceptionHandling::checkSexInput(sex);
+    while (ExceptionHandling::stringEmpty(sex)) {
+      std::cin >> sex;
+    }
+    ExceptionHandling::toUpper(sex);
 
     // Birth
     std::cout << "Now please enter the date of birth in the following format[dd.mm.yyyy]" << std::endl;
@@ -237,17 +243,17 @@ public:
   std::string getNameInput() {
     std::string name;
     std::cin >> name;
-    ExceptionHandling::checkUpperCase(name);
-    ExceptionHandling::checkEmptyString(name);
+    while (ExceptionHandling::stringEmpty(name)) {
+      std::cin >> name;
+    }
+    ExceptionHandling::toUpper(name);
     return name;
   }
 
   std::string getDate() {
     std::string date;
-    bool dateStr = false;
-    while (!dateStr) {
+    while (!ExceptionHandling::checkDateLength(date)) {
       std::cin >> date;
-      dateStr = ExceptionHandling::checkDateLength(date);
     }
     return date;
   }
@@ -273,12 +279,8 @@ public:
     std::string a = getNameInput();
     std::cout << "Please enter the lastname of the person [Lastname]" << std::endl;
     std::string b = getNameInput();
-
-    std::string newLastName;
     std::cout << "Now please enter the new lastname of the person you chose " << std::endl;
-    std::cin >> newLastName;
-    ExceptionHandling::checkUpperCase(newLastName);
-    ExceptionHandling::checkEmptyString(newLastName);
+    std::string newLastName = getNameInput ();
 
     auto lambda = [ newLastName ](Person &p) {
       p.setLastName(newLastName);

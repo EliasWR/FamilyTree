@@ -103,7 +103,7 @@ public:
 
     for (auto c: children) {
       v = traverseBreadth(c, v);
-      std::cout << node->getPerson().getFirstName() << " " << node->getPerson().getLastName() << std::endl;
+      std::cout << node << std::endl;
       children = node->getChildren();
       v.push_back(c);
     }
@@ -113,7 +113,7 @@ public:
   void printBreadth(std::vector<std::shared_ptr<Node<T>>> v) {
     for (int i = v.size(); i > 0; i--) {
       auto node = v[ i - 1 ];
-      std::cout << node->getPerson().getFirstName() << " " << node->getPerson().getLastName() << std::endl;
+      std::cout << node << std::endl;
     }
   }
 
@@ -201,7 +201,7 @@ public:
       }
     });
     if (!personFound) {
-      std::cout << firstName << " " << lastName << " could not be found in tree.";
+      std::cout << firstName << " " << lastName << " could not be found in tree." << std::endl;
     }
   }
   /// @what Function for setting relations between parent and child
@@ -222,18 +222,17 @@ public:
 };
 
 /// @what Overloading the "<<" operator in order to print person directly from node
-/// @param "std::ostream &os"
-///        "const Node<T> &l"
+/// @param "std::ostream &os" taking ostream parameter to be compatible with << operator
+///        "const Node<T> &node" takes the node that is to be printed
 /// @returns Output stream object containing the final print
-/// @Usage Menu::createGeneralPerson, JsonFile.nodeFromJson
-/// @example
-
+/// @Usage Node::traverseDepthSearch
+/// @example std::cout << node;
 template<typename T>
-std::ostream &operator<<(std::ostream &os, const Node<T> &l) {
-  auto &myPerson = l.getPerson();
-  os << myPerson.getFirstName();
+std::ostream &operator<<(std::ostream &os, const Node<T> &node) {
+  auto &person = node.getPerson();
+  os << person.getFirstName();
   os << " ";
-  os << myPerson.getLastName();
+  os << person.getLastName();
   return os;
 }
 
