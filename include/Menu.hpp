@@ -328,6 +328,7 @@ public:
   /// @example getDate();
   std::string getDate() {
     std::string date;
+    std::cin >> date;
     while (!ExceptionHandling::checkDateLength(date)) {
       std::cin >> date;
     }
