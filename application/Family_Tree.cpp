@@ -1,5 +1,4 @@
 #include "Menu.hpp"
-#include "Person.hpp"
 
 int main() {
   Menu<Person> m;
