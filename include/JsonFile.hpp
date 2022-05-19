@@ -47,7 +47,7 @@ private:
 
 public:
   /// @what Constructor for JsonFile
-  /// @param "std::shared_ptr<Node<T>> &t" initiates objects private variable _rootNode ,
+  /// @param "std::shared_ptr<Node<T>> &t" initiates objects private variable _rootNode ,\n
   ///         "std::string const &fileName" initiates objects private variable _fileName
   /// @returns N/A
   /// @Usage Menu::saveNodes, Menu::getSavedNodes
@@ -146,7 +146,7 @@ public:
   }
 
   /// @what Retrieves nodes from .json and get saved information recursively
-  /// @param "nlohmann::json &j" is used to traverse tree in file
+  /// @param "nlohmann::json &j" is used to traverse tree in file\n
   ///         "std::shared_ptr<Node<Person>> rootNode" is used to store all node information
   /// @returns "std::shared_ptr<Node<Person>>" containing all previously saved nodes
   /// @Usage Menu::getSavedNodes

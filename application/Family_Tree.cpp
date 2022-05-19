@@ -3,7 +3,6 @@
 #include "Person.hpp"
 #include <iostream>
 
-// Uncomment any implementation to testrun
 int main() {
   /*
   auto a = std::make_shared<Node<Person>>(Person("Gunnar", "Sonsteby"));

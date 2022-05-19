@@ -65,7 +65,7 @@ public:
   /// @returns N/A
   /// @Usage N/A
   /// @example
-  /// auto children = node1->getChildren();
+  /// auto children = node1->getChildren();\n
   /// node2->setChildren(children);
 
   void setChildren(std::vector<std::shared_ptr<Node<T>>> children) const {
@@ -150,9 +150,9 @@ public:
   /// @returns N/A
   /// @Usage Menu::printTree
   /// @example
-  /// node->traverseDepth([ indent ](Node<Person> &f, int depth) {
-  ///      for (int i = 0; i < depth; ++i) {
-  ///        for (int j = 0; j < indent; ++j) {std::cout << " ";}}
+  /// node->traverseDepth([ indent ](Node<Person> &f, int depth) {\n
+  ///      for (int i = 0; i < depth; ++i) {\n
+  ///        for (int j = 0; j < indent; ++j) {std::cout << " ";}}\n
   ///      std::cout << f.getPerson().getFirstName() << " " << f.getPerson().getLastName() << std::endl;});
   void traverseDepth(std::function<void(Node<T> &, int)> f, int depth = 0) {
     f(*this, depth);
@@ -162,12 +162,12 @@ public:
   }
   /// @what Overloaded breadth first traversal in order to search for a specific node in tree
   /// @BigO
-  /// @param "std::function<void(Node<T> &, int)> f" for recursive function
+  /// @param "std::function<void(Node<T> &, int)> f" for recursive function\n
   ///        "std::string firstName" and "std::string lastName" is used for comparing all names in tree
   /// @returns N/A
   /// @Usage Menu::createGeneralPerson, JsonFile::NodeFromJson
   /// @example
-  /// auto lambda = [ p ](Node<Person> &node) { node.add(p);};
+  /// auto lambda = [ p ](Node<Person> &node) { node.add(p);};\n
   /// rootNode->traverseDepth(lambda, a, b);
   void traverseDepth(std::function<void(Node<T> &)> f, std::string firstName, std::string lastName) {
     if (getPerson().getFirstName() == firstName && getPerson().getLastName() == lastName) {
@@ -181,14 +181,14 @@ public:
   /// @what Overloaded breadth first traversal in order to make changes to persons
   /// @BigO
   /// @param "std::shared_ptr<Node<T>> root" rootNode where traversal will start
-  ///        "std::string firstName" first name to be searched for
-  ///        "std::string lastName" last name to be searched for
-  ///        "std::function<void(T &)> editingFunc" lambda function for editing persons
+  ///        "std::string firstName" first name to be searched for\n
+  ///        "std::string lastName" last name to be searched for\n
+  ///        "std::function<void(T &)> editingFunc" lambda function for editing persons\n
   /// @returns N/A
-  /// @Usage Menu::changeFirstName, Menu::changeLastName, Menu::changeBirthDate, Menu::changeDeathDate,
+  /// @Usage Menu::changeFirstName, Menu::changeLastName, Menu::changeBirthDate, Menu::changeDeathDate,\n
   ///        Menu::changeSex, Menu::emptyPerson, Menu::printPerson
   /// @example
-  /// auto lambda = [ newFirstName ](Person &p) {p.setFirstName(newFirstName);};
+  /// auto lambda = [ newFirstName ](Person &p) {p.setFirstName(newFirstName);};\n
   /// rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
   void traverseDepthSearch(std::shared_ptr<Node<T>> root, std::string firstName, std::string lastName, std::function<void(T &)> editingFunc) {
     bool personFound = false;
@@ -209,7 +209,7 @@ public:
   /// @returns N/A
   /// @Usage Menu::createGeneralPerson, JsonFile.nodeFromJson
   /// @example
-  /// auto lambda = [ p ](Node<Person> &node) {node.add(p);};
+  /// auto lambda = [ p ](Node<Person> &node) {node.add(p);};\n
   /// rootNode->traverseDepth(lambda, a, b);
   void add(T value) {
     auto n = std::make_shared<Node<T>>(value);
@@ -222,7 +222,7 @@ public:
 };
 
 /// @what Overloading the "<<" operator in order to print person directly from node
-/// @param "std::ostream &os" taking ostream parameter to be compatible with << operator
+/// @param "std::ostream &os" taking ostream parameter to be compatible with << operator\n
 ///        "const Node<T> &node" takes the node that is to be printed
 /// @returns Output stream object containing the final print
 /// @Usage Node::traverseDepthSearch

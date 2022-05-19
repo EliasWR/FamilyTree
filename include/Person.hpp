@@ -18,7 +18,8 @@ public:
   Person() = default;
 
   /// @what Constructor for Person initializing firstname, lastname
-  /// @param "std::string firstName" and "std::string lastName" initializing only firstname and lastname of person
+  /// @param "std::string firstName" and "std::string lastName" \n
+  ///         initializing only firstname and lastname of person
   /// @returns N/A
   /// @Usage testFamilyTree.cpp
   /// @example Person p (firstName, lastName);

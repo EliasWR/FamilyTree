@@ -45,9 +45,9 @@ struct ExceptionHandling {
 
   /// @what Function checking if string is empty
   /// @param "const std::string &s" passing string by reference to check if it is empty
-  /// @returns N/A
-  /// @Usage Menu::mainScreen, Main::editAttributes
-  /// @example int input = ExceptionHandling::checkStateInput(v);
+  /// @returns "bool isEmpty" true if string is empty, false if not
+  /// @Usage Menu::createPerson, Main::getNameInput
+  /// @example while (ExceptionHandling::stringEmpty(lastName)) {std::cin lastName}
   static bool stringEmpty(const std::string &s) {
     bool isEmpty = s.empty();
     if (isEmpty) {
@@ -56,11 +56,23 @@ struct ExceptionHandling {
     return isEmpty;
   }
 
+  /// @what Function turning first letter of string to uppercase
+  /// @param "std::string &s" passing string by reference and changing first letter to uppercase
+  /// @returns N/A
+  /// @Usage Menu::createPerson, Main::getNameInput
+  /// @example ExceptionHandling::toUpper(firstName);
   static void toUpper(std::string &s) {
     s[ 0 ] = std::toupper(s[ 0 ]);
   }
 
-  static std::string checkSexInput(std::string s) {
+  /// @what Function turning first letter of string to uppercase
+  /// @param "std::string &s" passing string by reference and matching by options
+  /// @returns N/A
+  /// @Usage Menu::createPerson, Main::changeSex
+  /// @example
+  /// std::cin >> sex;\n
+  /// ExceptionHandling::checkSexInput(sex);
+  static void checkSexInput(std::string &s) {
     std::string m = "male";
     std::string f = "female";
     std::string o = "other";
@@ -69,9 +81,16 @@ struct ExceptionHandling {
       std::cout << "You did not type in any of the given options for sex ['male', 'female' or 'other']. Please try again." << std::endl;
       std::cin >> s;
     }
-    return s;
   }
 
+  /// @what Function for checking date length
+  /// @param "const std::string &dateString" passing string by \n
+  ///         const reference and checking length of string
+  /// @returns bool false if the format was wrong and returning true if date is the desired format
+  /// @Usage Menu::getDate
+  /// @example
+  /// std::string date; \n
+  /// while (!ExceptionHandling::checkDateLength(date)) {std::cin >> date;}
   static bool checkDateLength(const std::string &dateString) {
     int desiredLength = 10;
     int stringLength = dateString.length();
@@ -81,8 +100,14 @@ struct ExceptionHandling {
     std::cout << "You did not enter the date in the correct format [dd.mm.yyyy]. Please try again." << std::endl;
     return false;
   }
-
-  static bool checkExitMenuInput(std::string input) {
+  /// @what Function for checking desired exit menu input
+  /// @param "std::string &input" passing string by reference in order to take input until valid
+  /// @returns N/A
+  /// @Usage Menu::exitProgram
+  /// @example
+  /// std::cin >> input; \n
+  /// ExceptionHandling::checkExitMenuInput(input);
+  static void checkExitMenuInput(std::string &input) {
     std::string b = "back";
     std::string e = "exit";
 
@@ -90,7 +115,6 @@ struct ExceptionHandling {
       std::cout << "That was not one of your given options, please try again" << std::endl;
       std::cin >> input;
     }
-    return true;
   }
 };
 

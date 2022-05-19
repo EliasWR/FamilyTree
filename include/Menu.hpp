@@ -148,10 +148,7 @@ public:
     // Sex
     std::cout << "Please enter the persons sex ['male', 'female' or 'other']" << std::endl;
     std::cin >> sex;
-    while (ExceptionHandling::stringEmpty(sex)) {
-      std::cin >> sex;
-    }
-    ExceptionHandling::toUpper(sex);
+    ExceptionHandling::checkSexInput(sex);
 
     // Birth
     std::cout << "Now please enter the date of birth in the following format[dd.mm.yyyy]" << std::endl;

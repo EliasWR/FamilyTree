@@ -35,7 +35,7 @@ public:
   /// @returns "std::string date" containg the string of the date
   /// @Usage N/A
   /// @example
-  /// d.setDate(birthday);
+  /// d.setDate(birthday);\n
   /// d.getDate();
   std::string const getDate() {
     std::string day = std::to_string(_day);
@@ -109,7 +109,7 @@ public:
   /// @returns N/A
   /// @Usage Person::printPersonInfo
   /// @example
-  /// Date d;
+  /// Date d;\n
   /// d.calculateAge(_birth, d.getCurrentDate());
   void calculateAge(std::string birthDate, std::string currentDate) {
     setDate(birthDate);
