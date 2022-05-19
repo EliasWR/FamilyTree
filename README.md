@@ -19,11 +19,7 @@ KanditatNr: 10026
 
 ##Classes
 ###UML Schematics
-B <------ A: Realization - A "uses" B, A implements B \
-B *------ A: Composition - A "has a" B but B may live longer than A \
-B o------ A: Aggregation - A "has a" B and B may exists until A no longer exist
-
-![img.png](UMLSchematics/img.png)
+![img.png](Images/img.png)
 
 ##Documentation
 The code documentation style is written in the following format:
