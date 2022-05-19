@@ -19,19 +19,31 @@ private:
   const std::string _fileName = "FamilyTree.json";
 
 public:
+  /// @what Default constructor for Menu
+  /// @param N/A
+  /// @returns N/A
+  /// @Usage Family_Tree::main
+  /// @example Menu<Person> m;
   Menu() {
   }
 
+  /// Getter for private variable _state of Menu class
   void setState(int state) {
     _state = state;
   }
 
+  /// Setter for private variable _state of Menu class
   [[nodiscard]] int getState() const {
     return _state;
   }
 
+  /// @what Greeter for programs starting screen. \n
+  /// Fetching saved data and creating first person if needed
+  /// @param N/A
+  /// @returns N/A
+  /// @Usage Family_Tree::main
+  /// @example m.greeting();
   void greeting() {
-    getSavedNodes();
     Date date;
     std::cout << "                  "
               << "Welcome to 'FamilyTree'!" << std::endl;
@@ -39,16 +51,15 @@ public:
               << "Todays date is: " << date.getCurrentDate() << std::endl;
     std::cout << "In this program you can make and modify a family tree of your own" << std::endl;
     std::cout << "To navigate this program you type the number of your desired command followed by enter." << std::endl;
-
-    if (_rootNode == nullptr) {
-      std::cout << "To start the program you need to add your first person, whom is the root of your tree and the start of your heritage!" << std::endl;
-      Person person = createPerson();
-      createFirstPerson(person);
-    } else {
-      std::cout << std::endl;
-    }
+    getSavedNodes();
+    createFirstPerson();
   }
 
+  /// @what Fetching saved information from file
+  /// @param N/A
+  /// @returns N/A
+  /// @Usage Menu::greeting
+  /// @example getSavedNodes();
   void getSavedNodes() {
     nlohmann::json j;
     auto emptyNode = std::make_shared<Node<Person>>();
@@ -58,15 +69,19 @@ public:
       json.closeFile();
       j = json.readFile(j);
 
-      auto node = json.nodeFromJson(j, emptyNode);
-      _rootNode = node;
+      _rootNode = json.nodeFromJson(j, emptyNode);
       std::cout << "You can continue building your tree where you left off: " << std::endl;
-      printTree(node);
+      printTree(_rootNode);
     } else {
       json.closeFile();
     }
   }
 
+  /// @what Saving nodes to file from tree-structure
+  /// @param "std::shared_ptr<Node<Person>> rootNode" Is needed to traverse each node
+  /// @returns N/A
+  /// @Usage Menu::exitProgram
+  /// @example saveNodes(_rootNode);
   void saveNodes(std::shared_ptr<Node<Person>> rootNode) {
     nlohmann::json j;
     std::string fileName = "FamilyTree.json";
@@ -81,15 +96,30 @@ public:
     json.closeFile();
   }
 
-  void createFirstPerson(Person &p) {
-    _rootNode = std::make_shared<Node<Person>>(p);
+  /// @what Function for creating first person if noone exists in tree
+  /// @param N/A
+  /// @returns N/A
+  /// @Usage Menu::greeting
+  /// @example createFirstPerson();
+  void createFirstPerson (){
+    if (_rootNode == nullptr) {
+      std::cout << "To start the program you need to add your first person, whom is the root of your tree and the start of your heritage!" << std::endl;
+      Person person = createPerson();
+      _rootNode = std::make_shared<Node<Person>>(person);
+    } else {
+      std::cout << std::endl;
+    }
   }
 
-  void feedback() {
-    std::cout << "Operation was successfully executed" << std::endl
-              << std::endl;
-  }
-
+  /// @what Function for printing main screen options and getting \n
+  /// desired user input. Input is used to set state and case.
+  /// @param N/A
+  /// @returns N/A
+  /// @Usage Family_Tree::main
+  /// @example
+  ///  Menu<Person> m; \n
+  ///  while (m.getState() != 9) { \n
+  ///    m.mainScreen();}
   void mainScreen() {
     std::cout << "You have the following options." << std::endl;
     std::cout << "[1] Add new person to tree." << std::endl;
@@ -105,6 +135,12 @@ public:
     mainScreenCases();
   }
 
+  /// @what Function for printing the options for editing attributes and \n
+  ///       getting desired user input. Input is used to set state and case.
+  /// @param N/A
+  /// @returns N/A
+  /// @Usage Menu::mainScreenCases
+  /// @example editAttributes();
   void editAttributes() {
     std::cout << "You can edit the following information of your family tree" << std::endl;
     std::cout << "[1] Edit existing persons firstname" << std::endl;
@@ -121,9 +157,13 @@ public:
     editAttributeCases();
   }
 
-  //functions for main screen options
+  /// @what Function for creating person with user input.
+  /// @param N/A
+  /// @returns Person that can later be added to node
+  /// @Usage Menu::mainScreenCases, Menu::createFirstPerson
+  /// @example Person person = createPerson();
   Person createPerson() {
-    // Firstname
+    /// Firstname
     std::string firstName, lastName, sex, birth, death;
     std::cout << "Now you can add a new person with 5 attributes to your family tree." << std::endl;
     std::cout << "Type the attributes followed by enter." << std::endl
@@ -136,7 +176,7 @@ public:
     }
     ExceptionHandling::toUpper(firstName);
 
-    // Lastname
+    /// Lastname
     std::cout << "Please type the persons last name: " << std::endl;
     std::cout << "If the person has multiple lastnames, use '-' between them" << std::endl;
     std::cin >> lastName;
@@ -145,16 +185,16 @@ public:
     }
     ExceptionHandling::toUpper(lastName);
 
-    // Sex
+    /// Sex
     std::cout << "Please enter the persons sex ['male', 'female' or 'other']" << std::endl;
     std::cin >> sex;
     ExceptionHandling::checkSexInput(sex);
 
-    // Birth
+    /// Birth
     std::cout << "Now please enter the date of birth in the following format[dd.mm.yyyy]" << std::endl;
     birth = getDate();
 
-    // Death
+    /// Death
     std::cout << "Now please enter the date of death in the following format[dd.mm.yyyy]" << std::endl;
     std::cout << "If the person you are adding, is alive, enter '0'" << std::endl;
     death = getDate();
@@ -162,6 +202,13 @@ public:
     return person;
   }
 
+  /// @what Function for creating general person from person passed in parameter
+  /// @param "Person &p" passed by reference to add to a node
+  /// @returns N/A
+  /// @Usage Menu::mainScreenCases
+  /// @example
+  ///     Person p = createPerson(); \n
+  ///     createGeneralPerson(p);
   void createGeneralPerson(Person &p) {
     std::cout << "You need to enter the name of your persons parent" << std::endl;
     std::cout << "Please enter the firstname of the parent [Firstname]" << std::endl;
@@ -172,9 +219,14 @@ public:
       node.add(p);
     };
     _rootNode->traverseDepth(lambda, a, b);
-    feedback();
+    std::cout << "Operation was successfully executed" << std::endl << std::endl;
   }
 
+  /// @what Function for printing persons information and attributes
+  /// @param N/A
+  /// @returns N/A
+  /// @Usage Menu::mainScreenCases
+  /// @example printPerson();
   void printPerson() {
     std::cout << "Please enter the firstname of the person [Firstname]" << std::endl;
     std::string a = getNameInput();
@@ -186,9 +238,14 @@ public:
     _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
   }
 
-  void printTree(std::shared_ptr<Node<Person>> &node) {
+  /// @what Function for printing tree and all persons from rootNode
+  /// @param N/A
+  /// @returns N/A
+  /// @Usage Menu::mainScreenCases
+  /// @example printTree();
+  void printTree() {
     int indent = 3;
-    node->traverseDepth([ indent ](Node<Person> &f, int depth) {
+    _rootNode->traverseDepth([ indent ](Node<Person> &f, int depth) {
       for (int i = 0; i < depth; ++i) {
         for (int j = 0; j < indent; ++j) {
           std::cout << " ";
@@ -196,9 +253,14 @@ public:
       }
       std::cout << f.getPerson().getFirstName() << " " << f.getPerson().getLastName() << std::endl;
     });
-    feedback();
+    std::cout << "Operation was successfully executed" << std::endl << std::endl;
   }
 
+  /// @what Function for emptying person in node
+  /// @param N/A
+  /// @returns N/A
+  /// @Usage Menu::mainScreenCases
+  /// @example emptyPerson();
   void emptyPerson() {
     std::cout << "Please enter the firstname of the person [Firstname]" << std::endl;
     std::string firstName = getNameInput();
@@ -215,6 +277,12 @@ public:
     _rootNode->traverseDepthSearch(_rootNode, firstName, lastName, lambda);
   }
 
+  /// @what Function for exiting program and while loop in main.\n
+  /// Checks the input until a desired answer is recieved
+  /// @param N/A
+  /// @returns N/A
+  /// @Usage Menu::mainScreenCases, Menu::editAttributes
+  /// @example exitProgram();
   void exitProgram() {
     std::string input;
 
@@ -236,7 +304,11 @@ public:
     }
   }
 
-  // Functions for getting user input
+  /// @what Function for getting user input as string
+  /// @param N/A
+  /// @returns str::string
+  /// @Usage Menu::mainScreenCases
+  /// @example getNameInput();
   std::string getNameInput() {
     std::string name;
     std::cin >> name;
@@ -247,6 +319,11 @@ public:
     return name;
   }
 
+  /// @what Function for getting date input with desired length.
+  /// @param N/A
+  /// @returns "std::string date" is being returned in the desired length and format
+  /// @Usage Menu::createPerson
+  /// @example getDate();
   std::string getDate() {
     std::string date;
     while (!ExceptionHandling::checkDateLength(date)) {
@@ -254,7 +331,11 @@ public:
     }
     return date;
   }
-
+  /// @what Function for changing existing persons first name using traverseDepthSearch();
+  /// @param N/A
+  /// @returns N/A
+  /// @Usage Menu::changeAttributeCases
+  /// @example changeFirstName();
   void changeFirstName() {
     std::cout << "Please enter the firstname of the person [Firstname]" << std::endl;
     std::string a = getNameInput();
@@ -270,7 +351,11 @@ public:
     std::cout << "The new firstname of your person is now ";
     std::cout << newFirstName << std::endl;
   }
-
+  /// @what Function for changing existing persons last name using traverseDepthSearch();
+  /// @param N/A
+  /// @returns N/A
+  /// @Usage Menu::changeAttributeCases
+  /// @example changeLastName();
   void changeLastName() {
     std::cout << "Please enter the firstname of the person [Firstname]" << std::endl;
     std::string a = getNameInput();
@@ -287,6 +372,11 @@ public:
     std::cout << newLastName << std::endl;
   }
 
+  /// @what Function for changing existing persons birth using traverseDepthSearch();
+  /// @param N/A
+  /// @returns N/A
+  /// @Usage Menu::changeAttributeCases
+  /// @example changeBirthDate();
   void changeBirthDate() {
     std::cout << "Please enter the firstname of the person [Firstname]" << std::endl;
     std::string a = getNameInput();
@@ -303,7 +393,11 @@ public:
     std::cout << "The new birthdate of the person is now ";
     std::cout << newBirthDate << std::endl;
   }
-
+  /// @what Function for changing existing persons death using traverseDepthSearch();
+  /// @param N/A
+  /// @returns N/A
+  /// @Usage Menu::changeAttributeCases
+  /// @example changeDeathDate();
   void changeDeathDate() {
     std::cout << "Please enter the firstname of the person [Firstname]" << std::endl;
     std::string a = getNameInput();
@@ -320,7 +414,11 @@ public:
     std::cout << "The new date of death of the person is now ";
     std::cout << newDeathDate << std::endl;
   }
-
+  /// @what Function for changing existing persons sex using traverseDepthSearch();
+  /// @param N/A
+  /// @returns N/A
+  /// @Usage Menu::changeAttributeCases
+  /// @example changeBirthDate();
   void changeSex() {
     std::cout << "Please enter the firstname of the person [Firstname]" << std::endl;
     std::string a = getNameInput();
@@ -340,6 +438,11 @@ public:
     std::cout << newSex << std::endl;
   }
 
+  /// @what Function for switch cases in main menu. Keeps track of states.
+  /// @param N/A
+  /// @returns N/A
+  /// @Usage Family_tree.cpp::main
+  /// @example mainScreenCases();
   void mainScreenCases() {
     switch (_state) {
       case 1: {
@@ -370,12 +473,16 @@ public:
       }
       default: {
         std::cout << "That was not one of your menu options, please try again";
-        mainScreen();
         break;
       }
     }
   }
 
+  /// @what Function for switch cases in edit attributes menu. Keeps track of states.
+  /// @param N/A
+  /// @returns N/A
+  /// @Usage Menu::mainScreenCases
+  /// @example editAttributeCases();
   void editAttributeCases() {
     switch (_state) {
       case 1: {
@@ -399,6 +506,7 @@ public:
         break;
       }
       case 6: {
+        std::cout << "Returning to main menu.";
         break;
       }
       case 9: {
@@ -407,7 +515,6 @@ public:
       }
       default: {
         std::cout << "That was not one of the menu options, please try again";
-        editAttributes();
         break;
       }
     }
