@@ -1,12 +1,11 @@
 #FamilyTree
-
+##General information
 This is a school project created by students at NTNU Ålesund. \
 Institusjonsnummer: 194 \
 Emnekode: AIS1002_1 \
 Emnetittel: Objektorientert programmering og algoritmer \
 Eksamenstype: Mappevurdering \
-GruppeNr: 18
-
+GruppeNr: 18 \
 KandidatNr: 10025 \
 KanditatNr: 10026
 
@@ -17,6 +16,9 @@ KanditatNr: 10026
 - [Known bugs](#known-bugs)
 - [Our solution](#our-solution)
 - [Tests](#tests)
+- [Future TODOs](#future-todos)
+- [Big O](#big-o)
+- [References](#references)
 
 ##Classes
 ###UML Schematics
@@ -56,7 +58,7 @@ Pros:
 - Each node can have as many children as desired. 
 - This code can become a binary tree if the children vector is limited to two elements.
 - In this program each node can see both ways.
-- More traversals possible \
+- More types of traversals possible \
 
 Cons:
 - Requires more data per node than a binary tree.
@@ -96,7 +98,10 @@ Both depth first and upwards traversal algorithms have been included in Node.hpp
 The big O notation for both of these traversal algorithms are O(n). \
 This is because it requires the function to visit once per node in the worst case.
 
+##Notable code explanation
+``
 
+``
 ##References
 ###In Node.hpp
 We started off the project getting inspiration from "Folders" written by Lars Ivar Hatledal \
