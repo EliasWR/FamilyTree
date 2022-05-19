@@ -20,7 +20,7 @@ KanditatNr: 10026
 
 ##Classes
 ###UML Schematics
-![img.png](Images/img.png)
+![img.png](Images/UMLSchematics.png)
 
 ##Documentation
 The code documentation style is written in the following format:
