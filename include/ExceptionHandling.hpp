@@ -112,7 +112,7 @@ struct ExceptionHandling {
     std::string e = "exit";
 
     while ((input != b) && (input != e)) {
-      std::cout << "That was not one of your given options, please try again" << std::endl;
+      std::cout << "That was not one of your given options, please try again. " << std::endl;
       std::cin >> input;
     }
   }

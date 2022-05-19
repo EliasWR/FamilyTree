@@ -179,7 +179,7 @@ public:
     root->traverseDepth([ firstName, lastName, editingFunc, &personFound ](Node<T> &node) {
       if (node.getPerson().getFirstName() == firstName && node.getPerson().getLastName() == lastName) {
         personFound = true;
-        std::cout << node << " was found and operation has successfully been executed." << std::endl;
+        std::cout << node << " was found and operation has successfully been executed." << std::endl << std::endl;
         auto &myPerson = node.getPerson();
         editingFunc(myPerson);
       }
