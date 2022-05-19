@@ -58,7 +58,7 @@ Pros:
 - Each node can have as many children as desired. 
 - This code can become a binary tree if the children vector is limited to two elements.
 - In this program each node can see both ways.
-- More traversals possible \
+- More types of traversals possible \
 
 Cons:
 - Requires more data per node than a binary tree.
