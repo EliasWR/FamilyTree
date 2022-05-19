@@ -82,7 +82,7 @@ public:
   bool isEmpty() {
     std::ifstream file(_fileName);
     if (!file) {
-      std::cout << "File could not be opened.";
+      std::cout << "No previously saved file was found.";
       return true;
     }
     bool fileIsEmpty = file.peek() == std::ifstream::traits_type::eof();

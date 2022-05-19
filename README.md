@@ -1,27 +1,30 @@
 # FamilyTree
-##Group 18
 
-This is a school project created by students at NTNU ålesund.
-Institusjonsnummer: 194
-Emnekode: AIS1002_1
-Emnetittel: Objektorientert programmering og algoritmer
-Eksamenstype: Mappevurdering
+This is a school project created by students at NTNU ålesund. \
+Institusjonsnummer: 194 \
+Emnekode: AIS1002_1 \
+Emnetittel: Objektorientert programmering og algoritmer \
+Eksamenstype: Mappevurdering \
+GruppeNr: 18
 
-KandidatNr: 10025
+KandidatNr: 10025 \
 KanditatNr: 10026
 
-- [Documentation](#Documentation)
-- [Assumptions](#Assumptions)
-- [Tests](#Tests)
+##Table of contents
+- [Documentation](##Documentation)
+- [Assumptions](##Assumptions)
+- [Known bugs](##Known bugs)
+- [Our solution](##Our solution)
+- [Tests](##Tests)
 
 ##Documentation
 The code documentation style is written in the following format:
 
-/// @what:      Describing what the function does.
-/// @bigO:      Included where it is relevant to mathematically describe the limits of the functions.
-/// @param      Describes the parameters the function takes.
-/// @returns    Describes the return value of the function.
-/// @usage      Describes where the function has been used in this project.
+/// @what:      Describing what the function does. \
+/// @bigO:      Included where it is relevant to mathematically describe the limits of the functions. \
+/// @param      Describes the parameters the function takes.\
+/// @returns    Describes the return value of the function.\
+/// @usage      Describes where the function has been used in this project.\
 /// @example    Show an example of how the function can be implemented.
 
 ##Assumptions
@@ -31,29 +34,48 @@ The code documentation style is written in the following format:
         - Tree structure will chose first person with correlating name when traversing
         - To fill, every attribute can be edited
 
-##Known bugs
+##Known bugs 
 - Birth and death limits have not been implemented.
   - This allows the user to get negative ages and set both birth and death in the future.
+  - Program will also print the age even though the person is dead.
 
 ##Our solution
+###General tree
+We have made a general tree. This means that it is preferable to start with your ancestor. \
+Pros:
+- Each node can have as many children as desired. 
+- This code can become a binary tree if the children vector is limited to two elements.
+- In this program each node can see both ways.
+- More traversals possible \
 
+Cons:
+- Requires more data per node than a binary tree.
+- Not very suitable to chose yourself for root node.
+
+###Traversal
+- We have chosen to focus on the depth first traversal
+- We have not yet implemented breadth first traversal. We have made a working upwards traversal though.
 
 ##Classes
 ###UML Schematics
 
 ##Tests
-
+###Improvements
+- Corner cases of persons, nodes, traversal and filewriting being tested.
+- There could have been more tests testing even smaller corner cases.
 
 ##Future TODOs
 ###Gender
-Enum
+Persons gender value should be of type enum and not string. \ 
+It was previously made string because of convenience of all attributes being string.
 
 ###GUI
-QT cpp library
-Evt skrive i python
+In the future we would prefer to implement a GUI with QT cpp library.
+This could also be done with python. 
+This is not prioritized as of now.
 
 ###Traversal
-Implement breadth first traversal
+Implementation of breadth first traversal is prioritized to be implemented.
 
 ###Remove person
 Implement that if user wants to delete a node and node is a leaf it will be removed from the parents vector
