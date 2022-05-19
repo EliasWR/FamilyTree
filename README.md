@@ -73,6 +73,10 @@ Checking for empty file
 https://tousu.in/qa/?qa=486809/
 (19.05.2022)
 
+Time tracking
+https://www.tutorialspoint.com/cplusplus/cpp_date_time.htm
+(16.05.2022)
+
 ###README 
 Lage readme fil ordentlig
 

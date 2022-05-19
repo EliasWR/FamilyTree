@@ -17,7 +17,7 @@ struct ExceptionHandling {
   /// @example ExceptionHandling e;
   ExceptionHandling() = default;
 
-  /// @what Function for taking user input until user choses a valid option
+  /// @what Function for taking user input until user chooses a valid option
   /// @param "const std::vector<int> &list" for checking against user options
   /// @returns "int input" after checks and input is a valid value
   /// @Usage Menu::mainScreen, Main::editAttributes
