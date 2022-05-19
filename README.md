@@ -1,6 +1,6 @@
-# FamilyTree
+#FamilyTree
 
-This is a school project created by students at NTNU ålesund. \
+This is a school project created by students at NTNU Ålesund. \
 Institusjonsnummer: 194 \
 Emnekode: AIS1002_1 \
 Emnetittel: Objektorientert programmering og algoritmer \
@@ -11,11 +11,11 @@ KandidatNr: 10025 \
 KanditatNr: 10026
 
 ##Table of contents
-- [Documentation](##Documentation)
-- [Assumptions](##Assumptions)
-- [Known bugs](##Known bugs)
-- [Our solution](##Our solution)
-- [Tests](##Tests)
+- [Documentation](#documentation)
+- [Assumptions](#assumptions)
+- [Known bugs](#known-bugs)
+- [Our solution](#our-solution)
+- [Tests](#tests)
 
 ##Documentation
 The code documentation style is written in the following format:
