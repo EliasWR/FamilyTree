@@ -2,6 +2,16 @@
 ##Group 18
 
 This is a school project created by students at NTNU ålesund.
+Institusjonsnummer: 194
+Emnekode: AIS1002_1
+Emnetittel: Objektorientert programmering og algoritmer
+Eksamenstype: Mappevurdering
+
+KandidatNr: 10025
+
+- [Documentation](#Documentation)
+- [Assumptions](#Assumptions)
+- [Tests](#Tests)
 
 ##Documentation
 The code documentation style is written in the following format:
@@ -14,13 +24,18 @@ The code documentation style is written in the following format:
 /// @example    Show an example of how the function can be implemented.
 
 ##Assumptions
-#We have made the following assumptions for our program:
-    - 
-
+###We have made the following assumptions for our program:
+    - Every name is unique
+    - No more than one person is emptied at the time
+        - Tree structure will chose first person with correlating name when traversing
+        - To fill, every attribute can be edited
 
 ##Known bugs
+- Birth and death limits have not been implemented.
+  - This allows the user to get negative ages and set both birth and death in the future.
 
 ##Our solution
+
 
 ##Klasser
 
@@ -37,6 +52,12 @@ Evt skrive i python
 
 ###Traversal
 Implement breadth first traversal
+
+###Remove person
+Implement that if user wants to delete a node and node is a leaf it will be removed from the parents vector
+
+###Remove private variables from Date class
+Make functions return the right values instead.
 
 ##Big O
 Both depth first and upwards traversal algorithms have been included in Node.hpp.
