@@ -68,18 +68,18 @@ struct ExceptionHandling {
   /// @what Function turning first letter of string to uppercase
   /// @param "std::string &s" passing string by reference and matching by options
   /// @returns N/A
-  /// @Usage Menu::createPerson, Main::changeSex
+  /// @Usage Menu::createPerson, Main::changeGender
   /// @example
-  /// std::cin >> sex;\n
-  /// ExceptionHandling::checkSexInput(sex);
-  static void checkSexInput(std::string &s) {
+  /// std::cin >> gender;\n
+  /// ExceptionHandling::checkGenderInput(gender);
+  static void checkGenderInput(std::string &gender) {
     std::string m = "male";
     std::string f = "female";
     std::string o = "other";
 
-    while ((s != m) && (s != f) && (s != o)) {
-      std::cout << "You did not type in any of the given options for sex ['male', 'female' or 'other']. Please try again." << std::endl;
-      std::cin >> s;
+    while ((gender != m) && (gender != f) && (gender != o)) {
+      std::cout << "You did not type in any of the given options for gender ['male', 'female' or 'other']. Please try again." << std::endl;
+      std::cin >> gender;
     }
   }
 

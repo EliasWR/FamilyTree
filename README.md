@@ -14,11 +14,15 @@ Eksempel på kall
 ##Known bugs
 
 ##Future TODOs
-###Sex
+###Gender
 Enum
+
 ###GUI
 QT cpp library
 Evt skrive i python
+
+###Traversal
+Implement breadth first traversal
 
 ##Big O
 

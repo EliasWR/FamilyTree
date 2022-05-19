@@ -31,7 +31,8 @@ public:
   /// @param strings initializing all variables
   /// @returns N/A
   /// @Usage JsonFile::personFromJson, Menu::createPerson
-  /// @example Person p (firstName, lastName, birth, death, sex);
+  /// @example Person p (firstName, lastName, birth, death, gender
+  /// );
   Person(std::string firstName, std::string lastName, std::string birth, std::string death, std::string gender)
       : _firstName(firstName), _lastName(lastName), _birth(birth), _death(death), _gender(gender) {
   }
@@ -78,11 +79,11 @@ public:
     if (_death != "0") {
       std::cout << ", and died at " << _death << ".";
     } else {
-      std::cout << ", and is alive.";
+      std::cout << ", and is alive and";
     }
     Date d;
     d.calculateAge(_birth, d.getCurrentDate());
-    std::cout << _firstName << " " << _lastName << " is considered a " << _gender << "." << std::endl;
+    std::cout << std::endl << _firstName << " " << _lastName << " is considered a " << _gender << "." << std::endl;
   }
 };
 

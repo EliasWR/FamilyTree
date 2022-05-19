@@ -32,7 +32,7 @@ namespace nlohmann {
       {"LastName", p.getLastName()},
       {"Birth", p.getBirth()},
       {"Death", p.getDeath()},
-      {"Sex", p.getGender()},
+      {"Gender", p.getGender()},
       {"Children", n->getChildren()}};
   }
 }// Namespace nlohmann
@@ -124,7 +124,7 @@ public:
   /// @Usage JsonFile::nodeFromJson
   /// @example Person person = personFromJson(j);
   Person personFromJson(nlohmann::json &j) {
-    std::string firstName, lastName, birth, death, sex;
+    std::string firstName, lastName, birth, death, gender;
     if (j.contains("FirstName")) {
       firstName = j.at("FirstName");
     }
@@ -137,11 +137,11 @@ public:
     if (j.contains("Death")) {
       death = j.at("Death");
     }
-    if (j.contains("Sex")) {
-      sex = j.at("Sex");
+    if (j.contains("Gender")) {
+      gender = j.at("Gender");
     }
 
-    Person person(firstName, lastName, birth, death, sex);
+    Person person(firstName, lastName, birth, death, gender);
     return person;
   }
 

@@ -167,9 +167,12 @@ public:
   ///        "std::function<void(T &)> editingFunc" lambda function for editing persons\n
   /// @returns N/A
   /// @Usage Menu::changeFirstName, Menu::changeLastName, Menu::changeBirthDate, Menu::changeDeathDate,\n
-  ///        Menu::changeSex, Menu::emptyPerson, Menu::printPerson
+  ///        Menu::changeGender
+  ///
+  /// , Menu::emptyPerson, Menu::printPerson
   /// @example
-  /// auto lambda = [ newFirstName ](Person &p) {p.setFirstName(newFirstName);};\n
+  /// auto lambda = [ newFirstName ](Person &p) {p.se
+  /// tFirstName(newFirstName);};\n
   /// rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
   void traverseDepthSearch(std::shared_ptr<Node<T>> root, std::string firstName, std::string lastName, std::function<void(T &)> editingFunc) {
     bool personFound = false;

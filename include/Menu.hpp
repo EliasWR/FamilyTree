@@ -147,7 +147,7 @@ public:
     std::cout << "[2] Edit existing persons lastname" << std::endl;
     std::cout << "[3] Edit existing persons birthday" << std::endl;
     std::cout << "[4] Edit exising persons day of death" << std::endl;
-    std::cout << "[5] Edit existing persons sex" << std::endl;
+    std::cout << "[5] Edit existing persons gender" << std::endl;
     std::cout << "[6] Go back to main menu." << std::endl;
     std::cout << "[9] Exit program." << std::endl;
     std::cout << "Enter your number followed by enter:" << std::endl;
@@ -164,10 +164,9 @@ public:
   /// @example Person person = createPerson();
   Person createPerson() {
     /// Firstname
-    std::string firstName, lastName, sex, birth, death;
+    std::string firstName, lastName, gender, birth, death;
     std::cout << "Now you can add a new person with 5 attributes to your family tree." << std::endl;
-    std::cout << "Type the attributes followed by enter." << std::endl
-              << std::endl;
+    std::cout << "Type the attributes followed by enter." << std::endl << std::endl;
     std::cout << "Please type the persons first name: " << std::endl;
     std::cout << "If the person has multiple firstnames, use '-' between them" << std::endl;
     std::cin >> firstName;
@@ -185,10 +184,10 @@ public:
     }
     ExceptionHandling::toUpper(lastName);
 
-    /// Sex
-    std::cout << "Please enter the persons sex ['male', 'female' or 'other']" << std::endl;
-    std::cin >> sex;
-    ExceptionHandling::checkSexInput(sex);
+    /// Gender
+    std::cout << "Please enter the persons gender ['male', 'female' or 'other']" << std::endl;
+    std::cin >> gender;
+    ExceptionHandling::checkGenderInput(gender);
 
     /// Birth
     std::cout << "Now please enter the date of birth in the following format[dd.mm.yyyy]" << std::endl;
@@ -198,7 +197,7 @@ public:
     std::cout << "Now please enter the date of death in the following format[dd.mm.yyyy]" << std::endl;
     std::cout << "If the person you are adding, is alive, enter '0'" << std::endl;
     death = getDate();
-    Person person(firstName, lastName, birth, death, sex);
+    Person person(firstName, lastName, birth, death, gender);
     return person;
   }
 
@@ -417,28 +416,28 @@ public:
     std::cout << "The new date of death of the person is now ";
     std::cout << newDeathDate << std::endl;
   }
-  /// @what Function for changing existing persons sex using traverseDepthSearch();
+  /// @what Function for changing existing persons gender using traverseDepthSearch();
   /// @param N/A
   /// @returns N/A
   /// @Usage Menu::changeAttributeCases
-  /// @example changeBirthDate();
-  void changeSex() {
+  /// @example m.changeGender();
+  void changeGender() {
     std::cout << "Please enter the firstname of the person [Firstname]" << std::endl;
     std::string a = getNameInput();
     std::cout << "Please enter the lastname of the person [Lastname]" << std::endl;
     std::string b = getNameInput();
-    std::string newSex;
+    std::string newGender;
 
-    std::cout << "Now please enter the new sex of the person you chose ['male', 'female' or 'other']." << std::endl;
-    std::cin >> newSex;
-    ExceptionHandling::checkSexInput(newSex);
+    std::cout << "Now please enter the new gender of the person you chose ['male', 'female' or 'other']." << std::endl;
+    std::cin >> newGender;
+    ExceptionHandling::checkGenderInput(newGender);
 
-    auto lambda = [ newSex ](Person &p) {
-      p.setGender(newSex);
+    auto lambda = [ newGender ](Person &p) {
+      p.setGender(newGender);
     };
     _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
-    std::cout << "The new sex of the person you chose is now ";
-    std::cout << newSex << std::endl;
+    std::cout << "The new gender of the person you chose is now ";
+    std::cout << newGender << std::endl;
   }
 
   /// @what Function for switch cases in main menu. Keeps track of states.
@@ -505,7 +504,7 @@ public:
         break;
       }
       case 5: {
-        changeSex();
+        changeGender();
         break;
       }
       case 6: {
