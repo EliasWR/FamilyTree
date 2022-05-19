@@ -3,8 +3,14 @@
 2022_03_07_OOP_Task
 
 ##Documentation
-/// 
-Beskrive hva metoden gjør 
+The documentation style is written in the following format:
+
+/// @what: describing what the function does
+/// @bigO: included where it is relevant to mathematically describe the limits of the functions
+/// @param "std::function<void(Node<T> &)> f" for recursive function
+/// @returns N/A
+/// @usage Node::TraverseDepthSearch
+/// @example traverseDepth (rootNode);
 Beskrive hver av input parameterene
 Beskrive hva den returnerer
 Eksempel på kall
@@ -12,6 +18,8 @@ Eksempel på kall
 ##References
 
 ##Known bugs
+
+##Our solution
 
 ##Future TODOs
 ###Gender
@@ -25,12 +33,16 @@ Evt skrive i python
 Implement breadth first traversal
 
 ##Big O
+Both depth first and upwards traversal algorithms have been included in Node.hpp.
+The big O notation for both of these traversal algorithms are O(n).
+This is because of the 
 
 ##TODO
 TODO Fjerne autogenererte notater øverst og legge til kandidatnr i ReadMe
+Klasseforklaring
 
 ### Ting å gjøre
-Enum i sex
+Enum i gender
 
 ###GUI
 QT cpp library

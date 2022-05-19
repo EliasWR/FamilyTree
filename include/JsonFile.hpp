@@ -50,7 +50,7 @@ public:
   /// @param "std::shared_ptr<Node<T>> &t" initiates objects private variable _rootNode ,\n
   ///         "std::string const &fileName" initiates objects private variable _fileName
   /// @returns N/A
-  /// @Usage Menu::saveNodes, Menu::getSavedNodes
+  /// @usage Menu::saveNodes, Menu::getSavedNodes
   /// @example JsonFile json(rootNode, fileName);
   explicit JsonFile(std::shared_ptr<Node<T>> &t, std::string const &fileName)
       : _rootNode(t), _fileName(fileName) {
@@ -59,7 +59,7 @@ public:
   /// @what Opens or creates file with ofstream library.
   /// @param N/A
   /// @returns N/A
-  /// @Usage Menu::saveNodes
+  /// @usage Menu::saveNodes
   /// @example json.openFile();
   void openFile() {
     f.open(_fileName, std::ios_base::trunc | std::ios_base::out);
@@ -68,7 +68,7 @@ public:
   /// @what Closes a file
   /// @param N/A
   /// @returns N/A
-  /// @Usage Menu::getSavedNodes, Menu::saveNodes
+  /// @usage Menu::getSavedNodes, Menu::saveNodes
   /// @example json.closeFile();
   void closeFile() {
     f.close();
@@ -77,7 +77,7 @@ public:
   /// @what Checks if a file is empty
   /// @param N/A
   /// @returns Werther the file is empty(True) or not(False) and if the file is not open(True)
-  /// @Usage Menu::getSavedNodes
+  /// @usage Menu::getSavedNodes
   /// @example if (!json.isEmpty()){};
   bool isEmpty() {
     std::ifstream file(_fileName);
@@ -92,7 +92,7 @@ public:
   /// @what Function moves contents to file
   /// @param "nlohmann::json &j" brings the contents to be moved
   /// @returns N/A
-  /// @Usage Menu::saveNodes
+  /// @usage Menu::saveNodes
   /// @example json.jsonToFile(j);
   void jsonToFile(nlohmann::json &j) {
     f << j.dump(4);
@@ -100,7 +100,7 @@ public:
   /// @what Function reads contents of .json file and returns it to j
   /// @param "nlohmann::json &j" is mutated to hold contents of file
   /// @returns nlohmann::json j which holds contents of file
-  /// @Usage Menu::getSavedNodes
+  /// @usage Menu::getSavedNodes
   /// @example nlohmann::json j = json.readFile(j);
   nlohmann::json readFile(nlohmann::json j) {
     std::ifstream file(_fileName);
@@ -111,7 +111,7 @@ public:
   /// @what Function writes persons from tree to json using the to_json () function previously overloaded
   /// @param N/A
   /// @returns nlohmann::json personJson which holds contents of all nodes
-  /// @Usage Menu::saveNodes
+  /// @usage Menu::saveNodes
   /// @example nlohmann::json j = json.nodesToJson();
   nlohmann::json nodesToJson() {
     nlohmann::json personJson(_rootNode);
@@ -121,7 +121,7 @@ public:
   /// @what Retrieves person from .json to nlohmann::json &j
   /// @param "nlohmann::json &j" is read and information is used to create a person
   /// @returns "Person person" a person of type Person
-  /// @Usage JsonFile::nodeFromJson
+  /// @usage JsonFile::nodeFromJson
   /// @example Person person = personFromJson(j);
   Person personFromJson(nlohmann::json &j) {
     std::string firstName, lastName, birth, death, gender;
@@ -149,7 +149,7 @@ public:
   /// @param "nlohmann::json &j" is used to traverse tree in file\n
   ///         "std::shared_ptr<Node<Person>> rootNode" is used to store all node information
   /// @returns "std::shared_ptr<Node<Person>>" containing all previously saved nodes
-  /// @Usage Menu::getSavedNodes
+  /// @usage Menu::getSavedNodes
   /// @example auto node = json.nodeFromJson(j, emptyNode);
   std::shared_ptr<Node<Person>> nodeFromJson(nlohmann::json &j, std::shared_ptr<Node<Person>> rootNode) {
     Person person;

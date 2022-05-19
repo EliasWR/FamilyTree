@@ -22,14 +22,14 @@ public:
   /// @what Default constructor
   /// @param N/A
   /// @returns N/A
-  /// @Usage JsonFile::getSavedNodes
+  /// @usage JsonFile::getSavedNodes
   /// @example auto emptyNode = std::make_shared<Node<Person>>();
   explicit Node() = default;
 
   /// @what Constructor of generalized templated node holding T value with unique ownership in node
   /// @param "const T &t" templated parameter able to hold desired value
   /// @returns N/A
-  /// @Usage JsonFile::nodeFromJson
+  /// @usage JsonFile::nodeFromJson
   /// @example auto node = std::make_shared<Node<Person>>();
   explicit Node(const T &t)
       : _person(std::make_unique<T>(t)) {
@@ -37,7 +37,7 @@ public:
   /// @what Getter for retrieving pointer to person the node is holding
   /// @param N/A
   /// @returns T pointer to the person node is holding
-  /// @Usage Menu::printTree
+  /// @usage Menu::printTree
   /// @example auto person = node.getPerson();
   [[nodiscard]] T &getPerson() const {
     return *_person;
@@ -46,7 +46,7 @@ public:
   /// @what Getter for retrieving pointer to parent the node is holding
   /// @param N/A
   /// @returns T pointer to the person node is holding
-  /// @Usage N/A
+  /// @usage N/A
   /// @example auto parent = node.getPerson();
   [[nodiscard]] Node<T> *getParent() const {
     return _parent;
@@ -55,7 +55,7 @@ public:
   /// @what Getter for retrieving children
   /// @param N/A
   /// @returns Children vector - Vector holding pointers to all children of node
-  /// @Usage nlohmann::json
+  /// @usage nlohmann::json
   /// @example auto children = node->getChildren();
   [[nodiscard]] std::vector<std::shared_ptr<Node<T>>> &getChildren() {
     return _children;
@@ -63,7 +63,7 @@ public:
   /// @what Setter for editing  children
   /// @param "std::vector<std::shared_ptr<Node<T>>> children" Gives new list of pointers to nodes containing children
   /// @returns N/A
-  /// @Usage N/A
+  /// @usage N/A
   /// @example
   /// auto children = node1->getChildren();\n
   /// node2->setChildren(children);
@@ -74,7 +74,7 @@ public:
   /// @what Checks werther node is the root (Has no parent)
   /// @param N/A
   /// @returns a boolean; node is the root(True)/is not the root(False)
-  /// @Usage N/A
+  /// @usage N/A
   /// @example bool nodeIsRoot = node.isRoot();
   [[nodiscard]] bool isRoot() const {
     return (_parent == nullptr);
@@ -83,7 +83,7 @@ public:
   /// @what Checks werther node is a leaf of the tree (Has no children)
   /// @param N/A
   /// @returns a boolean; node is a leaf(True)/is not a leaf(False)
-  /// @Usage N/A
+  /// @usage N/A
   /// @example bool nodeIsLeaf = node.isLeaf();
   [[nodiscard]] bool isLeaf() const {
     return _children.empty();
@@ -92,17 +92,17 @@ public:
   /// @what Checks werther nodes person attribute is null-pointer
   /// @param N/A
   /// @returns a boolean; node is empty(True)/is not empty(False)
-  /// @Usage JsonFile::nodeFromJson
+  /// @usage JsonFile::nodeFromJson
   /// @example bool isNodeEmpty = node.isEmpty();
   [[nodiscard]] bool isEmpty() const {
     return (_person == nullptr);
   }
 
   /// @what Tree traversal starting opposite of root
-  /// @BigO is O(n) because it depends on the number of nodes in the tree
+  /// @bigO is O(n) because it depends on the number of nodes in the tree
   /// @param "std::function<void(Node<T> &)> f" is a parameter for recursion taking current function
   /// @returns N/A
-  /// @Usage N/A
+  /// @usage N/A
   /// @example bool isNodeEmpty = node.isEmpty();
   void traverseUpwards(std::function<void(Node<T> &)> f) {
     f(*this);
@@ -112,10 +112,10 @@ public:
   }
 
   /// @what Breadth first traversal starting from root
-  /// @BigO is O(n) because it depends on the number of nodes in the tree
+  /// @bigO is O(n) because it depends on the number of nodes in the tree
   /// @param "std::function<void(Node<T> &)> f" for recursive function
   /// @returns N/A
-  /// @Usage Node::TraverseDepthSearch
+  /// @usage Node::TraverseDepthSearch
   /// @example traverseDepth (rootNode);
   void traverseDepth(std::function<void(Node<T> &)> f) {
     f(*this);
@@ -125,11 +125,11 @@ public:
   }
 
   /// @what Overloaded breadth first traversal in order to print a tree structure
-  /// @BigO is O(n) because it depends on the number of nodes in the tree
+  /// @bigO is O(n) because it depends on the number of nodes in the tree
   /// @param "std::function<void(Node<T> &, int)> f" for recursive function
   ///        "int depth = 0" keeps track of level in tree and prints equivalent indents
   /// @returns N/A
-  /// @Usage Menu::printTree
+  /// @usage Menu::printTree
   /// @example
   /// node->traverseDepth([ indent ](Node<Person> &f, int depth) {\n
   ///      for (int i = 0; i < depth; ++i) {\n
@@ -142,11 +142,11 @@ public:
     }
   }
   /// @what Overloaded breadth first traversal in order to search for a specific node in tree
-  /// @BigO is O(n) because it depends on the number of nodes in the tree
+  /// @bigO is O(n) because it depends on the number of nodes in the tree
   /// @param "std::function<void(Node<T> &, int)> f" for recursive function\n
   ///        "std::string firstName" and "std::string lastName" is used for comparing all names in tree
   /// @returns N/A
-  /// @Usage Menu::createGeneralPerson, JsonFile::NodeFromJson
+  /// @usage Menu::createGeneralPerson, JsonFile::NodeFromJson
   /// @example
   /// auto lambda = [ p ](Node<Person> &node) { node.add(p);};\n
   /// rootNode->traverseDepth(lambda, a, b);
@@ -160,13 +160,13 @@ public:
     }
   }
   /// @what Overloaded breadth first traversal in order to make changes to persons
-  /// @BigO is O(n) because it depends on the number of nodes in the tree
+  /// @bigO is O(n) because it depends on the number of nodes in the tree
   /// @param "std::shared_ptr<Node<T>> root" rootNode where traversal will start
   ///        "std::string firstName" first name to be searched for\n
   ///        "std::string lastName" last name to be searched for\n
   ///        "std::function<void(T &)> editingFunc" lambda function for editing persons\n
   /// @returns N/A
-  /// @Usage Menu::changeFirstName, Menu::changeLastName, Menu::changeBirthDate, Menu::changeDeathDate,\n
+  /// @usage Menu::changeFirstName, Menu::changeLastName, Menu::changeBirthDate, Menu::changeDeathDate,\n
   ///        Menu::changeGender
   ///
   /// , Menu::emptyPerson, Menu::printPerson
@@ -191,7 +191,7 @@ public:
   /// @what Function for setting relations between parent and child
   /// @param "T value" is for the templated value that should be added
   /// @returns N/A
-  /// @Usage Menu::createGeneralPerson, JsonFile.nodeFromJson
+  /// @usage Menu::createGeneralPerson, JsonFile.nodeFromJson
   /// @example
   /// auto lambda = [ p ](Node<Person> &node) {node.add(p);};\n
   /// rootNode->traverseDepth(lambda, a, b);
@@ -209,7 +209,7 @@ public:
 /// @param "std::ostream &os" taking ostream parameter to be compatible with << operator\n
 ///        "const Node<T> &node" takes the node that is to be printed
 /// @returns Output stream object containing the final print
-/// @Usage Node::traverseDepthSearch
+/// @usage Node::traverseDepthSearch
 /// @example std::cout << node;
 template<typename T>
 std::ostream &operator<<(std::ostream &os, const Node<T> &node) {
