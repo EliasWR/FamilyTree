@@ -39,11 +39,15 @@ The code documentation style is written in the following format:
         - Tree structure will chose first person with correlating name when traversing
         - To fill, every attribute can be edited
     - We have taken it one step further by making a general tree and this will satisfy the task
-
+![img.png](Images/WindowsBuildError.png)
 ##Known bugs 
 - Birth and death limits have not been implemented.
   - This allows the user to get negative ages and set both birth and death in the future.
   - Program will also print the age even though the person is dead.
+-This program continuously fails on githubs windows build. All other windows computers we have tried runs the program fine.
+  - The program builds on Linux and MacOS exceptionally.
+  - The bug is because of the .json library we have relied upon.
+
 
 ##Our solution
 ###General tree
