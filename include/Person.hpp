@@ -76,8 +76,7 @@ public:
   void printPersonInfo() {
     std::cout << _firstName << " " << _lastName << " is born on the " << _birth;
     if (_death != "0") {
-      std::cout << ", and died at ";
-      std::cout << _death << ".";
+      std::cout << ", and died at " << _death << ".";
     } else {
       std::cout << ", and is alive.";
     }
