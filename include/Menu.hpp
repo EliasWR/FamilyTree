@@ -193,6 +193,10 @@ public:
     /// Birth
     std::cout << "Now please enter the date of birth in the following format[dd.mm.yyyy]" << std::endl;
     birth = getDate();
+    Date d();
+    if (birth == d.getCurrentDate()) {
+        std::cout << "Happy birthday!" << std::endl;
+    }
 
     /// Death
     std::cout << "Now please enter the date of death in the following format[dd.mm.yyyy]" << std::endl;
