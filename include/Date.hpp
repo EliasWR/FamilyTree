@@ -128,7 +128,7 @@ public:
     } else {
       day = _presDay - _day;
     }
-    std::cout << ", is " << year << " years and " << month << " months old.";
+    std::cout << "Age is " << year << " years and " << month << " months old.";
   }
 };
 
