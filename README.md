@@ -98,7 +98,10 @@ Both depth first and upwards traversal algorithms have been included in Node.hpp
 The big O notation for both of these traversal algorithms are O(n). \
 This is because it requires the function to visit once per node in the worst case.
 
+##Notable code explanation
+``
 
+``
 ##References
 ###In Node.hpp
 We started off the project getting inspiration from "Folders" written by Lars Ivar Hatledal \
