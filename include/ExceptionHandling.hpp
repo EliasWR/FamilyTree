@@ -20,7 +20,7 @@ struct ExceptionHandling {
   /// @what Function for taking user input until user choses a valid option
   /// @param "const std::vector<int> &list" for checking against user options
   /// @returns "int input" after checks and input is a valid value
-  /// @Usage Menu::mainScreen, Main::editAttributes
+  /// @usage Menu::mainScreen, Main::editAttributes
   /// @example int input = ExceptionHandling::checkStateInput(v);
   static int checkStateInput(const std::vector<int> &list) {
     int input;
@@ -46,7 +46,7 @@ struct ExceptionHandling {
   /// @what Function checking if string is empty
   /// @param "const std::string &s" passing string by reference to check if it is empty
   /// @returns "bool isEmpty" true if string is empty, false if not
-  /// @Usage Menu::createPerson, Main::getNameInput
+  /// @usage Menu::createPerson, Main::getNameInput
   /// @example while (ExceptionHandling::stringEmpty(lastName)) {std::cin lastName}
   static bool stringEmpty(const std::string &s) {
     bool isEmpty = s.empty();
@@ -59,7 +59,7 @@ struct ExceptionHandling {
   /// @what Function turning first letter of string to uppercase
   /// @param "std::string &s" passing string by reference and changing first letter to uppercase
   /// @returns N/A
-  /// @Usage Menu::createPerson, Main::getNameInput
+  /// @usage Menu::createPerson, Main::getNameInput
   /// @example ExceptionHandling::toUpper(firstName);
   static void toUpper(std::string &s) {
     s[ 0 ] = std::toupper(s[ 0 ]);
@@ -68,7 +68,7 @@ struct ExceptionHandling {
   /// @what Function turning first letter of string to uppercase
   /// @param "std::string &s" passing string by reference and matching by options
   /// @returns N/A
-  /// @Usage Menu::createPerson, Main::changeGender
+  /// @usage Menu::createPerson, Main::changeGender
   /// @example
   /// std::cin >> gender;\n
   /// ExceptionHandling::checkGenderInput(gender);
@@ -87,7 +87,7 @@ struct ExceptionHandling {
   /// @param "const std::string &dateString" passing string by \n
   ///         const reference and checking length of string
   /// @returns bool false if the format was wrong and returning true if date is the desired format
-  /// @Usage Menu::getDate
+  /// @usage Menu::getDate
   /// @example
   /// std::string date; \n
   /// while (!ExceptionHandling::checkDateLength(date)) {std::cin >> date;}
@@ -103,7 +103,7 @@ struct ExceptionHandling {
   /// @what Function for checking desired exit menu input
   /// @param "std::string &input" passing string by reference in order to take input until valid
   /// @returns N/A
-  /// @Usage Menu::exitProgram
+  /// @usage Menu::exitProgram
   /// @example
   /// std::cin >> input; \n
   /// ExceptionHandling::checkExitMenuInput(input);

@@ -17,14 +17,14 @@ public:
   /// @what Default constructor for Date class setting private variables initial value to 0
   /// @param N/A
   /// @returns N/A
-  /// @Usage Menu::greeting, Person::printPersonInfo
+  /// @usage Menu::greeting, Person::printPersonInfo
   /// @example Date d;
   Date()
       : _day(0), _month(0), _year(0), _presDay(0), _presMonth(0), _presYear(0){};
   /// @what Constructor for Date class initializing "_day", "_month", "_year"
   /// @param "int day", "int month", "int year" used for initializing private variables
   /// @returns N/A
-  /// @Usage Menu::greeting, Person::printPersonInfo
+  /// @usage Menu::greeting, Person::printPersonInfo
   /// @example Date d(01.01.2001);
   Date(int day, int month, int year)
       : _day(day), _month(month), _year(year){};
@@ -32,7 +32,7 @@ public:
   /// @what Function for converting day, month and year integers to one date(string)
   /// @param N/A
   /// @returns "std::string date" containg the string of the date
-  /// @Usage N/A
+  /// @usage N/A
   /// @example
   /// d.setDate(birthday);\n
   /// d.getDate();
@@ -60,7 +60,7 @@ public:
   /// @what Function for splitting a date string to integers containing day, month and year
   /// @param N/A
   /// @returns N/A
-  /// @Usage Date::calculateAge
+  /// @usage Date::calculateAge
   /// @example d.setDate(birthday);
   void setDate(std::string dateString) {
     std::vector<int> v = {0, 0, 0};
@@ -85,7 +85,7 @@ public:
   /// @what Function getting current day using the time library
   /// @param N/A
   /// @returns std::string containing the current date in propper format
-  /// @Usage Menu::greeting, Person::printPersonInfo
+  /// @usage Menu::greeting, Person::printPersonInfo
   /// @example std::string date = d.getCurrentDate();
   std::string getCurrentDate() {
     std::time_t t = std::time(nullptr);
@@ -106,7 +106,7 @@ public:
   /// @what Function for calculating the age of a person or time from a date to another date
   /// @param "std::string birthDate", "std::string currentDate" as parameters for calculating time between them
   /// @returns N/A
-  /// @Usage Person::printPersonInfo
+  /// @usage Person::printPersonInfo
   /// @example
   /// Date d;\n
   /// d.calculateAge(_birth, d.getCurrentDate());

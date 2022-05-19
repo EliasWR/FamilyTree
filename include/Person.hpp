@@ -13,7 +13,7 @@ public:
   /// @what Constructor for Person
   /// @param N/A
   /// @returns N/A
-  /// @Usage JsonFile::NodeFromJson
+  /// @usage JsonFile::NodeFromJson
   /// @example Person p;
   Person() = default;
 
@@ -21,7 +21,7 @@ public:
   /// @param "std::string firstName" and "std::string lastName" \n
   ///         initializing only firstname and lastname of person
   /// @returns N/A
-  /// @Usage testFamilyTree.cpp
+  /// @usage testFamilyTree.cpp
   /// @example Person p (firstName, lastName);
   Person(std::string firstName, std::string lastName)
       : _firstName(firstName), _lastName(lastName) {
@@ -30,7 +30,7 @@ public:
   /// @what Constructor for Person initializing all attributes of person
   /// @param strings initializing all variables
   /// @returns N/A
-  /// @Usage JsonFile::personFromJson, Menu::createPerson
+  /// @usage JsonFile::personFromJson, Menu::createPerson
   /// @example Person p (firstName, lastName, birth, death, gender
   /// );
   Person(std::string firstName, std::string lastName, std::string birth, std::string death, std::string gender)
@@ -72,7 +72,7 @@ public:
   /// @what Function for printing all persons attributes
   /// @param N/A
   /// @returns N/A
-  /// @Usage Menu::printPerson
+  /// @usage Menu::printPerson
   /// @example p.printPersonInfo();
   void printPersonInfo() {
     std::cout << _firstName << " " << _lastName << " is born on the " << _birth;
