@@ -1,12 +1,11 @@
 #FamilyTree
-
+##General information
 This is a school project created by students at NTNU Ålesund. \
 Institusjonsnummer: 194 \
 Emnekode: AIS1002_1 \
 Emnetittel: Objektorientert programmering og algoritmer \
 Eksamenstype: Mappevurdering \
-GruppeNr: 18
-
+GruppeNr: 18 \
 KandidatNr: 10025 \
 KanditatNr: 10026
 
@@ -17,6 +16,9 @@ KanditatNr: 10026
 - [Known bugs](#known-bugs)
 - [Our solution](#our-solution)
 - [Tests](#tests)
+- [Future TODOs](#future-todos)
+- [Big O](#big-o)
+- [References](#references)
 
 ##Classes
 ###UML Schematics
