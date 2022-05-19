@@ -17,6 +17,10 @@ KanditatNr: 10026
 - [Our solution](#our-solution)
 - [Tests](#tests)
 
+##Classes
+###UML Schematics
+![](../../Downloads/281673029_4333878840048431_8600203263232762088_n.png)
+
 ##Documentation
 The code documentation style is written in the following format:
 
@@ -55,9 +59,6 @@ Cons:
 ###Traversal
 - We have chosen to focus on the depth first traversal
 - We have not yet implemented breadth first traversal. We have made a working upwards traversal though.
-
-##Classes
-###UML Schematics
 
 ##Tests
 ###Improvements
