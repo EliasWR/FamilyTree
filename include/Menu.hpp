@@ -47,7 +47,7 @@ public:
     std::cout << "                  "
               << "Welcome to 'FamilyTree'!" << std::endl;
     std::cout << "                  "
-              << "Todays date is: " << date.getCurrentDate() << std::endl;
+              << "Today's date is: " << date.getCurrentDate() << std::endl;
     std::cout << "In this program you can make and modify a family tree of your own" << std::endl;
     std::cout << "To navigate this program you type the number of your desired command followed by enter." << std::endl;
     getSavedNodes();
@@ -95,7 +95,7 @@ public:
     json.closeFile();
   }
 
-  /// @what Function for creating first person if noone exists in tree
+  /// @what Function for creating first person if none exists in tree
   /// @param N/A
   /// @returns N/A
   /// @usage Menu::greeting
@@ -278,7 +278,7 @@ public:
   }
 
   /// @what Function for exiting program and while loop in main.\n
-  /// Checks the input until a desired answer is recieved
+  /// Checks the input until a desired answer is received
   /// @param N/A
   /// @returns N/A
   /// @usage Menu::mainScreenCases, Menu::editAttributes
