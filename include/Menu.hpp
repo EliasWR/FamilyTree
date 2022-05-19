@@ -9,8 +9,6 @@
 #include <iostream>
 #include <limits>
 
-// Indexing of persons
-// singly linked list holding persons
 template<class T>
 class Menu {
 private:
