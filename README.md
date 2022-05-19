@@ -37,7 +37,8 @@ The code documentation style is written in the following format:
 ##Our solution
 
 
-##Klasser
+##Classes
+###UML Schematics
 
 ##Tests
 
@@ -80,43 +81,54 @@ We would probably use the QT cpp library. Could be done with python as well.
 We started off the project getting inspiration from "Folders" written by Lars Ivar Hatledal
 Link: https://github.com/AIS1002-OOP/folders/blob/master/main.cpp
 Date of information: (05.05.2022).
+Justification: 
+As we learned Object oriented programming this was a good place to start our journey.
+It inspired our traversal algorithms.
 
 ###In json.hpp
 Json file handling library Nhlohmannjson.hpp
 Link: https://github.com/nlohmann/json
 Date of information:(20.04.2022)
+Justification: This library really helped write and read json to file. Library is recognized for .json file handling.
 
 ### In config.yml
 Macos - github build (conan-on-darwin)
 Link: https://github.com/markaren/threepp/blob/master/.github/workflows/config.yml
 Date of information: (20.04.2022)
+Justification: This helped building our program on MacOs on github.
 
 ###In ExceptionHandling.hpp
 Inspiration for checking integer input (checkStateInput function)
 Link: https://stackoverflow.com/questions/19696442/how-to-catch-invalid-input-in-c
 Date of information:(26.04.2022)
+Justification: This helped us implement a neat way to get the right user input for integers.
 
 ###In Date.hpp
 Inspiration for date class
 Link: http://gauss.ececs.uc.edu/Courses/C321/html/date.html
 Date of information: (03.05.2022)
+Justification: Date and age calculation is not that simple. This page helped form the logic behind the date class.
 
 ###In Date.hpp
 Inspiration for splitting date string (setDate function)
 Link: https://stackoverflow.com/questions/14265581/parse-split-a-string-in-c-using-string-delimiter-standard-c
 Date of information: (03.05.2022)
+Justification: This helped us split the date strings in the right places in order to convert to integers.
 
 ###In Date.hpp
 Inspiration for age calculation (calculateAge function)
 Link: https://www.codespeedy.com/calculate-age-from-date-of-birth-in-cpp/
 Date of information: (03.05.2022)
+Justification: Helps calculate the age 
 
 ###In JsonFile.hpp
 Checking for empty file (isEmpty function)
 Link: https://tousu.in/qa/?qa=486809/
 Date of information: (19.05.2022)
+Justification:
 
 ###In Date.hpp
 Time tracking (getCurrentDate function)
 Link: https://www.tutorialspoint.com/cplusplus/cpp_date_time.htm
 Date of information: (16.05.2022)
+Justification: 
