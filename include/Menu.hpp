@@ -509,7 +509,7 @@ public:
         break;
       }
       case 6: {
-        std::cout << "Returning to main menu.";
+        std::cout << "Returning to main menu." << std::endl;
         break;
       }
       case 9: {
