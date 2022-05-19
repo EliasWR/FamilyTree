@@ -54,6 +54,11 @@ https://stackoverflow.com/questions/19696442/how-to-catch-invalid-input-in-c
 (26.04.2022)
 
 Pathfinding
+
+(03.05.2022)
+
+Inspiration for date class
+http://gauss.ececs.uc.edu/Courses/C321/html/date.html
 (03.05.2022)
 
 Splitting date string (convertDate function)
