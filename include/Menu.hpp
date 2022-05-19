@@ -24,8 +24,7 @@ public:
   /// @returns N/A
   /// @usage Family_Tree::main
   /// @example Menu<Person> m;
-  Menu() {
-  }
+  Menu() = default;
 
   /// Getter for private variable _state of Menu class
   void setState(int state) {
