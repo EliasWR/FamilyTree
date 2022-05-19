@@ -19,11 +19,6 @@ TODO Fjerne autogenererte notater øverst og legge til kandidatnr i ReadMe
 ### Ting å gjøre
 Enum i sex
 
-Fikse depth search
-- hensikt 
-  - Kunne søke og hente ut noder for å legge til relasjon
-  - Kunne søke gjennom uten feilmeldinger
-
 ##Test cases
 Skrive test cases
 
@@ -59,12 +54,9 @@ Age handling (Printing age)
 https://www.codespeedy.com/calculate-age-from-date-of-birth-in-cpp/
 (03.05.2022)
 
-###Trestruktur
-- Sette relasjoner
-  - Går ikke an å sette relasjoner som finnes tidligere opp i treet
-- Traversering
-  - Breadth first traversal
-  - Må ha lik steglengde opp til rotnode
+Checking for empty file
+https://tousu.in/qa/?qa=486809/
+(19.05.2022)
 
 ###README 
 Lage readme fil ordentlig

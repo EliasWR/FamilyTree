@@ -1,12 +1,13 @@
 #ifndef FAMILYTREE_DATE_HPP
 #define FAMILYTREE_DATE_HPP
 
+#include "Menu.hpp"
+#include <chrono>
+#include <ctime>
 #include <iostream>
 #include <sstream>
-#include <chrono>
 #include <string>
-#include "Menu.hpp"
-#include <ctime>
+#include <vector>
 
 class Date {
 private:
@@ -14,21 +15,23 @@ private:
   int _presDay, _presMonth, _presYear;
 
 public:
-  Date () : _day(0), _month(0), _year(0), _presDay(0), _presMonth(0), _presYear(0){};
-  Date (int day, int month, int year) : _day(day), _month(month), _year(year){};
+  Date()
+      : _day(0), _month(0), _year(0), _presDay(0), _presMonth(0), _presYear(0){};
+  Date(int day, int month, int year)
+      : _day(day), _month(month), _year(year){};
 
-  std::string const getDate () {
+  std::string const getDate() {
     std::string day = std::to_string(_day);
     std::string month = std::to_string(_month);
     std::string year = std::to_string(_year);
 
     std::string date;
-    if (day.length() == 1){
+    if (day.length() == 1) {
       date.append("0");
     }
     date.append(day);
     date.append(".");
-    if (month.length() == 1){
+    if (month.length() == 1) {
       date.append("0");
     }
     date.append(month);
@@ -38,7 +41,7 @@ public:
     return date;
   }
 
-  void setDate (std::string dateString){
+  void setDate(std::string dateString) {
     int day = 0;
     int month = 0;
     int year = 0;
@@ -62,43 +65,37 @@ public:
   }
 
   std::string getCurrentDate() {
-      std::time_t t = std::time(nullptr);
-      std::tm* now = std::localtime(&t);
+    std::time_t t = std::time(nullptr);
+    std::tm *now = std::localtime(&t);
 
-      int currentYear = now->tm_year + 1900;
-      int currentMonth = now->tm_mon + 1;
-      int currentDay = now->tm_mday;
+    int currentYear = now->tm_year + 1900;
+    int currentMonth = now->tm_mon + 1;
+    int currentDay = now->tm_mday;
 
-      _presDay = currentDay;
-      _presMonth = currentMonth;
-      _presYear = currentYear;
+    _presDay = currentDay;
+    _presMonth = currentMonth;
+    _presYear = currentYear;
 
-      std::string currentDate = std::to_string(currentDay) + "." + std::to_string(currentMonth) + "." + std::to_string(currentYear);
-      return currentDate;
+    std::string currentDate = std::to_string(currentDay) + "." + std::to_string(currentMonth) + "." + std::to_string(currentYear);
+    return currentDate;
   }
 
-  void calculateAge (std::string birthDate, std::string currentDate){
+  void calculateAge(std::string birthDate, std::string currentDate) {
     setDate(birthDate);
 
     int day, month, year;
-    int daysInMonth[] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
+    int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     year = _presYear - _year;
-    if (_presMonth < _month)
-    {
+    if (_presMonth < _month) {
       year--;
       month = 12 - (_month - _presMonth);
-    }
-    else
-    {
+    } else {
       month = _presMonth - _month;
     }
-    if (_presDay < _day)
-    {
+    if (_presDay < _day) {
       month--;
-      day = daysInMonth[_presMonth - 1] - (_day - _presDay);
-    }
-    else
-    {
+      day = daysInMonth[ _presMonth - 1 ] - (_day - _presDay);
+    } else {
       day = _presDay - _day;
     }
     std::cout << ", is " << year << " years and " << month << " months old";

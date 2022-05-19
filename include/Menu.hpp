@@ -1,6 +1,7 @@
 #ifndef FAMILYTREE_MENU_HPP
 #define FAMILYTREE_MENU_HPP
 
+#include "Date.hpp"
 #include "ExceptionHandling.hpp"
 #include "JsonFile.hpp"
 #include "Node.hpp"
@@ -30,10 +31,12 @@ public:
   }
 
   void greeting() {
-    getSavedNodes ();
+    getSavedNodes();
     Date date;
-    std::cout << "                  " << "Welcome to 'FamilyTree'!" << std::endl;
-    std::cout << "                  "<< "Todays date is: " << date.getCurrentDate() << std::endl;
+    std::cout << "                  "
+              << "Welcome to 'FamilyTree'!" << std::endl;
+    std::cout << "                  "
+              << "Todays date is: " << date.getCurrentDate() << std::endl;
     std::cout << "In this program you can make and modify a family tree of your own" << std::endl;
     std::cout << "To navigate this program you type the number of your desired command followed by enter." << std::endl;
 
@@ -72,13 +75,13 @@ public:
     json.closeFile();
     json.openFile();
 
-    j = json.writePerson();
+    j = json.nodesToJson();
     json.jsonToFile(j);
 
     json.closeFile();
   }
 
-  void createFirstPerson(Person& p) {
+  void createFirstPerson(Person &p) {
     _rootNode = std::make_shared<Node<Person>>(p);
   }
 
@@ -156,7 +159,7 @@ public:
     return person;
   }
 
-  void createGeneralPerson(Person& p) {
+  void createGeneralPerson(Person &p) {
     std::cout << "You need to enter the name of your persons parent" << std::endl;
     std::cout << "Please enter the firstname of the parent [Firstname]" << std::endl;
     std::string a = getNameInput();
@@ -169,7 +172,7 @@ public:
     feedback();
   }
 
-  void printPerson () {
+  void printPerson() {
     std::cout << "Please enter the firstname of the person [Firstname]" << std::endl;
     std::string a = getNameInput();
     std::cout << "Please enter the lastname of the person [Lastname]" << std::endl;
@@ -294,13 +297,12 @@ public:
     std::cout << "Now please enter the new birthdate of the person in following format [dd.mm.yyyy]" << std::endl;
     std::string newBirthDate = getDate();
 
-    auto lambda = [newBirthDate](Person &p) {
+    auto lambda = [ newBirthDate ](Person &p) {
       p.setBirth(newBirthDate);
     };
     _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
     std::cout << "The new birthdate of the person is now ";
     std::cout << newBirthDate << std::endl;
-
   }
 
   void changeDeathDate() {
@@ -348,7 +350,7 @@ public:
       }
 
       case 2: {
-        emptyPerson ();
+        emptyPerson();
         break;
       }
       case 3: {

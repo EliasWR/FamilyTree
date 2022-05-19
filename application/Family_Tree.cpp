@@ -1,12 +1,11 @@
 #include "Menu.hpp"
 #include "Node.hpp"
 #include "Person.hpp"
-#include "Date.hpp"
 #include <iostream>
 
 // Uncomment any implementation to testrun
 int main() {
- /*
+  /*
   auto a = std::make_shared<Node<Person>>(Person("Gunnar", "Sonsteby"));
   a->add (Person("Erik", "Sonsteby"));
   a->add (Person("Anita", "Sonsteby"));
@@ -39,7 +38,7 @@ int main() {
   m.printTree(b);
 */
 
- Menu<Person> m;
+  Menu<Person> m;
 
   m.greeting();
   while (m.getState() != 9) {
