@@ -45,7 +45,7 @@ TEST_CASE("CreatePerson") {
   bool lastname = (personLastName == initLastName);
   REQUIRE(firstname && lastname);
 }
-
+/*
 TEST_CASE("ReadAndWriteFile") {
   auto a = std::make_shared<Node<Person>>(Person("Gunnar", "Sonsteby"));
   a->add(Person("Erik", "Sonsteby"));
@@ -64,3 +64,4 @@ TEST_CASE("ReadAndWriteFile") {
   m.getSavedNodes();
   m.printTree();
 }
+*/
