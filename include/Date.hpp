@@ -21,6 +21,7 @@ public:
   /// @example Date d;
   Date()
       : _day(0), _month(0), _year(0), _presDay(0), _presMonth(0), _presYear(0){};
+
   /// @what Constructor for Date class initializing "_day", "_month", "_year"
   /// @param "int day", "int month", "int year" used for initializing private variables
   /// @returns N/A

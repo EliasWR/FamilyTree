@@ -1,16 +1,12 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch.hpp"
-#include "Date.hpp"
-#include "JsonFile.hpp"
 #include "Menu.hpp"
 #include "Node.hpp"
 #include "Person.hpp"
-#include "json.hpp"
 #include <iostream>
 
-// Node.hpp tests
-// Tests whether a Node can be made and edited
-
+/// Node test
+/// Tests whether a Node can be made and edited
 TEST_CASE("NodeChangePerson") {
   std::string initFirstName = "Gunnar";
   std::string initLastName = "Sonsteby";
@@ -32,6 +28,8 @@ TEST_CASE("NodeChangePerson") {
   REQUIRE(result);
 }
 
+///Person test
+///Tests creatingPerson and retrieving name
 TEST_CASE("CreatePerson") {
   std::string initFirstName = "Espen";
   std::string initLastName = "Olsen";
@@ -47,7 +45,8 @@ TEST_CASE("CreatePerson") {
 
   REQUIRE(result);
 }
-
+/// Node and filewriting test
+/// Tests whether a Node can be made, edited, written to file and then retrieved
 TEST_CASE("ReadAndWriteFile") {
   std::string firstName = "Gunnar";
   std::string lastName = "Sonsteby";

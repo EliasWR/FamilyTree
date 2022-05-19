@@ -24,7 +24,7 @@ public:
   /// @usage testFamilyTree.cpp
   /// @example Person p (firstName, lastName);
   Person(std::string firstName, std::string lastName)
-      : _firstName(firstName), _lastName(lastName) {
+      : _firstName(std::move(firstName)), _lastName(std::move(lastName)) {
   }
 
   /// @what Constructor for Person initializing all attributes of person
@@ -34,7 +34,7 @@ public:
   /// @example Person p (firstName, lastName, birth, death, gender
   /// );
   Person(std::string firstName, std::string lastName, std::string birth, std::string death, std::string gender)
-      : _firstName(firstName), _lastName(lastName), _birth(birth), _death(death), _gender(gender) {
+      : _firstName(std::move(firstName)), _lastName(std::move(lastName)), _birth(std::move(birth)), _death(std::move(death)), _gender(std::move(gender)) {
   }
 
   /// Getters and setters for private variables of Person class
@@ -42,31 +42,31 @@ public:
     return _firstName;
   }
   void setFirstName(std::string firstName) {
-    _firstName = firstName;
+    _firstName = std::move(firstName);
   }
   [[nodiscard]] std::string getLastName() const {
     return _lastName;
   }
   void setLastName(std::string lastName) {
-    _lastName = lastName;
+    _lastName = std::move(lastName);
   }
   [[nodiscard]] std::string getBirth() const {
     return _birth;
   }
   void setBirth(std::string birth) {
-    _birth = birth;
+    _birth = std::move(birth);
   }
   [[nodiscard]] std::string getDeath() const {
     return _death;
   }
   void setDeath(std::string death) {
-    _death = death;
+    _death = std::move(death);
   }
   [[nodiscard]] std::string getGender() const {
     return _gender;
   }
   void setGender(std::string gender) {
-    _gender = gender;
+    _gender = std::move(gender);
   }
 
   /// @what Function for printing all persons attributes
