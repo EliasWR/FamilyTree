@@ -98,27 +98,8 @@ public:
     return (_person == nullptr);
   }
 
-  std::vector<std::shared_ptr<Node<T>>> traverseBreadth(std::shared_ptr<Node<T>> node, std::vector<std::shared_ptr<Node<T>>> v) {
-    auto children = node->getChildren();
-
-    for (auto c: children) {
-      v = traverseBreadth(c, v);
-      std::cout << node << std::endl;
-      children = node->getChildren();
-      v.push_back(c);
-    }
-    return v;
-  }
-
-  void printBreadth(std::vector<std::shared_ptr<Node<T>>> v) {
-    for (int i = v.size(); i > 0; i--) {
-      auto node = v[ i - 1 ];
-      std::cout << node << std::endl;
-    }
-  }
-
   /// @what Tree traversal starting opposite of root
-  /// @BigO
+  /// @BigO is O(n) because it depends on the number of nodes in the tree
   /// @param "std::function<void(Node<T> &)> f" is a parameter for recursion taking current function
   /// @returns N/A
   /// @Usage N/A
@@ -131,7 +112,7 @@ public:
   }
 
   /// @what Breadth first traversal starting from root
-  /// @BigO
+  /// @BigO is O(n) because it depends on the number of nodes in the tree
   /// @param "std::function<void(Node<T> &)> f" for recursive function
   /// @returns N/A
   /// @Usage Node::TraverseDepthSearch
@@ -144,7 +125,7 @@ public:
   }
 
   /// @what Overloaded breadth first traversal in order to print a tree structure
-  /// @BigO
+  /// @BigO is O(n) because it depends on the number of nodes in the tree
   /// @param "std::function<void(Node<T> &, int)> f" for recursive function
   ///        "int depth = 0" keeps track of level in tree and prints equivalent indents
   /// @returns N/A
@@ -161,7 +142,7 @@ public:
     }
   }
   /// @what Overloaded breadth first traversal in order to search for a specific node in tree
-  /// @BigO
+  /// @BigO is O(n) because it depends on the number of nodes in the tree
   /// @param "std::function<void(Node<T> &, int)> f" for recursive function\n
   ///        "std::string firstName" and "std::string lastName" is used for comparing all names in tree
   /// @returns N/A
@@ -179,7 +160,7 @@ public:
     }
   }
   /// @what Overloaded breadth first traversal in order to make changes to persons
-  /// @BigO
+  /// @BigO is O(n) because it depends on the number of nodes in the tree
   /// @param "std::shared_ptr<Node<T>> root" rootNode where traversal will start
   ///        "std::string firstName" first name to be searched for\n
   ///        "std::string lastName" last name to be searched for\n
