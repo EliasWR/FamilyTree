@@ -119,16 +119,16 @@ Justification: This helped us split the date strings in the right places in orde
 Inspiration for age calculation (calculateAge function)
 Link: https://www.codespeedy.com/calculate-age-from-date-of-birth-in-cpp/
 Date of information: (03.05.2022)
-Justification: Helps calculate the age 
+Justification: Helped creating the logic for calculating the age of person. 
 
 ###In JsonFile.hpp
 Checking for empty file (isEmpty function)
 Link: https://tousu.in/qa/?qa=486809/
 Date of information: (19.05.2022)
-Justification:
+Justification: This is a neat way to check werther the file is empty.
 
 ###In Date.hpp
 Time tracking (getCurrentDate function)
 Link: https://www.tutorialspoint.com/cplusplus/cpp_date_time.htm
 Date of information: (16.05.2022)
-Justification: 
+Justification: This helped us get the current date in a neat date.
