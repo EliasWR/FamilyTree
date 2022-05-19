@@ -41,27 +41,39 @@ TEST_CASE("CreatePerson") {
   std::string personFirstName = a.getFirstName();
   std::string personLastName = a.getLastName();
 
-  bool firstname = (personFirstName == initFirstName);
-  bool lastname = (personLastName == initLastName);
-  REQUIRE(firstname && lastname);
+  bool firstName = (personFirstName == initFirstName);
+  bool lastName = (personLastName == initLastName);
+  bool result = (firstName && lastName);
+
+  REQUIRE(result);
 }
-/*
+
 TEST_CASE("ReadAndWriteFile") {
-  auto a = std::make_shared<Node<Person>>(Person("Gunnar", "Sonsteby"));
+  std::string firstName = "Gunnar";
+  std::string lastName = "Sonsteby";
+
+  auto a = std::make_shared<Node<Person>>(Person(firstName, lastName));
   a->add(Person("Erik", "Sonsteby"));
   a->add(Person("Anita", "Sonsteby"));
   a->add(Person("Hans", "Sonsteby"));
   a->add(Person("Lillian", "Sonsteby"));
 
   Person p("Henrik", "Sonsteby");
-  auto lambda1 = [ p ](Node<Person> &node) {
-    node.add(p);
-  };
-  a->traverseDepth(lambda1, "Erik", "Sonsteby");
+  auto lambda1 = [p](Node<Person> &node) {node.add(p);};
+  a->traverseDepth (lambda1,"Erik","Sonsteby");
 
   Menu<Person> m;
   m.saveNodes(a);
   m.getSavedNodes();
-  m.printTree();
+
+  auto &myPerson = a->getPerson();
+
+  auto personFirstName = myPerson.getFirstName();
+  auto personLastName = myPerson.getLastName();
+
+  bool testFirstName = (firstName == personFirstName);
+  bool testLastName = (lastName == personLastName);
+  bool result = (testFirstName && testLastName);
+
+  REQUIRE(result);
 }
-*/
