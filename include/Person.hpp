@@ -7,7 +7,7 @@
 
 class Person {
 private:
-  std::string _firstName, _lastName, _birth, _death, _sex;
+  std::string _firstName, _lastName, _birth, _death, _gender;
 
 public:
   /// @what Constructor for Person
@@ -32,8 +32,8 @@ public:
   /// @returns N/A
   /// @Usage JsonFile::personFromJson, Menu::createPerson
   /// @example Person p (firstName, lastName, birth, death, sex);
-  Person(std::string firstName, std::string lastName, std::string birth, std::string death, std::string sex)
-      : _firstName(firstName), _lastName(lastName), _birth(birth), _death(death), _sex(sex) {
+  Person(std::string firstName, std::string lastName, std::string birth, std::string death, std::string gender)
+      : _firstName(firstName), _lastName(lastName), _birth(birth), _death(death), _gender(gender) {
   }
 
   /// Getters and setters for private variables of Person class
@@ -61,11 +61,11 @@ public:
   void setDeath(std::string death) {
     _death = death;
   }
-  [[nodiscard]] std::string getSex() const {
-    return _sex;
+  [[nodiscard]] std::string getGender() const {
+    return _gender;
   }
-  void setSex(std::string sex) {
-    _sex = sex;
+  void setGender(std::string gender) {
+    _gender = gender;
   }
 
   /// @what Function for printing all persons attributes
@@ -74,23 +74,16 @@ public:
   /// @Usage Menu::printPerson
   /// @example p.printPersonInfo();
   void printPersonInfo() {
-    std::cout << _firstName << " " << _lastName;
-    std::cout << " is born on the ";
-    std::cout << _birth;
-
+    std::cout << _firstName << " " << _lastName << " is born on the " << _birth;
     if (_death != "0") {
-      std::cout << ", died at ";
-      std::cout << _death;
+      std::cout << ", and died at ";
+      std::cout << _death << ".";
     } else {
-      std::cout << ", is alive";
+      std::cout << ", and is alive.";
     }
     Date d;
     d.calculateAge(_birth, d.getCurrentDate());
-    std::cout << "";
-
-    std::cout << " and is a ";
-    std::cout << _sex;
-    std::cout << "." << std::endl;
+    std::cout << _firstName << " " << _lastName << " is considered a " << _gender << "." << std::endl;
   }
 };
 

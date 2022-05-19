@@ -32,7 +32,7 @@ namespace nlohmann {
       {"LastName", p.getLastName()},
       {"Birth", p.getBirth()},
       {"Death", p.getDeath()},
-      {"Sex", p.getSex()},
+      {"Sex", p.getGender()},
       {"Children", n->getChildren()}};
   }
 }// Namespace nlohmann

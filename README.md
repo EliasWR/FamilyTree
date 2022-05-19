@@ -1,26 +1,32 @@
 # FamilyTree
+##Group 18
 2022_03_07_OOP_Task
 
-God dokumentasjon
+##Documentation
 /// 
 Beskrive hva metoden gjør 
 Beskrive hver av input parameterene
 Beskrive hva den returnerer
 Eksempel på kall
 
-##Group 18
+##References
+
+##Known bugs
+
+##Future TODOs
+###Sex
+Enum
+###GUI
+QT cpp library
+Evt skrive i python
+
+##Big O
 
 ##TODO
-TODO Big O notation on traversal algorithms
-
 TODO Fjerne autogenererte notater øverst og legge til kandidatnr i ReadMe
-
 
 ### Ting å gjøre
 Enum i sex
-
-##Test cases
-Skrive test cases
 
 ###GUI
 QT cpp library

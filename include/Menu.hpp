@@ -274,7 +274,7 @@ public:
       p.setLastName("Empty");
       p.setBirth("00.00.0000");
       p.setDeath("00.00.0000");
-      p.setSex("other");
+      p.setGender("other");
     };
     _rootNode->traverseDepthSearch(_rootNode, firstName, lastName, lambda);
   }
@@ -434,7 +434,7 @@ public:
     ExceptionHandling::checkSexInput(newSex);
 
     auto lambda = [ newSex ](Person &p) {
-      p.setSex(newSex);
+      p.setGender(newSex);
     };
     _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
     std::cout << "The new sex of the person you chose is now ";

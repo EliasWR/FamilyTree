@@ -34,7 +34,7 @@ reformat code cmd + shift + f
 ### Person.h
 
 `std::array<int,3> _birth{};` -> Veldig lite OOP. Lag en egen klasse for dette.
-`char _sex;` -> Vurder enum.
+`char _gender;` -> Vurder enum.
 
 
 ```cpp
@@ -45,8 +45,8 @@ void setFirstName (std::string firstName) {
 Vurder const reference eller `std::move` for å unngå en enkstra kopi i setterene.
 
 ```cpp
- void setSex (char sex) {
-    _sex = sex;
+ void setGender (char sex) {
+    _gender = sex;
 }
 ```
 Ingenting som stopper invalid input her. 
