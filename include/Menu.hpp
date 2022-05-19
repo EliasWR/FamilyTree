@@ -71,7 +71,7 @@ public:
 
       _rootNode = json.nodeFromJson(j, emptyNode);
       std::cout << "You can continue building your tree where you left off: " << std::endl;
-      printTree(_rootNode);
+      printTree();
     } else {
       json.closeFile();
     }
@@ -466,7 +466,7 @@ public:
         break;
       }
       case 5: {
-        printTree(_rootNode);
+        printTree();
         break;
       }
       case 9: {

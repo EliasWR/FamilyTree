@@ -1,24 +1,26 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch.hpp"
+#include "Date.hpp"
+#include "JsonFile.hpp"
 #include "Menu.hpp"
 #include "Node.hpp"
 #include "Person.hpp"
-#include "JsonFile.hpp"
-#include "Date.hpp"
 #include "json.hpp"
 #include <iostream>
 
 // Node.hpp tests
 // Tests whether a Node can be made and edited
 
-TEST_CASE("NodeChangePerson"){
+TEST_CASE("NodeChangePerson") {
   std::string initFirstName = "Gunnar";
   std::string initLastName = "Sonsteby";
   std::string newFirstName = "Fredrik";
 
   auto a = std::make_shared<Node<Person>>(Person(initFirstName, initLastName));
-  auto &myPerson = a->getPerson ();
-  auto lambda = [newFirstName](Person &p) {p.setFirstName(newFirstName);};
+  auto &myPerson = a->getPerson();
+  auto lambda = [ newFirstName ](Person &p) {
+    p.setFirstName(newFirstName);
+  };
   a->traverseDepthSearch(a, initFirstName, initLastName, lambda);
 
   auto personFirstName = myPerson.getFirstName();
@@ -27,43 +29,38 @@ TEST_CASE("NodeChangePerson"){
   bool firstName = (newFirstName == personFirstName);
   bool lastName = (initLastName == personLastName);
   bool result = firstName && lastName;
-  REQUIRE (result);
+  REQUIRE(result);
 }
 
-/*
-TEST_CASE("Traversal"){
-  std::string firstName1 = "Gunnar";
-  std::string lastName1 = "Sønsteby";
-  std::string firstName2 = "Erik";
-  std::string lastName2 = "Sønsteby";
-  std::string nameFound;
+TEST_CASE("CreatePerson") {
+  std::string initFirstName = "Espen";
+  std::string initLastName = "Olsen";
 
-  auto a = std::make_shared<Node<Person>>(Person(firstName1, lastName1));
-  a->add (Person(firstName2, lastName2));
+  Person a = {initFirstName, initLastName};
 
-  auto &myPerson = a->getPerson ();
-  auto lambda = [nameFound](Person &p) {p.getFirstName();};
-  a->traverseDepthSearch(a, firstName2, firstName2, lambda);
-}
-*/
-// Person.hpp test
-// Tests whether a person object can be created
-TEST_CASE("createPerson"){
-std::string initFirstName = "Espen";
-std::string initLastName = "Olsen";
+  std::string personFirstName = a.getFirstName();
+  std::string personLastName = a.getLastName();
 
-Person a = {initFirstName, initLastName};
-
-std::string newLastName = a.getLastName();
-std::string newFirstName = a.getFirstName();
-
-bool firstname = (newFirstName == initFirstName);
-bool lastname = (newLastName == initLastName);
-bool result = firstname && lastname;
-REQUIRE(result);
+  bool firstname = (personFirstName == initFirstName);
+  bool lastname = (personLastName == initLastName);
+  REQUIRE(firstname && lastname);
 }
 
-// Menu tests
-TEST_CASE(){
+TEST_CASE("ReadAndWriteFile") {
+  auto a = std::make_shared<Node<Person>>(Person("Gunnar", "Sonsteby"));
+  a->add(Person("Erik", "Sonsteby"));
+  a->add(Person("Anita", "Sonsteby"));
+  a->add(Person("Hans", "Sonsteby"));
+  a->add(Person("Lillian", "Sonsteby"));
 
+  Person p("Henrik", "Sonsteby");
+  auto lambda1 = [ p ](Node<Person> &node) {
+    node.add(p);
+  };
+  a->traverseDepth(lambda1, "Erik", "Sonsteby");
+
+  Menu<Person> m;
+  m.saveNodes(a);
+  m.getSavedNodes();
+  m.printTree();
 }
