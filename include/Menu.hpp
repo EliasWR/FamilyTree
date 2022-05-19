@@ -101,7 +101,7 @@ public:
   /// @returns N/A
   /// @Usage Menu::greeting
   /// @example createFirstPerson();
-  void createFirstPerson (){
+  void createFirstPerson() {
     if (_rootNode == nullptr) {
       std::cout << "To start the program you need to add your first person, whom is the root of your tree and the start of your heritage!" << std::endl;
       Person person = createPerson();
@@ -219,7 +219,8 @@ public:
       node.add(p);
     };
     _rootNode->traverseDepth(lambda, a, b);
-    std::cout << "Operation was successfully executed" << std::endl << std::endl;
+    std::cout << "Operation was successfully executed" << std::endl
+              << std::endl;
   }
 
   /// @what Function for printing persons information and attributes
@@ -253,7 +254,8 @@ public:
       }
       std::cout << f.getPerson().getFirstName() << " " << f.getPerson().getLastName() << std::endl;
     });
-    std::cout << "Operation was successfully executed" << std::endl << std::endl;
+    std::cout << "Operation was successfully executed" << std::endl
+              << std::endl;
   }
 
   /// @what Function for emptying person in node
@@ -362,7 +364,7 @@ public:
     std::cout << "Please enter the lastname of the person [Lastname]" << std::endl;
     std::string b = getNameInput();
     std::cout << "Now please enter the new lastname of the person you chose " << std::endl;
-    std::string newLastName = getNameInput ();
+    std::string newLastName = getNameInput();
 
     auto lambda = [ newLastName ](Person &p) {
       p.setLastName(newLastName);

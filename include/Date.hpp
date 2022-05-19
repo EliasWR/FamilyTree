@@ -73,14 +73,14 @@ public:
 
     while ((pos = dateString.find(delimiter)) != std::string::npos) {
       token = dateString.substr(0, pos);
-      v[counter] = std::stoi(token);
+      v[ counter ] = std::stoi(token);
       dateString.erase(0, pos + delimiter.length());
       counter++;
     }
-    v[counter] = std::stoi(dateString);
-    _day = v[0];
-    _month = v[1];
-    _year = v[2];
+    v[ counter ] = std::stoi(dateString);
+    _day = v[ 0 ];
+    _month = v[ 1 ];
+    _year = v[ 2 ];
   }
 
   /// @what Function getting current day using the time library
