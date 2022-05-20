@@ -111,7 +111,7 @@ public:
     }
   }
 
-  /// @what Breadth first traversal starting from root
+  /// @what Depth first traversal starting from root
   /// @bigO is O(n) because it depends on the number of nodes in the tree
   /// @param "std::function<void(Node<T> &)> f" for recursive function
   /// @returns N/A
@@ -124,7 +124,7 @@ public:
     }
   }
 
-  /// @what Overloaded breadth first traversal in order to print a tree structure
+  /// @what Overloaded depth first traversal in order to print a tree structure
   /// @bigO is O(n) because it depends on the number of nodes in the tree
   /// @param "std::function<void(Node<T> &, int)> f" for recursive function
   ///        "int depth = 0" keeps track of level in tree and prints equivalent indents
@@ -141,7 +141,7 @@ public:
       c->traverseDepth(f, depth + 1);
     }
   }
-  /// @what Overloaded breadth first traversal in order to search for a specific node in tree
+  /// @what Overloaded depth first traversal in order to search for a specific node in tree
   /// @bigO is O(n) because it depends on the number of nodes in the tree
   /// @param "std::function<void(Node<T> &, int)> f" for recursive function\n
   ///        "std::string firstName" and "std::string lastName" is used for comparing all names in tree
@@ -159,7 +159,7 @@ public:
       }
     }
   }
-  /// @what Overloaded breadth first traversal in order to make changes to persons
+  /// @what Overloaded depth first traversal in order to make changes to persons
   /// @bigO is O(n) because it depends on the number of nodes in the tree
   /// @param "std::shared_ptr<Node<T>> root" rootNode where traversal will start
   ///        "std::string firstName" first name to be searched for\n

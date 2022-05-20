@@ -1,9 +1,6 @@
 #ifndef FAMILYTREE_EXCEPTIONHANDLING_HPP
 #define FAMILYTREE_EXCEPTIONHANDLING_HPP
 
-#include <array>
-#include <cctype>
-#include <exception>
 #include <iostream>
 #include <limits>
 #include <string>
