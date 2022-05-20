@@ -23,6 +23,13 @@ KanditatNr: 10026
 - [Big O](#big-o)
 - [References](#references)
 
+##Coding convention
+Coding convention Standardized: camelCase \
+Variable names camelCase \
+Class names PascalCase \
+Object names camelCase \
+Private member variables _camelCase (dash with camelCase)
+
 ## Classes
 
 ### UML Schematics
