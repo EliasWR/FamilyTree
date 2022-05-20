@@ -33,12 +33,12 @@ KanditatNr: 10026
 
 The code documentation style is written in the following format:
 
-/// @what:      Describing what the function does. \
-/// @bigO:      Included where it is relevant to mathematically describe the limits of the functions. \
-/// @param Describes the parameters the function takes.\
-/// @returns Describes the return value of the function.\
-/// @usage Describes where the function has been used in this project.\
-/// @example Show an example of how the function can be implemented.
+/// @what: Describing what the function does. \
+/// @bigO: Included where it is relevant to mathematically describe the limits of the functions. \
+/// @param: Describes the parameters the function takes.\
+/// @returns: Describes the return value of the function.\
+/// @usage: Describes where the function has been used in this project.\
+/// @example: Show an example of how the function can be implemented.
 
 ## Assumptions
 
@@ -49,6 +49,7 @@ The code documentation style is written in the following format:
         - Tree structure will chose first person with correlating name when traversing
         - To fill, every attribute can be edited
     - We have taken it one step further by making a general tree and this will satisfy the task
+    - Special characters such as æ, ø, å is to be avoided.
 
 ![img.png](Images/WindowsBuildError.png)
 
@@ -149,11 +150,63 @@ void traverseDepthSearch(std::shared_ptr<Node<T>> root, std::string &firstName, 
 
 ### Example of saved jsonFile
 
-Json is being saved and retrieved in a tree structure \
+Json is being saved and retrieved in a tree pattern \
 ![img.png](Images/jsonExample.png)
 
+###Writing tree to json
+First overloaded function catches template exceptions. \
+Second function is recursive as it calls the getChildren() at "Children"
 ```cpp
+namespace nlohmann {
+  template<class T>
+  void to_json(json &j, std::shared_ptr<Node<T>> n) {
+    throw std::runtime_error("Unknown type T");
+  };
+  
+  void to_json(json &j, std::shared_ptr<Node<Person>> n) {
+    Person p = n->getPerson();
+    j = json{
+      {"FirstName", p.getFirstName()},
+      {"LastName", p.getLastName()},
+      {"Birth", p.getBirth()},
+      {"Death", p.getDeath()},
+      {"Gender", p.getGender()},
+      {"Children", n->getChildren()}};
+  }
+}// Namespace nlohmann
+```
 
+###Reading tree from json
+This function was hard to work out. \
+This recursively calls itself traversing the tree while adding relation to previous node.
+If the rootnode from parameter is empty it creates the first person. \
+For each childnode the function adds it to the parent.
+```cpp
+std::shared_ptr<Node<Person>> nodeFromJson(nlohmann::json &j, std::shared_ptr<Node<Person>> rootNode) {
+    Person person;
+    if (rootNode->isEmpty()) {
+      person = personFromJson(j);
+      rootNode = std::make_shared<Node<Person>>(person);
+    }
+    if (j.contains("Children") && !j.at("Children").empty()) {
+      for (auto jsonChildNode: j.at("Children")) {
+        if (j.contains("FirstName")) {
+          _parentFirstName = j.at("FirstName");
+        }
+        if (j.contains("LastName")) {
+          _parentLastName = j.at("LastName");
+        }
+        person = personFromJson(jsonChildNode);
+        auto lambda = [ person ](Node<Person> &node) {
+          node.add(person);
+        };
+        rootNode->traverseDepth(lambda, _parentFirstName, _parentLastName);
+        nodeFromJson(jsonChildNode, rootNode);
+      }
+    }
+    _rootNode = rootNode;
+    return rootNode;
+  }
 ```
 
 ## References
