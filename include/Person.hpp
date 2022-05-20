@@ -85,7 +85,9 @@ public:
     d.getCurrentDate();
     std::cout << _firstName << " " << _lastName << " is ";
     d.calculateAge(_birth);
-    std::cout << std::endl << _firstName << " " << _lastName << " is considered a " << _gender << "." << std::endl << std::endl;
+    std::cout << std::endl
+              << _firstName << " " << _lastName << " is considered a " << _gender << "." << std::endl
+              << std::endl;
   }
 };
 

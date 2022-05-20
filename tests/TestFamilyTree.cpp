@@ -58,8 +58,10 @@ TEST_CASE("ReadAndWriteFile") {
   a->add(Person("Lillian", "Sonsteby"));
 
   Person p("Henrik", "Sonsteby");
-  auto lambda1 = [p](Node<Person> &node) {node.add(p);};
-  a->traverseDepth (lambda1,"Erik","Sonsteby");
+  auto lambda1 = [ p ](Node<Person> &node) {
+    node.add(p);
+  };
+  a->traverseDepth(lambda1, "Erik", "Sonsteby");
 
   Menu<Person> m;
   m.saveNodes(a);

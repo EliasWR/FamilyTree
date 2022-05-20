@@ -5,9 +5,9 @@
 #include "ExceptionHandling.hpp"
 #include "JsonFile.hpp"
 #include "Node.hpp"
-#include <vector>
 #include <iostream>
 #include <limits>
+#include <vector>
 
 template<class T>
 class Menu {
@@ -163,7 +163,8 @@ public:
     /// Firstname
     std::string firstName, lastName, gender, birth, death;
     std::cout << "Now you can add a new person with 5 attributes to your family tree." << std::endl;
-    std::cout << "Type the attributes followed by enter." << std::endl << std::endl;
+    std::cout << "Type the attributes followed by enter." << std::endl
+              << std::endl;
     std::cout << "Please type the persons first name: " << std::endl;
     std::cout << "If the person has multiple firstnames, use '-' between them" << std::endl;
     std::cin >> firstName;
