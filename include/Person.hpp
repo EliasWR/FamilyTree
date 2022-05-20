@@ -77,14 +77,14 @@ public:
   void printPersonInfo() {
     std::cout << _firstName << " " << _lastName << " is born on the " << _birth;
     if (_death != "0") {
-      std::cout << ", and died at " << _death << ".";
+      std::cout << ", and died at " << _death << ". ";
     } else {
-      std::cout << ", and is alive." << std::endl;
+      std::cout << ", and is alive. " << std::endl;
+      Date d;
+      d.getCurrentDate();
+      std::cout << _firstName << " " << _lastName << " is ";
+      d.calculateAge(_birth);
     }
-    Date d;
-    d.getCurrentDate();
-    std::cout << _firstName << " " << _lastName << " is ";
-    d.calculateAge(_birth);
     std::cout << std::endl
               << _firstName << " " << _lastName << " is considered a " << _gender << "." << std::endl
               << std::endl;
