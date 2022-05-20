@@ -32,7 +32,7 @@ public:
 
   /// @what Function for converting day, month and year integers to one date(string)
   /// @param N/A
-  /// @returns "std::string date" containg the string of the date
+  /// @returns "std::string date" containing the string of the date
   /// @usage N/A
   /// @example
   /// d.setDate(birthday);\n
@@ -85,7 +85,7 @@ public:
 
   /// @what Function getting current day using the time library
   /// @param N/A
-  /// @returns std::string containing the current date in propper format
+  /// @returns std::string containing the current date in proper format
   /// @usage Menu::greeting, Person::printPersonInfo
   /// @example std::string date = d.getCurrentDate();
   std::string getCurrentDate() {
