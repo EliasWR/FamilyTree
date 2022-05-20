@@ -174,7 +174,7 @@ public:
   /// auto lambda = [ newFirstName ](Person &p) {p.se
   /// tFirstName(newFirstName);};\n
   /// rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
-  void traverseDepthSearch(std::shared_ptr<Node<T>> root, std::string firstName, std::string lastName, std::function<void(T &)> editingFunc) {
+  void traverseDepthSearch(std::shared_ptr<Node<T>> root, std::string &firstName, std::string &lastName, std::function<void(T &)> editingFunc) {
     bool personFound = false;
     root->traverseDepth([ firstName, lastName, editingFunc, &personFound ](Node<T> &node) {
       if (node.getPerson().getFirstName() == firstName && node.getPerson().getLastName() == lastName) {
