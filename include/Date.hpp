@@ -28,7 +28,7 @@ public:
   /// @usage Menu::greeting, Person::printPersonInfo
   /// @example Date d(01.01.2001);
   Date(int day, int month, int year)
-      : _day(day), _month(month), _year(year){};
+      : _day(day), _month(month), _year(year), _presDay(0), _presMonth(0), _presYear(0){};
 
   /// @what Function for converting day, month and year integers to one date(string)
   /// @param N/A
@@ -37,7 +37,7 @@ public:
   /// @example
   /// d.setDate(birthday);\n
   /// d.getDate();
-  std::string const getDate() {
+  [[nodiscard]] std::string getDate() const {
     std::string day = std::to_string(_day);
     std::string month = std::to_string(_month);
     std::string year = std::to_string(_year);
@@ -111,7 +111,7 @@ public:
   /// @example
   /// Date d;\n
   /// d.calculateAge(_birth, d.getCurrentDate());
-  void calculateAge(std::string birthDate, std::string currentDate) {
+  void calculateAge(std::string birthDate) {
     setDate(birthDate);
 
     int day, month, year;
@@ -129,7 +129,7 @@ public:
     } else {
       day = _presDay - _day;
     }
-    std::cout << "Age is " << year << " years and " << month << " months old.";
+    std::cout << year << " years, " << month << " months and " << day << " days old.";
   }
 };
 
