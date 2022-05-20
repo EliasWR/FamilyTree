@@ -215,8 +215,6 @@ public:
       node.add(p);
     };
     _rootNode->traverseDepth(lambda, a, b);
-    std::cout << "Operation was successfully executed" << std::endl
-              << std::endl;
   }
 
   /// @what Function for printing persons information and attributes

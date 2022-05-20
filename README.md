@@ -99,6 +99,7 @@ The big O notation for both of these traversal algorithms are O(n). \
 This is because it requires the function to visit once per node in the worst case.
 
 ##Notable code explanation
+###Depth traversal with editing
 Uses the traverseDepth function for traversal. \
 This traversal algorithm utilizes a lambda function to edit person after traversal has found person. \
 Lambda is executed if person is found. \
@@ -119,6 +120,11 @@ void traverseDepthSearch(std::shared_ptr<Node<T>> root, std::string &firstName, 
     }
   }
 ```
+
+###Example of saved jsonFile
+Json is being saved and retrieved in a treestructure \
+![img.png](Images/jsonExample.png)
+
 
 
 ##References
