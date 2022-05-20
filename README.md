@@ -38,8 +38,7 @@ Private member variables _camelCase (dash with camelCase)
 
 ## Documentation
 
-The code documentation style is written in the following format:
-
+The code documentation style is written in the following format: \
 /// @what: Describing what the function does. \
 /// @bigO: Included where it is relevant to mathematically describe the limits of the functions. \
 /// @param: Describes the parameters the function takes.\
