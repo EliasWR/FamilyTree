@@ -103,7 +103,6 @@ Uses the traverseDepth function for traversal. \
 This traversal algorithm utilizes a lambda function to edit person after traversal has found person. \
 Lambda is executed if person is found. \
 Feedback from function werther person is found.
-
 ```cpp
 void traverseDepthSearch(std::shared_ptr<Node<T>> root, std::string &firstName, std::string &lastName, std::function<void(T &)> editingFunc) {
     bool personFound = false;
