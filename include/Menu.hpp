@@ -345,8 +345,6 @@ public:
       p.setFirstName(newFirstName);
     };
     _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
-    std::cout << "The new firstname of your person is now ";
-    std::cout << newFirstName << std::endl;
   }
   /// @what Function for changing existing persons last name using traverseDepthSearch();
   /// @param N/A
@@ -365,8 +363,6 @@ public:
       p.setLastName(newLastName);
     };
     _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
-    std::cout << "The new lastname of your person is now ";
-    std::cout << newLastName << std::endl;
   }
 
   /// @what Function for changing existing persons birth using traverseDepthSearch();
@@ -387,8 +383,6 @@ public:
       p.setBirth(newBirthDate);
     };
     _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
-    std::cout << "The new birthdate of the person is now ";
-    std::cout << newBirthDate << std::endl;
   }
   /// @what Function for changing existing persons death using traverseDepthSearch();
   /// @param N/A
@@ -408,8 +402,6 @@ public:
       p.setDeath(newDeathDate);
     };
     _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
-    std::cout << "The new date of death of the person is now ";
-    std::cout << newDeathDate << std::endl;
   }
   /// @what Function for changing existing persons gender using traverseDepthSearch();
   /// @param N/A
@@ -431,8 +423,6 @@ public:
       p.setGender(newGender);
     };
     _rootNode->traverseDepthSearch(_rootNode, a, b, lambda);
-    std::cout << "The new gender of the person you chose is now ";
-    std::cout << newGender << std::endl;
   }
 
   /// @what Function for switch cases in main menu. Keeps track of states.

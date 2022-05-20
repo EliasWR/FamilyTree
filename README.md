@@ -122,10 +122,12 @@ void traverseDepthSearch(std::shared_ptr<Node<T>> root, std::string &firstName, 
 ```
 
 ###Example of saved jsonFile
-Json is being saved and retrieved in a treestructure \
+Json is being saved and retrieved in a tree structure \
 ![img.png](Images/jsonExample.png)
 
+```cpp
 
+```
 
 ##References
 ###In Node.hpp

@@ -153,12 +153,10 @@ public:
   /// @example auto node = json.nodeFromJson(j, emptyNode);
   std::shared_ptr<Node<Person>> nodeFromJson(nlohmann::json &j, std::shared_ptr<Node<Person>> rootNode) {
     Person person;
-
     if (rootNode->isEmpty()) {
       person = personFromJson(j);
       rootNode = std::make_shared<Node<Person>>(person);
     }
-
     if (j.contains("Children") && !j.at("Children").empty()) {
       for (auto jsonChildNode: j.at("Children")) {
         if (j.contains("FirstName")) {
