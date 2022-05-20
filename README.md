@@ -99,6 +99,28 @@ The big O notation for both of these traversal algorithms are O(n). \
 This is because it requires the function to visit once per node in the worst case.
 
 ##Notable code explanation
+Uses the traverseDepth function for traversal. \
+This traversal algorithm utilizes a lambda function to edit person after traversal has found person. \
+Lambda is executed if person is found. \
+Feedback from function werther person is found.
+
+```cpp
+void traverseDepthSearch(std::shared_ptr<Node<T>> root, std::string &firstName, std::string &lastName, std::function<void(T &)> editingFunc) {
+    bool personFound = false;
+    root->traverseDepth([ firstName, lastName, editingFunc, &personFound ](Node<T> &node) {
+      if (node.getPerson().getFirstName() == firstName && node.getPerson().getLastName() == lastName) {
+        personFound = true;
+        std::cout << node << " was found and operation has successfully been executed." << std::endl << std::endl;
+        auto &myPerson = node.getPerson();
+        editingFunc(myPerson);
+      }
+    });
+    if (!personFound) {
+      std::cout << firstName << " " << lastName << " could not be found in tree." << std::endl;
+    }
+  }
+```
+
 
 ##References
 ###In Node.hpp

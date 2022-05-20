@@ -111,7 +111,7 @@ public:
   /// @example
   /// Date d;\n
   /// d.calculateAge(_birth, d.getCurrentDate());
-  void calculateAge(std::string birthDate) {
+  void calculateAge(std::string &birthDate) {
     setDate(birthDate);
 
     int day, month, year;
