@@ -1,9 +1,10 @@
 cmake_minimum_required(VERSION 3.21)
 project(FamilyTree)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
-include_directories(.)
+enable_testing()
 
-add_executable(FamilyTree
-        Family_Tree.cpp)
+add_subdirectory(tests)
+add_subdirectory(application)
+
